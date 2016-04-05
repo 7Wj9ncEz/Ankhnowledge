@@ -1,0 +1,29 @@
+h1. Button
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|sprite1|Sprite*|Saves a reference to a certain part of the Sprite|
+|sprite2|Sprite*|Saves a reference to a certain part of the Sprite|
+|current_sprite|Sprite*|Shows which sprite is being used at the current frame|
+|position_x|float|Position X of the button in the game|
+|position_y|float|Position Y of the button in the game|
+|mouse_x|float|The position X where the mouse currently is|
+|mouse_y|float|The position Y where the mouse currently is|
+|is_pressed|bool|Variable which shows if the button has been pressed or not|
+|change_scene|bool|Shows if it's time to change the scene or not|
+|change_sprite|bool|Shows if it's time to change the sprite or not|
+
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|/2. render|float camera_x|/2. no return|/2. Will render a Button through the camera dimensions|
+|float camera_y|
+|update|int dt|no return|Function that's responsible for updating the game after the button gets pressed|
+|inside_button|no parameter|bool|Function that verifies the mouse position and checks if it's inside the button|
+|/2.set_mouse_coord|float coordinate_x|/2.no return|/2.Setter for mouse_x and mouse_y variables|
+|float coordinate_y|
+|set_change_sprite|bool change_sprite|no return|Setter for change_sprite variable|
+|set_change_scene|bool change_scene|no return|Setter for change_scene variable|
+|mouse_pressed|bool isPressed|no return|Verifies if the mouse was pressed|

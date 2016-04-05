@@ -1,0 +1,19 @@
+h1. Block
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|block|Sprite*|Gets the sprite and then gets it's reference number|
+|anim_destroyed|bool|Variable to verify if the animation is destroyed or not|
+|final_destroyed|bool|Variable to verify if the final is destroyed or not|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|update|int dt|int|Whenever there's an update and this function is called it returns a 0|
+|/2. render|float camera_x|/2. no return|/2. Will render a Block through the camera dimensions|
+|float camera_y|
+|get_destroyed_anim_block|no parameter|bool|Getter for "anim_destroyed"|
+|get_destroyed_final_block|no parameter|bool|Getter for "final_destroyed"|
+|set_destroyed_anim_block|bool|no return|Setter for "anim_destroyed"|
+|set_destroyed_final_block|bool|no return|Setter for "final_destroyed"|
