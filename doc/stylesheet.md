@@ -4,11 +4,11 @@ Professor: Maurício Serrano
 Período: 1º/2016  
 Data de entrega: 30 de Março de 2016
 Estudantes:  
-  
+
 **11/0025229** - *Átilla Gallio*
 
 **11/0064879** - *Nicolas Boarin*
-  
+
 #Stylesheet - Ankhnowledge
 
 ##1. Comments
@@ -184,7 +184,7 @@ void Tile::set_clickable_tiles(Tile *origin, int reach, bool consider_block, boo
 
 		if ( !tile->get_character() )
 		{
-			
+
 			if ( !tile->get_block() )
 			{
 				tile->set_clickable(clickable);
@@ -195,7 +195,7 @@ void Tile::set_clickable_tiles(Tile *origin, int reach, bool consider_block, boo
 				{
 					// Do nothing
 				}
-				else 
+				else
 				{
 					tile->set_clickable(clickable);
 				}
@@ -283,4 +283,4 @@ void load_map( current_map ) {
 
 ##11. Coding language
 
-###The program code must be made in English in it's entirety.
+###The program code must be made in English in its entirety.

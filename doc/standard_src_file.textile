@@ -1,0 +1,14 @@
+h1. Standard
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|variable_a|int|Does something|
+|variable_b|bool|Does something else|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|/3. function_a|int parameter_a|/3. float|/3. Function does something that returns a float value|
+|float parameter_b|
+|bool parameter_c|

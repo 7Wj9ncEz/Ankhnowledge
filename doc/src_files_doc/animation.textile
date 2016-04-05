@@ -1,0 +1,29 @@
+h1. Animation
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|animation|Sprite*|Contains the sprites of the game|
+|sprite_width|int|Shows the width of the sprite|
+|sprite_height|int|Shows the height of the sprite|
+|columns|int|Calculates the total of columns needed depending on width/height|
+|direction|int|Shows the direction of the game|
+|frame|int|Number of direction times columns|
+|previous_direction|int|Shows the earlier direction of the game|
+|current_frame|int|Initial frame of the game|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|/3. render|int index|/3. no return|/3. Function that calculates the boundaries of the game and render it|
+|float pos_x|
+|float pos_y|
+|/3. animate|int frame_rate|/3. no return|/3. Function that's responsible for animating the game through the frame rate|
+|float pos_x|
+|float pos_y|
+|/4. update|int dt|/4. no return|/4. Function that's responsible for updating the game each frame|
+|bool on_loop|
+|int direction|
+|bool single_frame|
+|reset_start_frame|no parameter|no return|Resets the curent frame to the start_frame|
+|get_finished_animation|no parameter|bool|Verifies if the animation has finished or not|
