@@ -1,0 +1,15 @@
+h1. Character_suti
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|sprite|Sprite|Creates a new sprite of the character Suti based followed by his path: "suti_spr.png"|
+|hud|Sprite|Creates a new sprite (HUD) of Suti with the path: "sutihud.png"|
+|current_animation|Animation|Creates a new animation to support the character Suti|
+|skill|Skill_sand|Creates the character skill tree|
+|stamina|int|Suti's stamina|
+|initial_stamina|int|Suti's stamina by default (value = 12)|
+
+h2. b) Functions
+
+h4. The class Character_Suti doesn't have any functions.

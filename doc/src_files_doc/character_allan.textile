@@ -1,0 +1,15 @@
+h1. Character_allan
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|sprite|Sprite|Creates a new sprite of the character Allan based followed by his path: "adam_spr.png"|
+|hud|Sprite|Creates a new sprite (HUD) of Allan with the path: "alanhud.png"|
+|current_animation|Animation|Creates a new animation to support the character Allan|
+|skill|Skill_dig|Creates the character skill tree|
+|stamina|int|Allan's stamina|
+|initial_stamina|int|Allan's stamina by default (value = 10)|
+
+h2. b) Functions
+
+h4. The class Character_allan doesn't have any functions.

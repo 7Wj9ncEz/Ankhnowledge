@@ -1,0 +1,19 @@
+h1. Fade_handler
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|sprite|int|Does something|
+|should_fade_in|bool|Does something else|
+|should_fade_out|bool|Variable that shows if it's faded or not|
+|current_percentage|float|Is the current percentage of how faded it is|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|/2. fade_in|float percentage|/2. no return|/2. Function that starts to fade in the game towards the specified time|
+|float time|
+|/2. fade_out|float percentage|/2. no return|/2. Function that starts to fade out the game towards the specified time|
+|float time|
+|update|float dt|no return|Updates the game for each time a fade (in or out) is called|
+|get_current_percentage|no parameters|float|Shows the current percentage of the fade in the game|
