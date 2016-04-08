@@ -3,7 +3,7 @@
 
 using namespace std;
 
-BlockSand::BlockSand(Sprite * block, float x, float y):Block(block,x,y) 
+BlockSand::BlockSand(Sprite * block, float x, float y):Block(block,x,y)
 {
 	type = "BlockSand";
 	animation = new Animation(20,20,block,0);
@@ -12,7 +12,6 @@ BlockSand::BlockSand(Sprite * block, float x, float y):Block(block,x,y)
 BlockSand::~BlockSand() {
 	this->block = 0;
 	delete this->block;
-
 }
 
 int BlockSand::update(int dt)
@@ -30,4 +29,3 @@ void BlockSand::reaction(Character * character)
 	this->tile->setBlock(0);
 	this->tile = 0;
 }
-

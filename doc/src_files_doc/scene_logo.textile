@@ -1,0 +1,11 @@
+h1. Scene_logo
+
+h2. a) Variables
+
+h4. The class Scene_logo doesn't have any variables.
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|Enter|no parameters|no return|Function that creates a new Sprite (logo) also stop the games music to put the logo music|
+|Exit|no parameters|no return|Function that clean all game objects inside Scene_logo|

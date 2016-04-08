@@ -1,3 +1,7 @@
+/*
+ * SceneLogo.cpp
+ *
+ */
 
 #include "SceneLogo.h"
 
@@ -27,4 +31,3 @@ void SceneLogo::Exit()
 {
 	this->cleanGameObjects();
 }
-

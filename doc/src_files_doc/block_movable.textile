@@ -1,0 +1,20 @@
+h1. Standard
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|type|string|The type of the Block|
+|moving|bool|Shows if the Block is moving|
+|animation|Animation|The animation for the moving Block|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|/2. render|float camera_x|/2. no return|/2. Will create animation of the Block through the camera dimensions|
+|float camera_y|
+|update|int dt|int|Updates the scene, checking interpolate movements and keeps the animations or destroy it, after all it returns 0|
+|reaction|Character* character|no return|Responsible for handling the reaction of the block after a character movement|
+|/2.check_next_tile|Character* character|/2. no return|/2. Verifies the character movement plus the block movement to check where it will go|
+|Block_movable* last_block|
+|move|Direction dir|no return|Responsible for moving the block towards a certain direction|
+|interpolate_movement|float dt|no return|Verifies the movement and if finishes set the variable 'moving' to 'false'|

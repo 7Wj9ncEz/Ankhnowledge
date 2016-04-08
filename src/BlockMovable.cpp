@@ -36,7 +36,9 @@ int BlockMovable::update(int dt)
 		}
 	}
 	else
+	{
 		animation->update(dt,true,0,true);
+	}
 	return 0;
 }
 void BlockMovable::reaction(Character * character)
@@ -49,15 +51,18 @@ void BlockMovable::reaction(Character * character)
 	{
 		dir = right;
 		nextTile = getTile()->getRightTile();
-	}else if(character->getCurrentTile()->getLeftTile() == getTile())
+	}
+	else if(character->getCurrentTile()->getLeftTile() == getTile())
 	{
 		dir = left;
 		nextTile = getTile()->getLeftTile();
-	}else if(character->getCurrentTile()->getUpTile() == getTile())
+	}
+	else if(character->getCurrentTile()->getUpTile() == getTile())
 	{
 		dir = up;
 		nextTile = getTile()->getUpTile();
-	}else if(character->getCurrentTile()->getDownTile() == getTile())
+	}
+	else if(character->getCurrentTile()->getDownTile() == getTile())
 	{
 		dir = down;
 		nextTile = getTile()->getDownTile();
@@ -70,12 +75,13 @@ void BlockMovable::reaction(Character * character)
 			AudioHandler * audio = AudioHandler::getInstance();
 		 	audio->setEffect("empurrar_bloco.wav");
 		 	audio->playEffect(0);
-			
+
 			move(dir);
 			getTile()->setBlock(0);
 			setTile(nextTile);
 			nextTile->setBlock(this);
-		}else if(nextTile->getBlock()->getType() == "BlockMovable")
+		}
+		else if(nextTile->getBlock()->getType() == "BlockMovable")
 		{
 			if(((BlockMovable *)(nextTile->getBlock()))->checkNextTile(character, this))
 			{
@@ -88,17 +94,17 @@ void BlockMovable::reaction(Character * character)
 				setTile(nextTile);
 				nextTile->setBlock(this);
 			}
-		}else
+		}
+		else
 		{
 			character->resetDiscountStamina();
 		}
 
-	}else
+	}
+	else
 	{
 		character->resetDiscountStamina();
 	}
-
-
 }
 
 bool BlockMovable::checkNextTile(Character * character, BlockMovable * lastBlock)
@@ -180,9 +186,7 @@ void BlockMovable::move(Direction dir)
 	    case none:
 
 	    break;
-
 	}
-
 	   beginX = getX();
 	   beginY = getY();
 }
@@ -195,7 +199,13 @@ void BlockMovable::interpolateMovement(float dt)
 		{
 			this->moving = false;
 		}
+		else
+		{
+			// do nothing
+		}
 	}
-
+	else
+	{
+		// do nothing
+	}
 }
-

@@ -10,7 +10,7 @@ h2. a) Variables
 h2. b) Functions
 
 |_.Name|_.Parameters|_.Return Type|_.Description|
-|update|int dt|int|Whenever there's an update and this function is called it returns a 0|
+|update|int dt|int|Whenever there's an update and this function is called it returns 0|
 |/2. render|float camera_x|/2. no return|/2. Will render a Block through the camera dimensions|
 |float camera_y|
 |get_destroyed_anim_block|no parameter|bool|Getter for "anim_destroyed"|
