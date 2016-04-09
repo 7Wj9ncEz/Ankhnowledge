@@ -20,39 +20,34 @@ Block::~Block() {
 	this->tile = 0;
 }
 
-int Block::update(int dt)
-{
+int Block::update(int dt) {
 	return 0;
 }
 
-void Block::render(float cameraX, float cameraY)
-{
-	this->block->render(getX(),getY());
+void Block::render(float cameraX, float cameraY) {
+	this->block->render(getX(), getY());
 }
 
-void Block::setDestroyedAnimBlock(bool destroyed){
+void Block::setDestroyedAnimBlock(bool destroyed) {
 	this->animDestroyed = destroyed;
 }
 
-void Block::setDestroyedFinalBlock(bool destroyed){
+void Block::setDestroyedFinalBlock(bool destroyed) {
 	this->finalDestroyed = destroyed;
 }
 
-bool Block::getDestroyedFinalBlock(){
+bool Block::getDestroyedFinalBlock() {
 	return this->finalDestroyed;
 }
 
-string Block::getType()
-{
+string Block::getType() {
 	return this->type;
 }
 
-void Block::setTile(Tile * tile)
-{
+void Block::setTile(Tile * tile) {
 	this->tile = tile;
 }
 
-Tile * Block::getTile()
-{
+Tile * Block::getTile() {
 	return this->tile;
 }

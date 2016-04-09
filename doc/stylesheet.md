@@ -37,13 +37,13 @@ Comments must obey the following pattern.
  * Function called to check if mouse position is hovering over the tile
  * Returns: TRUE or FALSE if the mouse is inside the tile
  */
-bool Tile::insideTile()
+bool Tile::inside_tile()
 {
 	InputManager* input;
-	input = InputManager::getInstance();
+	input = InputManager::get_instance();
 
-	return ((input->mousePosX() > this->x) && (input->mousePosX() < (this->x + this->tile->getWidth())) &&
-			(input->mousePosY() > this->y) && (input->mousePosY() < (this->y + this->tile->getHeight())));
+	return ((input->mouse_pos_x() > this->x) && (input->mouse_pos_x() < (this->x + this->tile->get_width())) &&
+			(input->mouse_pos_y() > this->y) && (input->mouse_pos_y() < (this->y + this->tile->get_height())));
 
 }
 ```
@@ -53,7 +53,7 @@ bool Tile::insideTile()
 ```C++
  int index = 0;
     // Picks the length, height and layers from the map, indicated in the first line of the file
-    fscanf_return = fscanf(mapFile, "%d,%d,%f,%f,%d,%d,", &mapColumns, &mapRows, &posXOffset, &posYOffset, &p1Position, &p2Position);
+    fscanf_return = fscanf(map_file, "%d,%d,%f,%f,%d,%d,", &map_columns, &map_rows, &pos_x_offset, &pos_y_offset, &p1_position, &p2_position);
 ```
 ######e) Comments exceeding 80 characters must be broken into multiple lines following the block pattern:
 
@@ -63,6 +63,14 @@ bool Tile::insideTile()
  * New chapter that begun so all X coordinates will be now become
  * Y coordinates and the same other way around
  */
+```
+
+######f) Comments that are important messages through the code must have 5 asterisks at the beginning and end of it.
+```C++
+/*****
+ * Optimized Area
+ * Don't edit unless you really know what you're doing
+ *****/
 ```
 
 ## 2. Types and Names
@@ -86,7 +94,7 @@ int sprite_width = 0;
 
 ######d) Methods names initiates with lower case.
 ```C++
-void Animation::reset_start_frame(){
+void Animation::reset_start_frame() {
 	this->current_frame = start_frame;
 }
 ```
@@ -101,7 +109,7 @@ const NUMBER_OF_MAPS = 3;
 ```C++
 float mouse_x;
 float mouse_y;
-bool isPressed;
+bool is_pressed;
 bool change_scene;
 bool change_sprite;
 ```
@@ -109,31 +117,37 @@ bool change_sprite;
 ##3. Strings
 
 ######a) Strings must be written between double quotes ` " " `;
+
+######b) If Strings are constants they follow the same rules as then;
+
 ```C++
 const MAP_LOCATION = "maps/map_locale.cpp";
 ```
 
 ##4. Indentation
 
-######a) The indentation must be written by 4 spaces or an equivalent tab.
+######a) The indentation must be written by 2 spaces or an equivalent tab.
 
 ```C++
 Sprite::~Sprite() {
-	if(surface){
+	if (surface) {
 		SDL_FreeSurface(surface);
+	}
+
+	else {
+		// Do nothing
 	}
 }
 ```
 
 ##5. Braces
 
-######a) Opening braces must be used on the line bellow of the block structure.
+######a) Opening braces must be used one space after the the block structure.
 
 ######b) Closing braces must be written aligned with the statement which opened the block.
 
 ```C++
-void Map::spawn_sand(int id)
-{
+void Map::spawn_sand(int id) {
 	tiles.at(id)->create_sand_block();
 }
 ```
@@ -147,7 +161,7 @@ Classes must be according to the following model:
 /*
 * Class made to be created to show the game credits
 */
-SceneCredits::SceneCredits(string sceneName) : Scene (sceneName)  {
+SceneCredits::SceneCredits(string sceneName) : Scene (sceneName) {
 	this->sprite = new Sprite(SDLBase::resourcesPath + "animacao_creditos.png");
 	this->sprite->incNumRef();
 	this->spriteAnimation = new Animation(20,40,sprite,0);
@@ -156,64 +170,59 @@ SceneCredits::SceneCredits(string sceneName) : Scene (sceneName)  {
 
 ##7. Control Structure: `if`
 
-######a) There must have a blank space immediately after the keyword `if`.
+######a) There must be a blank space immediately after the keyword `if`.
 
-######b) The comparison operators must have a blank space immediately before and after.
+######b) The comparison operators must start immediately after the parentheses `()`.
 
-######c) If the line exceeds 80 characters, it must be broken into multiple lines and the condition must be aligned with the previous one.
+######c) The body must be written between braces, even when it is a single line.
 
-######d) The body must be written between braces, even when it is a single line.
+######d) Blocks of `else if` or `else` must be initiated on the second line bellow of the closing braces.
 
-######e) Blocks of `else if` or `else` must be initiated on the line bellow of the closing braces.
+######e) There must have an `else` block after all `if` or `else if` block.
 
-######f) There must have an `else` block after all `if` or `else if` block.
+######f) The key `{` will begin a line bellow the condition and close one line after it finishes `}`.
 
-######g) The key `{` will begin a line bellow the condition and close one line after it finishes `}`.
+######g) There must have a blank space between the parentheses and the `if` condition.
 
-######h) There must have a blank space between the parentheses and the `if` condition.
+######h) If your else doesn't necessarily is supposed to happen, log it also add `// Nothing to do`.
 
 ```C++
-void Tile::set_clickable_tiles(Tile *origin, int reach, bool consider_block, bool clickable)
-{
+void Tile::set_clickable_tiles(Tile *origin, int reach, bool consider_block, bool clickable) {
 	int i = 1;
 	Tile *tile = origin;
 
-	if ( i <= reach && tile->get_up_tile() )
-	{
+	if (i <= reach && tile->get_up_tile()) {
 		tile = tile->get_up_tile();
 
-		if ( !tile->get_character() )
-		{
+		if (!tile->get_character())	{
 
-			if ( !tile->get_block() )
-			{
+			if (!tile->get_block())	{
 				tile->set_clickable(clickable);
 			}
-			else if ( consider_block )
-			{
-				if (tile->get_block()->get_type() == "BlockSand" || tile->get_block()->get_type() == "BlockWater")
-				{
+
+			else if (consider_block) {
+				if (tile->get_block()->get_type() == "BlockSand" || tile->get_block()->get_type() == "BlockWater")	{
 					// Do nothing
 				}
-				else
-				{
+
+				else	{
 					tile->set_clickable(clickable);
 				}
 			}
-			else
-			{
+
+			else {
 			    // Do nothing
 			}
 		}
-		else
-		{
+
+		else {
 		    // Do nothing
 		}
 
-		Tile::setClickableTiles(tile, reach-1, considerBlock, clickable);
+		Tile::setClickableTiles(tile, reach-1, consider_block, clickable);
 	}
-	else
-	{
+
+	else {
 	    // Do nothing
 	}
 
@@ -226,7 +235,7 @@ void Tile::set_clickable_tiles(Tile *origin, int reach, bool consider_block, boo
 ######a) `While` follows the `if` pattern:
 
 ```C++
-while ( count < num_maps ) {
+while (count < num_maps) {
   sum_maps = sum_maps + 1;
 }
 ```
@@ -238,10 +247,9 @@ while ( count < num_maps ) {
 ######b) Semicolon must be placed immediately after the assignment and the comparison, and an empty space after it.
 
 ```C++
-for ( list<Game_object *>::iterator it = game_objects.begin(); it != gameObjects.end(); it++ )
-	{
-		(*it)->render(cameraX, cameraY);
-	}
+for (list<Game_object *>::iterator it = game_objects.begin(); it != game_objects.end(); it++) {
+		(*it)->render(camera_x, camera_y);
+}
 ```
 
 ##10. Control structure: `switch`
@@ -257,7 +265,7 @@ for ( list<Game_object *>::iterator it = game_objects.begin(); it != gameObjects
 ```C++
 void load_map( current_map ) {
   char* map_name = "";
-  switch ( current_map ) {
+  switch (current_map) {
     case DUNGEON:
       map_name = DUNGEON_NAME;
       break;

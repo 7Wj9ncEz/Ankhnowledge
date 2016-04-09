@@ -10,18 +10,16 @@ BlockWater::~BlockWater() {
 	delete this->block;
 }
 
-int BlockWater::update(int dt)
-{
+int BlockWater::update(int dt) {
 	animation->update(dt,true,0,false);
 	return 0;
 }
 
-void BlockWater::render(float camerax, float cameray){
+void BlockWater::render(float camerax, float cameray) {
 	animation->animate(150,this->x,this->y);
 }
 
-void BlockWater::reaction(Character * character)
-{
+void BlockWater::reaction(Character * character) {
 	this->tile->setBlock(0);
 	this->tile = 0;
 }

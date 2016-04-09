@@ -17,10 +17,10 @@ BlockTreasure::BlockTreasure(Sprite * block, float x, float y):Block(block,x,y) 
 }
 
 BlockTreasure::~BlockTreasure() {
-
+ // Nothing to do
 }
 
-void BlockTreasure::render(float cameraX,float cameraY){
+void BlockTreasure::render(float cameraX,float cameraY) {
 	animation->animate(50,this->x,this->y);
 }
 
@@ -29,8 +29,7 @@ int BlockTreasure::update(int dt)
 	if(open)
 	{
 		animation->update(dt,false,0,false);
-		if(GameManager::currentScene->changeScene("SceneSelectCharacter") == 1 && !activated && animation->getFinishedAnimation() == true)
-		{
+		if (GameManager::currentScene->changeScene("SceneSelectCharacter") == 1 && !activated && animation->getFinishedAnimation() == true) {
 			activated = true;
 			GameManager::fadeScreen->fadeIn(1,2);
 		}
@@ -38,19 +37,15 @@ int BlockTreasure::update(int dt)
 		 * Quando a animacao acabar mudar pra tela de ganhou
 		 */
 	}
-	else
-	{
+
+	else {
 		animation->update(dt,false,0,true);
 	}
-
-
 
 	return 0;
 }
 
-void BlockTreasure::reaction(Character * character)
-{
+void BlockTreasure::reaction(Character * character) {
 	character->setWin(true);
 	open = true;
 }
-
