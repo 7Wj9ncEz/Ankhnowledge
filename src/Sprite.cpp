@@ -15,7 +15,7 @@ Sprite::Sprite(std::string file) {
  * Class destructor, releases the surface's pointer of the Sprite
  */
 Sprite::~Sprite() {
-	if (surface){
+	if (surface) {
 		SDL_FreeSurface(surface);
 	}
 

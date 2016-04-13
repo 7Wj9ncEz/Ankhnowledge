@@ -1,0 +1,35 @@
+h1. Tile_map
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|map_columns|int|Shows the number of columns in the map|
+|map_rows|int|Shows the number of rows in the map|
+|tile|Sprite*|Does something else|
+|block|Sprite*|Sprite that contains the Block|
+|pos_x|float|X position in the game|
+|pos_y|float|Y position in the game|
+|p1_position|int|Player 1 position|
+|p2_position|int|Player 2 position|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|load|string map_path|no return|Receives a path and load the map to generate it's tiles|
+|get_tiles|no parameter|vector<Tile *>|Returns a list of the tiles at Tile_map|
+|get_columns|no parameter|int|Returns the number of columns at Tile_map|
+|get_rows|no parameter|int|Returns the number of rows at Tile_map|
+|get_p1_position|no parameter|int|Returns the position of the player 1 at Tile_map|
+|get_p2_position|no parameter|int|Returns the position of the player 2 at Tile_map|
+|get_offset_x|no parameter|no return|Returns the offset of the x position|
+|get_offset_y|no parameter|no return|Returns the offset of the y position|
+
+h2. c) Defines
+
+|_.Name|_.Return|
+|NORMAL_TILE|0|
+|MOVABLE_BLOCK|1|
+|TREASURE|2|
+|SAND_BLOCK|3|
+|WATER_BLOCK|4|
+|FIXED_BLOCK|5|

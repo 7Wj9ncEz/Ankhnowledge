@@ -9,10 +9,10 @@ TileSet::TileSet(int tileWidth, int tileHeight, std::string filePath) {
 	this->tileHeight = tileHeight;
 	this->vTiles = NULL;
 
-	//Calculo do numero de colunas
+	// Calculates the numbers of columns
 	this->columns = (tileSet->getWidth()/tileWidth);
 
-	//Calculo do numero de linhas
+	// Calculates the number of lines
 	this->lines = (tileSet->getHeight()/tileHeight);
 }
 
@@ -25,9 +25,9 @@ TileSet::TileSet(std::string filePath, int lines, int columns) {
 	this->useSingleFile = true;
 	this->vTiles = NULL;
 
-	//Calculo do comprimento de um tile do sprite
+	// Calculates the width of one tile from the Sprite
 	this->tileWidth = (tileSet->getWidth()/columns);
-	//Calculo da altura de um tile do sprite
+	// Calculates the height of one tile from the Sprite
 	this->tileHeight = (tileSet->getHeight()/lines);
 }
 
@@ -43,12 +43,15 @@ TileSet::TileSet(int tileWidth, int tileHeight) {
 	this->vTiles = new std::vector<Sprite*>();
 }
 
-void TileSet::addTile(std::string filePath){
-	if(usingSingleFile())
+void TileSet::addTile(std::string filePath) {
+	if (usingSingleFile()) {
 		return;
+	}
 
+	else {
 	Sprite * tile = new Sprite(filePath);
 	vTiles->push_back(tile);
+	}
 }
 
 void TileSet::render(int index, float posX, float posY) {
@@ -61,7 +64,6 @@ void TileSet::render(int index, float posX, float posY) {
 
 		tileSet->clip(offsetX, offsetY,tileWidth,tileHeight);
 		tileSet->render(posX,posY);
-
 	}
 
 	else {

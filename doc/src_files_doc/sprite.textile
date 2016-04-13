@@ -1,0 +1,26 @@
+h1. Sprite
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|surface|image|Surface is the image of the game where everything is painted over|
+|current_alpha|int|Shows the alpha number at the game in it's current time|
+|number_ref|int|The number of the sprite used for reference|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|load|string file|no return|Loads the Sprite given the path from the file parameter|
+|/4. clip|int x|/4. no return|/4. Clips (crops) the image loaded previously to fit the positions given in the parameters|
+|int y|
+|int w|
+|int h|
+|/2. render|int x|/2. no return|/2. Renders the image towards the positions given|
+|int y|
+|get_width|no parameter|int|Returns the width of the Sprite|
+|get_height|no parameter|int|Returns the height of the Sprite|
+|get_alpha|no parameter|int|Returns the alpha of the Sprite|
+|set_alpha|int alpha|no return|Sets a new alpha of the Sprite|
+|inc_num_ref|no parameter|no return|When called increases the "number_ref" by one (+1)|
+|dec_num_ref|no parameter|no return|When called decreases the "number_ref" by one (-1)|
+|get_num_ref|no parameter|no return|Returns the current "number_ref"|

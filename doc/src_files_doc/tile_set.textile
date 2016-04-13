@@ -1,0 +1,23 @@
+h1. Tile_set
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|tile_width|int|Shows the width of the tile|
+|tile_height|int|Shows the height of the tile|
+|file_path|string|String that has the path for a Sprite|
+|use_single_file|bool|Shows if the class is using a single file to load the tiles|
+|vTiles|vector<Sprite*>|Vector used to contain the Sprites that will load the tiles|
+|columns|int|Number of the columns that were set by the tile|
+|lines|int|Number of lines that were set by the tile|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|add_tile|string file_path|no return|Verifies if the variable "use_single_file" is true, if it's not creates a new sprite and adds into "vTiles"|
+|/3. render|int index|/3. no return|/3. Function whose main purpose is to render the new tiles at the specified position|
+|float pos_x|
+|float pos_y|
+|using_single_file|no parameter|bool|Returns the boolean value of "use_single_file"|
+|get_tile_width|no parameter|int|Returns the tile width at Tile_set|
+|get_tile_height|no parameter|int|Returns the tile heigth at Tile_set|
