@@ -1,7 +1,8 @@
 #include "Sprite.h"
 
 /*
- * Construtor da Classe, que seta o surface do sprite como NULL e carrega a imagem nela
+ * Class constructor, sets the sprite's surface as a null and loads
+ * An image on it
  */
 Sprite::Sprite(std::string file) {
 	surface = NULL;
@@ -11,20 +12,29 @@ Sprite::Sprite(std::string file) {
 }
 
 /*
- * Destrutor da Classe que libera o ponteiro do surface do sprite
+ * Class destructor, releases the surface's pointer of the Sprite
  */
 Sprite::~Sprite() {
-	if(surface){
+	if (surface){
 		SDL_FreeSurface(surface);
+	}
+
+	else {
+		// Nothing to do
 	}
 }
 
 /*
- * Metodo que carrega a imagem na surface e adequa o clipRect para essa surface
+ * Function that loads an image at the surface and crops the clip_rect to
+ * It's surface
  */
-void Sprite::load(std::string file){
-	if(surface){
+void Sprite::load(std::string file) {
+	if (surface) {
 		SDL_FreeSurface(surface);
+	}
+
+	else {
+		// Nothing to do
 	}
 		surface = SDLBase::loadImage(file);
 		clipRect.x = 0;
@@ -34,9 +44,9 @@ void Sprite::load(std::string file){
 }
 
 /*
- *  Metodo que seta as variaveis do clipRect
+ * Function that sets the variables of clip_rect
  */
-void Sprite::clip(int x, int y, int w, int h){
+void Sprite::clip(int x, int y, int w, int h) {
 	clipRect.x = x;
 	clipRect.y = y;
 	clipRect.w = w;
@@ -44,16 +54,17 @@ void Sprite::clip(int x, int y, int w, int h){
 }
 
 /*
- * Meotodo que retorna o clipRect
+ * Fuction that returns the clip_rect
  */
-SDL_Rect Sprite::getClip(){
+SDL_Rect Sprite::getClip() {
 	return clipRect;
 }
 
 /*
- * Metodo que que cola a surface do sprite em uma posicao do buffer principal
+ * Function that pastes the surface of the sprite in a position of the
+ * Main buffer
  */
-void Sprite::render(float x, float y){
+void Sprite::render(float x, float y) {
 	SDL_Rect dst;
 
 	dst.x = x;
@@ -65,43 +76,48 @@ void Sprite::render(float x, float y){
 }
 
 /*
- * Metodo que retorna o comprimento da surface do sprite
+ * Function that returns the width of the sprite's surface
  */
-int Sprite::getWidth(){
+int Sprite::getWidth() {
 	return surface->w;
 }
 
 /*
- * Metodo que retorna a altura da surfae do sprite
+ * Function that returns the height of the sprite's surface
  */
-int Sprite::getHeight(){
+int Sprite::getHeight() {
 	return surface->h;
 }
 
-int Sprite::getAlpha()
-{
+int Sprite::getAlpha() {
 	return currentAlpha;
 }
-void Sprite::setAlpha(int alpha)
-{
-	if(alpha < 0)
-		alpha = 0;
-	else if(alpha > 255)
+
+void Sprite::setAlpha(int alpha) {
+	if(alpha < 0) {
+			alpha = 0;
+	}
+
+	else if(alpha > 255) {
 		alpha = 255;
+	}
+
+	else {
+		// Nothing to do
+	}
 
 	currentAlpha = alpha;
 	SDLBase::setAlpha(surface, currentAlpha);
 }
 
-void Sprite::incNumRef(){
+void Sprite::incNumRef() {
 	this->numberRef++;
 }
 
-void Sprite::decNumRef(){
+void Sprite::decNumRef() {
 	this->numberRef--;
 }
 
-int Sprite::getNumRef(){
+int Sprite::getNumRef() {
 	return this->numberRef;
 }
-

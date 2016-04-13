@@ -21,8 +21,13 @@ Tile::Tile(Sprite * tile, Block * block,float x, float y, int id):GameObject(x,y
 	this->clickableTile->incNumRef();
 	this->animation = new Animation(20,20,clickableTile,0);
 
-	if(block)
+	if (block) {
 		block->setTile(this);
+	}
+
+	else {
+		// Nothing to do
+	}
 }
 
 Tile::~Tile() {
@@ -36,29 +41,39 @@ Tile::~Tile() {
 }
 
 void Tile::render(float cameraX, float cameraY){
-	if(tile)
+
+	if (tile) {
 		tile->render(getX(), getY());
+	}
+
+	else {
+		// Nothing to do
+	}
 }
 
 
-int Tile::update(int dt){
+int Tile::update(int dt) {
 
-	if(block)
+	if (block) {
 		block->update(dt);
+	}
+
+	else {
+		// Nothing to do
+	}
 
 	return 0;
 }
 
-void Tile::renderClickableTiles(){
+void Tile::renderClickableTiles() {
 	animation->animate(50,getX(),getY());
 }
 
-void Tile::animateClickableTiles(int dt){
+void Tile::animateClickableTiles(int dt) {
 	animation->update(dt,true,0,0);
 }
 
-bool Tile::insideTile()
-{
+bool Tile::insideTile() {
 	InputManager* input;
 	input = InputManager::getInstance();
 
@@ -67,220 +82,247 @@ bool Tile::insideTile()
 
 }
 
-
-void Tile::setLeftTile(Tile * tile)
-{
+void Tile::setLeftTile(Tile * tile) {
 	this->leftTile = tile;
 }
 
-void Tile::setRightTile(Tile * tile)
-{
+void Tile::setRightTile(Tile * tile) {
 	this->rightTile = tile;
 }
 
-void Tile::setUpTile(Tile * tile)
-{
+void Tile::setUpTile(Tile * tile) {
 	this->upTile = tile;
 }
 
-void Tile::setDownTile(Tile * tile)
-{
+void Tile::setDownTile(Tile * tile) {
 	this->downTile = tile;
 }
 
-Tile * Tile::getRightTile()
-{
+Tile * Tile::getRightTile() {
 	return this->rightTile;
 }
 
-Tile * Tile::getLeftTile()
-{
+Tile * Tile::getLeftTile() {
 	return this->leftTile;
 }
 
-Tile * Tile::getUpTile()
-{
+Tile * Tile::getUpTile() {
 	return this->upTile;
 }
 
-Tile * Tile::getDownTile()
-{
+Tile * Tile::getDownTile() {
 	return this->downTile;
 }
 
-void Tile::cleanReferences()
-{
+void Tile::cleanReferences() {
 	this->leftTile  = 0;
 	this->rightTile = 0;
 	this->upTile = 0;
 	this->downTile = 0;
 }
 
-void Tile::setCharacter(Character * character)
-{
+void Tile::setCharacter(Character * character) {
 	this->character = character;
 }
 
-Character * Tile::getCharacter()
-{
+Character * Tile::getCharacter() {
 	return this->character;
 }
 
-Block * Tile::getBlock()
-{
+Block * Tile::getBlock() {
 	return this->block;
 }
 
-bool Tile::isClickable()
-{
+bool Tile::isClickable() {
 	return this->clickable;
 }
 
-void Tile::setClickable(bool click)
-{
-	if(click)
+void Tile::setClickable(bool click) {
+	if (click) {
 		animation->resetStartFrame();
+	}
+
+	else {
+		// Nothing to do
+	}
+
 	this->clickable = click;
 }
 
-void Tile::setBlock(Block * block)
-{
+void Tile::setBlock(Block * block) {
 	this->block = block;
 }
 
-float Tile::getWidth()
-{
+float Tile::getWidth() {
 	return tile->getWidth();
 }
 
-void Tile::setClickableTiles(Tile *origin, int reach, bool considerBlock, bool clickable)
-{
+void Tile::setClickableTiles(Tile *origin, int reach, bool considerBlock, bool clickable) {
 	int i = 1;
 	Tile *tile = origin;
 
-	if(i <= reach && tile->getUpTile())
-	{
+	if (i <= reach && tile->getUpTile()) {
 		tile = tile->getUpTile();
 
-		if(!tile->getCharacter())
-		{
-			
-			if(!tile->getBlock())
-			{
+		if (!tile->getCharacter()) {
+
+			if (!tile->getBlock()) {
 				tile->setClickable(clickable);
 			}
-			else if (considerBlock)
-			{
-				if(tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater")
-				{
-					//Do nothing
+
+			else if (considerBlock) {
+				if (tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater") {
+					// Nothing to do
 				}
-				else 
-				{
+
+				else {
 					tile->setClickable(clickable);
 				}
 			}
 
+			else {
+				// Nothing to do
+			}
+		}
+
+		else {
+			// Nothing to do
 		}
 
 		Tile::setClickableTiles(tile, reach-1, considerBlock, clickable);
 	}
 
+	else {
+		// Nothing to do
+	}
+
 	tile = origin;
 
-	if(i <= reach && tile->getDownTile())
-	{
+	if (i <= reach && tile->getDownTile()) {
 		tile = tile->getDownTile();
-		
-		if(!tile->getCharacter())
-		{
-			if(!tile->getBlock())
-			{
+
+		if (!tile->getCharacter()) {
+
+			if (!tile->getBlock()) {
 				tile->setClickable(clickable);
 			}
-			else if (considerBlock)
-			{
-				if(tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater")
-				{
-					//Do nothing
+
+			else if (considerBlock)	{
+				if (tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater") {
+					// Nothing to do
 				}
-				else 
-				{
+				else {
 					tile->setClickable(clickable);
 				}
 			}
+
+			else {
+				// Nothing to do
+			}
+		}
+
+		else {
+			// Nothing to do
 		}
 
 		Tile::setClickableTiles(tile, reach-1, considerBlock, clickable);
 	}
 
+	else {
+		// Nothing to do
+	}
+
 	tile = origin;
 
-	if(i <= reach && tile->getLeftTile())
-	{
+	if (i <= reach && tile->getLeftTile()) {
 		tile = tile->getLeftTile();
-		
-		if(!tile->getCharacter())
-		{
-			if(!tile->getBlock())
-			{
+
+		if (!tile->getCharacter()) {
+			if (!tile->getBlock())	{
 				tile->setClickable(clickable);
 			}
-			else if (considerBlock)
-			{
-				if(tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater")
-				{
+
+			else if (considerBlock)	{
+				if(tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater")	{
 					//Do nothing
 				}
-				else 
-				{
+
+				else {
 					tile->setClickable(clickable);
 				}
 			}
+
+			else {
+				// Nothing to do
+			}
+		}
+
+		else {
+			// Nothing to do
 		}
 
 		Tile::setClickableTiles(tile, reach-1, considerBlock, clickable);
 	}
 
+	else {
+		// Nothing to do
+	}
+
 	tile = origin;
 
-	if(i <= reach && tile->getRightTile())
-	{
+	if (i <= reach && tile->getRightTile())	{
 		tile = tile->getRightTile();
-		
-		if(!tile->getCharacter())
-		{  
-			if(!tile->getBlock())
-			{
+
+		if (!tile->getCharacter())	{
+			if (!tile->getBlock())	{
 				tile->setClickable(clickable);
 			}
-			else if (considerBlock)
-			{
-				if(tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater")
-				{
+
+			else if (considerBlock)	{
+				if (tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater") {
 					//Do nothing
 				}
-				else 
-				{
+
+				else {
 					tile->setClickable(clickable);
 				}
 			}
+
+			else {
+				// Nothing to do
+			}
+		}
+
+		else {
+			// Nothing to do
 		}
 
 		Tile::setClickableTiles(tile, reach-1, considerBlock, clickable);
+	}
+
+	else {
+		// Nothing to do
 	}
 }
 
 bool Tile::generateSandBlock()
 {
-	if(block || character)
+	if (block || character) {
 		return false;
+	}
+
+	else {
+		// Nothing to do
+	}
 
 	int random = rand()%101;
-	if(random < 2)
-	{
+	if (random < 2) {
 		this->createSandBlock();
 		return true;
+	}
+
+	else {
+		// Nothing to do
 	}
 
 	return false;

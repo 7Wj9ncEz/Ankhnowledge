@@ -51,8 +51,8 @@ void TileSet::addTile(std::string filePath){
 	vTiles->push_back(tile);
 }
 
-void TileSet::render(int index, float posX, float posY){
-	if(usingSingleFile()){
+void TileSet::render(int index, float posX, float posY) {
+	if (usingSingleFile()) {
 		int u = index % columns;
 		int v = index / columns;
 
@@ -62,24 +62,25 @@ void TileSet::render(int index, float posX, float posY){
 		tileSet->clip(offsetX, offsetY,tileWidth,tileHeight);
 		tileSet->render(posX,posY);
 
-	}else{
+	}
+
+	else {
 		vTiles->at(index)->render(posX,posY);
 	}
 }
 
-bool TileSet::usingSingleFile(){
+bool TileSet::usingSingleFile() {
 	return this->useSingleFile;
 }
 
-int TileSet::getTileWidth(){
+int TileSet::getTileWidth() {
 	return this->tileWidth;
 }
 
-int TileSet::getTileHeight(){
+int TileSet::getTileHeight() {
 	return this->tileHeight;
 }
 
 TileSet::~TileSet() {
 	// TODO Auto-generated destructor stub
 }
-
