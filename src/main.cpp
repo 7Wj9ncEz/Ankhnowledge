@@ -1,3 +1,11 @@
+/*
+ * Main.cpp
+ *
+ * Only instanciate the GameManager class. 
+ *
+ */
+
+
 // specific headers
 #include "GameManager.h"
 

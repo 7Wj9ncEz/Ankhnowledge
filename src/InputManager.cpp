@@ -1,3 +1,11 @@
+/*
+ * InputManager.cpp
+ *
+ *  Class responsible by creating an SLD_EVENT for all keybord keys used on the game.
+ *
+ */
+
+
 #include "InputManager.h"
 #include <iostream>
 InputManager * InputManager::instance = 0;

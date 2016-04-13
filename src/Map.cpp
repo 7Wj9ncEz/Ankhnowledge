@@ -1,6 +1,8 @@
 /*
  * Map.cpp
  *
+ * Class responsible by  creating game's map and changing current player during game phase.
+ *
  *  Created on: Oct 8, 2013
  *      Author: makoto
  */

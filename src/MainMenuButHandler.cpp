@@ -1,6 +1,8 @@
 /*
  * MainMenuButHandler.cpp
  *
+ * Responsible by creating all MainMenu Button Sprites.
+ *
  *  Created on: Oct 9, 2013
  *      Author: al
  */
