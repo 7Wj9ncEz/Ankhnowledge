@@ -1,0 +1,34 @@
+h1. Map
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|tile|Sprite*|Contains the tile's sprite of the map|
+|block|Sprite*|Contains the block's sprite of the map|
+|columns|int|Number of columns on the map|
+|rows|int|Number of rows on the map|
+|r|int|Stands for red color|
+|g|int|Stands for green color|
+|b|int|Stands for blue color|
+|font_path|string|Receives a resources_path and concatenate + "quicksandbold.ttf"|
+|font|SDLBase|Shows the font that's being used on the game|
+|turn|SDLBase|Shows which turn is at the map|
+|tile_map|Tile_map|Contains the tiles being used on this specific map|
+
+h2. b) Functions
+
+|/2. render|float camera_x|/2. no return|/2. renders the map towards the camera positions given|
+|float camera_y|
+|update|int dt|no return|Updates the map each time it's called|
+|get_pressed_tile|no parameter|Tile*|Verifies if a Tile is clickable and if the mouse is above it, if these criteria match returns which Tile got pressed|
+|is_first_row|int index|bool|Returns if towards the index it's the first row|
+|is_first_column|int index|bool|Returns if towards the index it's the first column|
+|is_last_row|int index|bool|Shows if by the index is the last row|
+|is_last_column|int index|bool|Shows if by the index is the last column|
+|/2. mouse_pressed|Button* bt|/2. no return|/2. Checks the position of the mouse, which objects will be clicked and "click it"|
+|Input_manager* input|
+|mouse_over|Button* bt|/2. no return|/2. Checks the position of the mouse, which object is under it|
+|Input_manager* input|
+|change_current_player|no parameter|no return|Method call to change the player kinda like passing a turn|
+|try_to_spawn_sand|no parameter|no return|Generates & Spawns a sand block on the map|
+|get_tile_with_index|int index|Tile*|Shows which tiles are at the index shown|
