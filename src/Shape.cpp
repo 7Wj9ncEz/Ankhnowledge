@@ -18,7 +18,7 @@ Shape::~Shape() {
 	}
 }
 
-void Shape::fillRect(int x, int y, int w, int h, int color){
+void Shape::fill_rect(int x, int y, int w, int h, int color){
 	this->clipRect.x = x;
 	this->clipRect.y = y;
 	this->clipRect.w = w;
@@ -26,10 +26,10 @@ void Shape::fillRect(int x, int y, int w, int h, int color){
 	SDLBase::fillRectangle(&clipRect, color);
 }
 
-void Shape::drawLine(int x0, int y0,int x1, int y1,int color,int spacing){
+void Shape::draw_line(int x0, int y0,int x1, int y1,int color,int spacing){
 	SDLBase::drawLine(x0,y0,x1,y1,color,spacing);
 }
 
-void Shape::drawCircle(float size, int x,int y,int r, int g, int b){
+void Shape::draw_circle(float size, int x,int y,int r, int g, int b){
 	SDLBase::drawCircle(size, x,y,r,g,b);
 }

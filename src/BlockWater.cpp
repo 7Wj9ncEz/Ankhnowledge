@@ -1,5 +1,5 @@
 /*
- * BlockTreasure.cpp
+ * BlockWater.cpp
  *
  * Class responsible by handling the creation of water blocks.
  * 
