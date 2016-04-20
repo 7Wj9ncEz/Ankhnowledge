@@ -1,0 +1,15 @@
+h1. block_water
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|type|string|Shows the type of the Block|
+|animation|bool|The animation for the Sand Block|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|update|int dt|int|Updates the animation, then it returns 0|
+|/2. render|float camera_x|/2. no return|/2. Will render a Water Block and animate it|
+|float camera_y|
+|reaction|Character* character|no return|Turns water block to ground block when it occurs|

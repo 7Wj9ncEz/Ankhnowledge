@@ -1,0 +1,27 @@
+h1. shape
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|type|string|The type of the Block|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|/5. fill_rect|int x |/5. no return|/5. Will create a rectangle filled with color using the parameters|
+|int y|
+|int w|
+|int h|
+|int color|
+|/6. draw_line|int x0 |/6. no return|/6. Will draw a line on the screen using the parameters|
+|int y0|
+|int x1|
+|int y1|
+|int color|
+|int spacing|
+|/6. draw_circle|int size |/6. no return|/6. Will draw a circle on the screen using the parameters|
+|int x|
+|int y|
+|int r|
+|int g|
+|int b|
