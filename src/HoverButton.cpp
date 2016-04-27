@@ -1,6 +1,8 @@
 /*
  * HoverButton.cpp
  *
+ * Class responsible by setting what a button does when hovered. 
+ *
  *  Created on: Nov 21, 2013
  *      Author: makoto
  */

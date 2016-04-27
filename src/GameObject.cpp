@@ -1,3 +1,11 @@
+/*
+ * GameObject.cpp
+ *
+ * Mother class of all objects within the game. Responsible by positioning them on the screen.
+ * 
+ */
+
+
 #include "GameObject.h"
 
 GameObject::GameObject(float x, float y) {
