@@ -8,7 +8,7 @@
 class TileMap
 {
     public:
-        TileMap(std::string mapa, Sprite*tile,Sprite* block,float posX, float posY);
+        TileMap(std::string mapa, Sprite*tile,Sprite* block,float pos_x, float pos_y);
         void load(std::string mapPath);
         vector<Tile* > getTiles();
         int getColumns();
@@ -23,7 +23,7 @@ class TileMap
         vector<Tile* > tiles;
         Sprite* tile, *block;
         int mapColumns, mapRows;
-        float posX, posY;
+        float pos_x, pos_y;
         float posXOffset, posYOffset;
         int p1Position, p2Position;
 

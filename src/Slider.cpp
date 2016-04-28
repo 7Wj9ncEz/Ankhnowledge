@@ -25,10 +25,10 @@ Slider::~Slider() {
 }
 
 
-void Slider::render(float cameraX, float cameraY) {
+void Slider::render(float camera_x, float camera_y) {
 	if ((this->button) && (this->bar))	{
-		this->bar->render(this->xBar - cameraX,this->yBar - cameraY);
-		this->button->render(this->xButton - cameraX,this->yButton + bar->getHeight()/2 - button->getHeight()/2 - cameraY);
+		this->bar->render(this->xBar - camera_x,this->yBar - camera_y);
+		this->button->render(this->xButton - camera_x,this->yButton + bar->getHeight()/2 - button->getHeight()/2 - camera_y);
 	}
 
 	else {

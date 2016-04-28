@@ -19,7 +19,7 @@ class Map;
 class Character:public GameObject {
 	public:
 		Character(Tile* tile, int id);
-		void render(float cameraX, float cameraY);
+		void render(float camera_x, float camera_y);
 		virtual int update(int dt);
 		virtual ~Character();
 		bool isUsingSkill();
@@ -60,7 +60,7 @@ class Character:public GameObject {
 		Skill* skill;
 		float vx,vy;
 		bool activatedSkill;
-		bool performingAction,onLoop;
+		bool performingAction,on_loop;
 		float endX;
 		float endY;
 		float beginX;

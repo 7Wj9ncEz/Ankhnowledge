@@ -16,7 +16,7 @@ class Slider:public GameObject {
 public:
 	Slider(Sprite* button, Sprite* slider, float x, float y);
 	virtual ~Slider();
-	void render(float cameraX, float cameraY);
+	void render(float camera_x, float camera_y);
 	int update(int dt);
 	bool onButton();
 	void slide();

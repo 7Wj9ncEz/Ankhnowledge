@@ -286,9 +286,33 @@ void load_map( current_map ) {
       // Should never be reached. .
   }
 }
-
 ```
 
-##11. Coding language
+##11. Asserts
+
+######a) If it's inside a Function there must be a comment `// Asserts` on the line above it.
+
+######b) Asserts must have their parentheses right after the word, unlike the Control Structures and more like a Function.
+
+```C++
+void Animation::render(int index, float pos_x, float pos_y) {
+
+	// Asserts
+	assert(index >= 0);
+	assert(pos_x >= 0);
+	assert(pos_y >= 0);
+
+	int x = index % columns;
+	int y = index / columns;
+
+	int clip_x = x * sprite_width;
+	int clip_y = y * sprite_height;
+
+	animation->clip(clip_x, clip_y, sprite_width, sprite_height);
+	animation->render(pos_x, pos_y);
+}
+```
+
+##12. Coding language
 
 ###The program code must be made in English in its entirety.

@@ -167,7 +167,7 @@ Map::~Map() {
 	// TODO Auto-generated destructor stub
 }
 
-void Map::render(float cameraX, float cameraY){
+void Map::render(float camera_x, float camera_y){
 	for (unsigned int i = 0; i < tiles.size(); i++) {
 		tiles.at(i)->render(0,0);
 	}
@@ -287,16 +287,16 @@ int Map::update(int dt) {
 			gameEnded = true;
 			Network::setFirstTime(false);
 			if (currentPlayer->getId() == Network::getID()) {	
-			 	audio->setEffect("youwon.wav");
-			 	audio->playEffect(0);
+			 	audio->set_effect("youwon.wav");
+			 	audio->play_effect(0);
 
 				wonHandler->fadeIn(2,0.5);
 				Network::setLost(false);
 			}
 
 			else {
-				audio->setEffect("youlost.ogg");
-			 	audio->playEffect(0);
+				audio->set_effect("youlost.ogg");
+			 	audio->play_effect(0);
 
 				lostHandler->fadeIn(2,0.5);
 				Network::setLost(true);
@@ -399,8 +399,8 @@ void Map::mouseOver(Button *bt, InputManager * input){
 void Map::changeCurrentPlayer() {
 	if (!currentPlayer->isPerformingAction() && !currentPlayer->isUsingSkill()) {
 		AudioHandler * audio = AudioHandler::getInstance();
-	 	audio->setEffect("passar_turno.ogg");
-	 	audio->playEffect(0);
+	 	audio->set_effect("passar_turno.ogg");
+	 	audio->play_effect(0);
 	 	if ((Network::getID()== 2 && currentPlayer->getId() == 1) || (Network::getID()==1 && currentPlayer->getId() == 2)) {
 	 		tryToSpawnSand();
 	 	}

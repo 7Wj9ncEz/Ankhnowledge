@@ -21,7 +21,7 @@ class SceneOptions : public Scene {
 public:
 	SceneOptions(string sceneName);
 	virtual ~SceneOptions();
-	virtual void render(float cameraX, float cameraY);
+	virtual void render(float camera_x, float camera_y);
 	virtual int update(int dt);
 	void Enter();
 	void Exit();

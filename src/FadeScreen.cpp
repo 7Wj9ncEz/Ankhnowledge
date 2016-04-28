@@ -18,12 +18,12 @@ int FadeScreen::update(int dt){
 	return 0;
 }
 
-void FadeScreen::render(float cameraX, float cameraY){
+void FadeScreen::render(float camera_x, float camera_y){
 	if(sprite)
 		this->sprite->render(0,0);
 
 		//Mudar isso quando tiver uma imagem com as dimensoes certas
-		//this->sprite->render((this->x - sprite->getWidth()/2 - cameraX), (this->y - sprite->getHeight()/2 - cameraY));
+		//this->sprite->render((this->x - sprite->getWidth()/2 - camera_x), (this->y - sprite->getHeight()/2 - camera_y));
 }
 
 bool FadeScreen::isFaded()

@@ -24,7 +24,7 @@ class SelectCharacterController:public GameObject {
 public:
 	SelectCharacterController();
 	virtual ~SelectCharacterController();
-	void render(float cameraX, float cameraY);
+	void render(float camera_x, float camera_y);
 	int update(int dt);
 	void receiveMessage();
 	void sendMessage(string action, string info);

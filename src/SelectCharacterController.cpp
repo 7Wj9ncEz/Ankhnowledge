@@ -86,7 +86,7 @@ SelectCharacterController::~SelectCharacterController() {
 	delete suti;
 }
 
-void SelectCharacterController::render(float cameraX, float cameraY){
+void SelectCharacterController::render(float camera_x, float camera_y){
 	splashSprite->render(0,0);
 
 	if(	(Network::getID() == 1 && (currentOnTop == 1 || currentPressed == 1)) ||

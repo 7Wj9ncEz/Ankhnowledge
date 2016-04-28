@@ -22,7 +22,7 @@ HoverButton::~HoverButton() {
 }
 
 
-void HoverButton::render(float cameraX, float cameraY){
+void HoverButton::render(float camera_x, float camera_y){
 	if(this->sprite) {
 		this->sprite->render(x,y);
 	}

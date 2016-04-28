@@ -38,7 +38,7 @@ public:
 	void run();
 	void processEvents();
 	void update(int dt);
-	void render(float cameraX, float cameraY);
+	void render(float camera_x, float camera_y);
 	void initResources();
 	static FadeScreen * fadeScreen;
 	static Scene * currentScene;

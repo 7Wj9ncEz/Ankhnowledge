@@ -18,8 +18,8 @@ void SceneSelectCharacter::Enter()
 {
 	AudioHandler * audio = AudioHandler::getInstance();
  	audio->stopMusic();
-   	audio->setMusic("tela_de_selecao_de_mapas.ogg");
- 	audio->playMusic(-1);
+   	audio->set_music("tela_de_selecao_de_mapas.ogg");
+ 	audio->play_music(-1);
 
 	cc = new SelectCharacterController();
 	this->addGameObject(cc);

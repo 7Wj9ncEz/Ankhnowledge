@@ -20,13 +20,13 @@ using namespace std;
 * Constructor of Tile_map, passing the file of the map
 * That contains the tiles, tile_set and tile_size
 */
-TileMap::TileMap(std::string mapa, Sprite* tile, Sprite* block, float posX, float posY) {
+TileMap::TileMap(std::string mapa, Sprite* tile, Sprite* block, float pos_x, float pos_y) {
     this->mapColumns = 0;
     this->mapRows = 0;
     this->tile = tile;
     this->block = block;
-    this->posX = posX;
-    this->posY = posY;
+    this->pos_x = pos_x;
+    this->pos_y = pos_y;
     this->p1Position = 0;
     this->p2Position = 0;
 
@@ -57,8 +57,8 @@ void TileMap::load(std::string mapPath) {
         return;
     }
 
-    posX += posXOffset;
-    posY += posYOffset;
+    pos_x += posXOffset;
+    pos_y += posYOffset;
 
     /*
     * Skips 4 lines to fall in the perfect position on the tiles' index
@@ -68,7 +68,7 @@ void TileMap::load(std::string mapPath) {
     int id = 0;
 
     // Loop runs the rows, lines and the layers of the txt file
-    	//cout<<"POS X "<<posX<<" POS T "<<posY<<"\n"<<endl;
+    	//cout<<"POS X "<<pos_x<<" POS T "<<pos_y<<"\n"<<endl;
 
         for (int y = 0; y < mapRows; y++) {
             for (int x = 0 ; x < mapColumns; x++) {
@@ -76,46 +76,46 @@ void TileMap::load(std::string mapPath) {
                 fscanf_return = fscanf(mapFile, "%d,", &index);
                 //cout<<"Index "<<index<<endl;
                 if (index == NORMAL_TILE) {
-                	//cout<<"Entrei 1 x: "<<posX+ tile->getWidth()*x<< " y:" <<posY + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
-                	tiles.push_back(new Tile(tile, 0,posX+ tile->getWidth()*((int)(id%mapColumns)), posY + tile->getHeight()*((int)(id/mapColumns)), id));
+                	//cout<<"Entrei 1 x: "<<pos_x+ tile->getWidth()*x<< " y:" <<pos_y + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
+                	tiles.push_back(new Tile(tile, 0,pos_x+ tile->getWidth()*((int)(id%mapColumns)), pos_y + tile->getHeight()*((int)(id/mapColumns)), id));
                 }
 
                 else if (index == MOVABLE_BLOCK) {
-                	//cout<<"Entrei 2 x: "<<posX+ tile->getWidth()*x<< " y:" <<posY + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
+                	//cout<<"Entrei 2 x: "<<pos_x+ tile->getWidth()*x<< " y:" <<pos_y + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
                 	tiles.push_back(new Tile(tile
-											, new BlockMovable(block,posX+ tile->getWidth()*((int)(id%mapColumns)), posY + tile->getHeight()*((int)(id/mapColumns)))
-											, posX+ tile->getWidth()*((int)(id%mapColumns))
-											, posY + tile->getHeight()*((int)(id/mapColumns))
+											, new BlockMovable(block,pos_x+ tile->getWidth()*((int)(id%mapColumns)), pos_y + tile->getHeight()*((int)(id/mapColumns)))
+											, pos_x+ tile->getWidth()*((int)(id%mapColumns))
+											, pos_y + tile->getHeight()*((int)(id/mapColumns))
 											, id));
                 }
 
                 else if (index == TREASURE) {
-                	//cout<<"Entrei 2 x: "<<posX+ tile->getWidth()*x<< " y:" <<posY + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
+                	//cout<<"Entrei 2 x: "<<pos_x+ tile->getWidth()*x<< " y:" <<pos_y + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
                 	Sprite *sprite = new Sprite(SDLBase::resourcesPath + "bauanimacao.png");
 					        tiles.push_back(new Tile(tile
-											, new BlockTreasure(sprite,posX+ tile->getWidth()*((int)(id%mapColumns)), posY + tile->getHeight()*((int)(id/mapColumns)))
-											, posX+ tile->getWidth()*((int)(id%mapColumns))
-											, posY + tile->getHeight()*((int)(id/mapColumns))
+											, new BlockTreasure(sprite,pos_x+ tile->getWidth()*((int)(id%mapColumns)), pos_y + tile->getHeight()*((int)(id/mapColumns)))
+											, pos_x+ tile->getWidth()*((int)(id%mapColumns))
+											, pos_y + tile->getHeight()*((int)(id/mapColumns))
 											, id));
                 }
 
                 else if (index == SAND_BLOCK) {
-                    //cout<<"Entrei 2 x: "<<posX+ tile->getWidth()*x<< " y:" <<posY + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
+                    //cout<<"Entrei 2 x: "<<pos_x+ tile->getWidth()*x<< " y:" <<pos_y + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
                     Sprite *sprite = new Sprite(SDLBase::resourcesPath + "areiamovedica.png");
                     tiles.push_back(new Tile(tile
-                                            , new BlockSand(sprite,posX+ tile->getWidth()*((int)(id%mapColumns)), posY + tile->getHeight()*((int)(id/mapColumns)))
-                                            , posX+ tile->getWidth()*((int)(id%mapColumns))
-                                            , posY + tile->getHeight()*((int)(id/mapColumns))
+                                            , new BlockSand(sprite,pos_x+ tile->getWidth()*((int)(id%mapColumns)), pos_y + tile->getHeight()*((int)(id/mapColumns)))
+                                            , pos_x+ tile->getWidth()*((int)(id%mapColumns))
+                                            , pos_y + tile->getHeight()*((int)(id/mapColumns))
                                             , id));
                 }
 
                 else if (index == WATER_BLOCK) {
-                   // cout<<"Entrei 2 x: "<<posX+ tile->getWidth()*x<< " y:" <<posY + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
+                   // cout<<"Entrei 2 x: "<<pos_x+ tile->getWidth()*x<< " y:" <<pos_y + tile->getHeight()*y<< "id "<<id<<"\n"<<endl;
                     Sprite *sprite = new Sprite(SDLBase::resourcesPath + "pote_de_agua.png");
                     tiles.push_back(new Tile(tile
-                                            , new BlockWater(sprite,posX+ tile->getWidth()*((int)(id%mapColumns)), posY + tile->getHeight()*((int)(id/mapColumns)))
-                                            , posX+ tile->getWidth()*((int)(id%mapColumns))
-                                            , posY + tile->getHeight()*((int)(id/mapColumns))
+                                            , new BlockWater(sprite,pos_x+ tile->getWidth()*((int)(id%mapColumns)), pos_y + tile->getHeight()*((int)(id/mapColumns)))
+                                            , pos_x+ tile->getWidth()*((int)(id%mapColumns))
+                                            , pos_y + tile->getHeight()*((int)(id/mapColumns))
                                             , id));
                 }
 
@@ -123,9 +123,9 @@ void TileMap::load(std::string mapPath) {
 
                     Sprite *sprite = new Sprite(SDLBase::resourcesPath + "blocofixocomareia.png");
                     tiles.push_back(new Tile(tile
-                                            , new BlockFixed(sprite,posX+ tile->getWidth()*((int)(id%mapColumns)), posY + tile->getHeight()*((int)(id/mapColumns)))
-                                            , posX+ tile->getWidth()*((int)(id%mapColumns))
-                                            , posY + tile->getHeight()*((int)(id/mapColumns))
+                                            , new BlockFixed(sprite,pos_x+ tile->getWidth()*((int)(id%mapColumns)), pos_y + tile->getHeight()*((int)(id/mapColumns)))
+                                            , pos_x+ tile->getWidth()*((int)(id%mapColumns))
+                                            , pos_y + tile->getHeight()*((int)(id/mapColumns))
                                             , id));
                 }
                 id++;
@@ -159,11 +159,11 @@ int TileMap::getP2Position() {
 }
 
 float TileMap::getOffsetX() {
-	return this->posX;
+	return this->pos_x;
 }
 
 float TileMap::getOffsetY() {
-	return this->posY;
+	return this->pos_y;
 }
 
 TileMap::~TileMap() {

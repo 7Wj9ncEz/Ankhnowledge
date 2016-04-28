@@ -12,11 +12,11 @@ SceneCredits::~SceneCredits()
 	this->sprite = 0;
 }
 
-void SceneCredits::render(float cameraX, float cameraY)
+void SceneCredits::render(float camera_x, float camera_y)
 {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
-		(*it)->render(cameraX, cameraY);
+		(*it)->render(camera_x, camera_y);
 	}
 
 	this->spriteAnimation->animate(100, 470, 505);

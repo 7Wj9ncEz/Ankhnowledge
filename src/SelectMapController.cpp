@@ -70,7 +70,7 @@ SelectMapController::~SelectMapController() {
 	}
 }
 
-void SelectMapController::render(float cameraX, float cameraY){
+void SelectMapController::render(float camera_x, float camera_y){
 	this->splashSprite->render(0,0);
 	for(unsigned int i = 0; i < mapButtons.size(); i++)
 	{

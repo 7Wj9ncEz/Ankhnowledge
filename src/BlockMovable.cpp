@@ -28,7 +28,7 @@ int BlockMovable::update(int dt) {
 	if(this->animDestroyed)
 	{
 		animation->update(dt,false,0,false);
-		if (animation->getFinishedAnimation()) {
+		if (animation->get_finished_animation()) {
 			this->finalDestroyed = true;
 		}
 
@@ -70,8 +70,8 @@ void BlockMovable::reaction(Character * character) {
 	if (nextTile && character->hasEnoughStamina() && !nextTile->getCharacter()) {
 		if (!nextTile->getBlock()) {
 			AudioHandler * audio = AudioHandler::getInstance();
-		 	audio->setEffect("empurrar_bloco.wav");
-		 	audio->playEffect(0);
+		 	audio->set_effect("empurrar_bloco.wav");
+		 	audio->play_effect(0);
 
 			move(dir);
 			getTile()->setBlock(0);
@@ -82,8 +82,8 @@ void BlockMovable::reaction(Character * character) {
 		else if (nextTile->getBlock()->getType() == "BlockMovable") {
 			if (((BlockMovable *)(nextTile->getBlock()))->checkNextTile(character, this)) {
 				AudioHandler * audio = AudioHandler::getInstance();
-			 	audio->setEffect("empurrar_bloco.wav");
-			 	audio->playEffect(0);
+			 	audio->set_effect("empurrar_bloco.wav");
+			 	audio->play_effect(0);
 
 				move(dir);
 				getTile()->setBlock(0);

@@ -14,7 +14,7 @@
 class HoverButton:public GameObject {
 public:
 	HoverButton(Sprite* sprite, float x,float y);
-	void render(float cameraX,float cameraY);
+	void render(float camera_x,float camera_y);
 	int update(int dt);
 	bool insideButton();
 	virtual ~HoverButton();

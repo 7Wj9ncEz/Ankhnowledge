@@ -73,11 +73,11 @@ int Scene::update(int dt)
 	return 0;
 }
 
-void Scene::render(float cameraX, float cameraY)
+void Scene::render(float camera_x, float camera_y)
 {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
-		(*it)->render(cameraX, cameraY);
+		(*it)->render(camera_x, camera_y);
 	}
 }
 

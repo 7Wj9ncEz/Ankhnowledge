@@ -11,7 +11,7 @@ public:
 	FadeScreen(float x, float y);
 	virtual ~FadeScreen();
 	int update(int dt);
-	void render(float cameraX, float cameraY);
+	void render(float camera_x, float camera_y);
 	bool isFaded();
 	void fadeOut(float percentage, float time);
 	void fadeIn(float percentage, float time);

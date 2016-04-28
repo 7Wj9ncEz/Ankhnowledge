@@ -28,11 +28,11 @@ void SceneOptions::Enter()
 	GameManager::fadeScreen->fadeOut(0,2);
 }
 
-void SceneOptions::render(float cameraX, float cameraY)
+void SceneOptions::render(float camera_x, float camera_y)
 {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
-		(*it)->render(cameraX, cameraY);
+		(*it)->render(camera_x, camera_y);
 	}
 
 	//soundAnimation->render(3, 100,100);

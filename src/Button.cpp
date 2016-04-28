@@ -34,9 +34,9 @@ Button::~Button() {
 }
 
 
-void Button::render(float cameraX, float cameraY){
+void Button::render(float camera_x, float camera_y){
 	if(this->currentSprite) {
-		this->currentSprite->render(this->x - cameraX,this->y - cameraY);
+		this->currentSprite->render(this->x - camera_x,this->y - camera_y);
 	}
 }
 

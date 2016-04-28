@@ -40,7 +40,7 @@ int SplashScreen::update(int dt) {
 	return 0;
 }
 
-void SplashScreen::render(float cameraX, float cameraY) {
+void SplashScreen::render(float camera_x, float camera_y) {
 	if(sprite) {
 			this->sprite->render(0,0);
 	}

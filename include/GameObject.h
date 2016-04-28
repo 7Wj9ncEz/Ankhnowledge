@@ -5,7 +5,7 @@ class GameObject {
 public:
 	virtual ~GameObject();
 	virtual int update(int dt) = 0;
-	virtual void render(float cameraX, float cameraY) = 0;
+	virtual void render(float camera_x, float camera_y) = 0;
 	float getX();
 	float getY();
 	bool lerp(float beginX, float beginY, float endX, float endY, float time, float  dt);

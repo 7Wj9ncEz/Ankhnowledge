@@ -18,7 +18,7 @@ public:
 	int update(int dt);
 	virtual void reaction(Character * character);
 	virtual ~BlockTreasure();
-	void render(float cameraX, float cameray);
+	void render(float camera_x, float cameray);
 
 private:
 	bool open;

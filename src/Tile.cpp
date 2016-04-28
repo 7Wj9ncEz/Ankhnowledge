@@ -40,7 +40,7 @@ Tile::~Tile() {
 	// TODO Auto-generated destructor stub
 }
 
-void Tile::render(float cameraX, float cameraY){
+void Tile::render(float camera_x, float camera_y){
 
 	if (tile) {
 		tile->render(getX(), getY());
@@ -139,7 +139,7 @@ bool Tile::isClickable() {
 
 void Tile::setClickable(bool click) {
 	if (click) {
-		animation->resetStartFrame();
+		animation->reset_start_frame();
 	}
 
 	else {

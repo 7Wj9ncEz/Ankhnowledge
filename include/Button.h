@@ -13,7 +13,7 @@
 class Button:public GameObject {
 public:
 	Button(Sprite* sprite1,Sprite* sprite2,Sprite* sprite3, float x,float y);
-	void render(float cameraX,float cameraY);
+	void render(float camera_x,float camera_y);
 	int update(int dt);
 	void setMouseCoord(float coordinateX, float coordinateY);
 	void mousePressed(bool isPressed);

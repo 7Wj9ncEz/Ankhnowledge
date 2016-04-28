@@ -14,7 +14,7 @@ public:
 	TileSet(int tileWidth, int tileHeight, std::string filePath);
 	TileSet(int tileWidth, int tileHeight);
 	void addTile(std::string filePath);
-	void render(int index, float posX, float posY);
+	void render(int index, float pos_x, float pos_y);
 	bool usingSingleFile();
 	int getTileWidth();
 	int getTileHeight();

@@ -189,7 +189,7 @@ void GameManager::update(int dt){
 	}
 }
 
-void GameManager::render(float cameraX, float cameraY){
+void GameManager::render(float camera_x, float camera_y){
 	currentScene->render(0,0);
 	if(renderQuitBox)		
 		mb->render(0,0);

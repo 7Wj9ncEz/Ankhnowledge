@@ -24,7 +24,7 @@ Character::Character(Tile* tile, int id):GameObject(tile->getX(),tile->getY())
 	this->dt = 0;
 	discountStamina = 0;
 	this->win = false;
-	this->onLoop = true;
+	this->on_loop = true;
 	this->map = 0;
 }
 
@@ -40,9 +40,9 @@ Character::~Character()
 	this->map = 0;*/
 }
 
-void Character::render(float cameraX, float cameraY)
+void Character::render(float camera_x, float camera_y)
 {
-	currentAnimation->animate(100, this->x - cameraX,this->y - cameraY - 40/2);
+	currentAnimation->animate(100, this->x - camera_x,this->y - camera_y - 40/2);
 }
 
 int Character::update(int dt)
@@ -108,12 +108,12 @@ int Character::update(int dt)
 	interpolateMovement(dt);
 	if(activatedSkill == true)
 	{
-		onLoop = false;
+		on_loop = false;
 		direction = 5;
 	}
-	if((activatedSkill == false) && currentAnimation->getFinishedAnimation())
+	if((activatedSkill == false) && currentAnimation->get_finished_animation())
 	{
-		onLoop = false;
+		on_loop = false;
 		if(direction == 5)
 			direction = 6;
 		else if(direction == 6)
@@ -121,12 +121,12 @@ int Character::update(int dt)
 	}
 	else if ((direction != 5) && (direction != 6))
 	{
-		onLoop = true;
+		on_loop = true;
 	}
 
 
 
-	currentAnimation->update(dt, onLoop, direction,false);
+	currentAnimation->update(dt, on_loop, direction,false);
 	return 0;
 }
 
@@ -442,8 +442,8 @@ void Character::moveUpdate(InputManager * input, Direction dir)
 				nextTile->setBlock(0);
 				setStamina(getStamina() - 3);
 				AudioHandler * audio = AudioHandler::getInstance();
-			 	audio->setEffect("areia_movedica.wav");
-			 	audio->playEffect(0);
+			 	audio->set_effect("areia_movedica.wav");
+			 	audio->play_effect(0);
 
 				//delete block;
 			}
@@ -460,8 +460,8 @@ void Character::moveUpdate(InputManager * input, Direction dir)
 				setStamina(getStamina() + 2);
 				this->initialStamina += 2;
 				AudioHandler * audio = AudioHandler::getInstance();
-			 	audio->setEffect("pote.wav");
-			 	audio->playEffect(0);
+			 	audio->set_effect("pote.wav");
+			 	audio->play_effect(0);
 
 				//delete block;
 			}

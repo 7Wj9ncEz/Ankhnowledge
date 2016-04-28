@@ -18,8 +18,8 @@ void SceneMainMenu::Enter()
 {
 	AudioHandler * audio = AudioHandler::getInstance();
  	audio->stopMusic();
-   	audio->setMusic("tema.ogg");
- 	audio->playMusic(-1);
+   	audio->set_music("tema.ogg");
+ 	audio->play_music(-1);
 
 	buttons = new MainMenuButHandler();
 	this->addGameObject(buttons);

@@ -22,7 +22,7 @@ int BlockFixed::update(int dt) {
 
 	if (this->animDestroyed)	{
 		animation->update(dt,false,0,false);
-		if (animation->getFinishedAnimation()) {
+		if (animation->get_finished_animation()) {
 			this->finalDestroyed = true;
 		}
 

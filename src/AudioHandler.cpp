@@ -14,19 +14,19 @@ void cleanMusic();
 AudioHandler * AudioHandler::instance = 0;
 
 AudioHandler::AudioHandler() {
-	this->currentMusic = NULL;
-	this->currentEffect = NULL;
-	openAudio();
+	this->current_music = NULL;
+	this->current_effect = NULL;
+	open_audio();
 }
 
 AudioHandler::~AudioHandler()  {
-	Mix_FreeMusic(currentMusic);
+	Mix_FreeMusic(current_music);
 	Mix_CloseAudio();
 	Mix_Quit();
-	if(this->currentMusic)
-		Mix_FreeMusic(this->currentMusic);
-	if(this->currentEffect)
-		Mix_FreeChunk(this->currentEffect);
+	if(this->current_music)
+		Mix_FreeMusic(this->current_music);
+	if(this->current_effect)
+		Mix_FreeChunk(this->current_effect);
 }
 
 void AudioHandler::update(){
@@ -45,7 +45,7 @@ AudioHandler * AudioHandler::getInstance() {
 	return instance;
 }
 
-void AudioHandler::openAudio() {
+void AudioHandler::open_audio() {
 	int audio_rate = 44100;
 	Uint16 audio_format = AUDIO_S16; /* 16-bit stereo */
 	int audio_channels = 2;
@@ -61,9 +61,9 @@ void AudioHandler::openAudio() {
 	}
 }
 
-void AudioHandler::setMusic(string song) {
-	if (this->currentMusic) {
-		Mix_FreeMusic(this->currentMusic);
+void AudioHandler::set_music(string song) {
+	if (this->current_music) {
+		Mix_FreeMusic(this->current_music);
 	}
 
 	else {
@@ -72,12 +72,12 @@ void AudioHandler::setMusic(string song) {
 
 	string songPath = SDLBase::resourcesPath + song;
 
-	this->currentMusic = Mix_LoadMUS(songPath.c_str());
+	this->current_music = Mix_LoadMUS(songPath.c_str());
 }
 
-void AudioHandler::playMusic(int times) {
-	if (this->currentMusic)	{
-		Mix_PlayMusic(this->currentMusic, times);
+void AudioHandler::play_music(int times) {
+	if (this->current_music)	{
+		Mix_PlayMusic(this->current_music, times);
 
 		//Mix_HookMusicFinished(cleanMusic);
 	}
@@ -91,14 +91,14 @@ void AudioHandler::stopMusic() {
 	Mix_HaltMusic();
 }
 
-void AudioHandler::setMusicVolume(int percent) {
+void AudioHandler::set_music_volume(int percent) {
 	int value = percent * MIX_MAX_VOLUME/100;
 	Mix_VolumeMusic(value);
 }
 
-void AudioHandler::setEffect(string song) {
-	if (this->currentEffect) {
-		Mix_FreeChunk(this->currentEffect);
+void AudioHandler::set_effect(string song) {
+	if (this->current_effect) {
+		Mix_FreeChunk(this->current_effect);
 	}
 
 	else {
@@ -106,12 +106,12 @@ void AudioHandler::setEffect(string song) {
 	}
 
 	string songPath = SDLBase::resourcesPath + song;
-	this->currentEffect = Mix_LoadWAV(songPath.c_str());
+	this->current_effect = Mix_LoadWAV(songPath.c_str());
 }
 
-void AudioHandler::playEffect(int times) {
-	if (this->currentEffect) {
-		Mix_PlayChannel(1, this->currentEffect, times);
+void AudioHandler::play_effect(int times) {
+	if (this->current_effect) {
+		Mix_PlayChannel(1, this->current_effect, times);
 
 		//Mix_HookMusicFinished(cleanMusic);
 	}
@@ -121,7 +121,7 @@ void AudioHandler::playEffect(int times) {
 	}
 }
 
-void AudioHandler::setEffectVolume(int percent) {
+void AudioHandler::set_effect_volume(int percent) {
 	int value = percent * MIX_MAX_VOLUME/100;
 	Mix_Volume(1, value);
 }

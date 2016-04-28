@@ -33,7 +33,7 @@ class TileMap;
 class Map : public GameObject {
 public:
 	Map(Sprite * tile, Sprite * block, string mapLink, float x, float y);
-	void render(float cameraX, float cameraY);
+	void render(float camera_x, float camera_y);
 	int update(int dt);
 	virtual ~Map();
 	void mousePressed(Button *bt, InputManager* input);

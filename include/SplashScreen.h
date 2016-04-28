@@ -18,7 +18,7 @@ public:
 	SplashScreen(Sprite * sprite, string nextScene);
 	virtual ~SplashScreen();
 	int update(int dt);
-	void render(float cameraX, float cameraY);
+	void render(float camera_x, float camera_y);
 
 private:
 	Sprite * sprite;

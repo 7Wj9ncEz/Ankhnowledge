@@ -21,7 +21,7 @@ public:
 	bool shouldChangeScene();
 	list<GameObject *> getAllGameObject();
 	virtual int update(int dt);
-	virtual void render(float cameraX, float cameraY);
+	virtual void render(float camera_x, float camera_y);
 	Scene * getNextScene();
 	void destroyGameObject(GameObject * gameObject);
 	void cleanDestroyedGameObjects();

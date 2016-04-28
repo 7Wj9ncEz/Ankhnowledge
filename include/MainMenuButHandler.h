@@ -24,7 +24,7 @@ class MainMenuButHandler:public GameObject {
 public:
 	MainMenuButHandler();
 	virtual ~MainMenuButHandler();
-	void render(float cameraX, float cameraY);
+	void render(float camera_x, float camera_y);
 	int update(int dt);
 	void mouseOver(Button* bt);
 	void mousePressed(Button* bt,string nextScene);

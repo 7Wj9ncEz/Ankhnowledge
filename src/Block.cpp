@@ -24,7 +24,7 @@ int Block::update(int dt) {
 	return 0;
 }
 
-void Block::render(float cameraX, float cameraY) {
+void Block::render(float camera_x, float camera_y) {
 	this->block->render(getX(), getY());
 }
 

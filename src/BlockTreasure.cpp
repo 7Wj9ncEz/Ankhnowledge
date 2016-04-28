@@ -20,7 +20,7 @@ BlockTreasure::~BlockTreasure() {
  // Nothing to do
 }
 
-void BlockTreasure::render(float cameraX,float cameraY) {
+void BlockTreasure::render(float camera_x,float camera_y) {
 	animation->animate(50,this->x,this->y);
 }
 
@@ -29,7 +29,7 @@ int BlockTreasure::update(int dt)
 	if(open)
 	{
 		animation->update(dt,false,0,false);
-		if (GameManager::currentScene->changeScene("SceneSelectCharacter") == 1 && !activated && animation->getFinishedAnimation() == true) {
+		if (GameManager::currentScene->changeScene("SceneSelectCharacter") == 1 && !activated && animation->get_finished_animation() == true) {
 			activated = true;
 			GameManager::fadeScreen->fadeIn(1,2);
 		}

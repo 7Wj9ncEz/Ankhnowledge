@@ -11,7 +11,7 @@ class Character;
 class Tile: public GameObject {
 public:
 	Tile(Sprite * tile, Block * block, float x, float y, int id);
-	void render(float cameraX, float cameraY);
+	void render(float camera_x, float camera_y);
 	int update(int dt);
 	virtual ~Tile();
 	void setRightTile(Tile * tile);

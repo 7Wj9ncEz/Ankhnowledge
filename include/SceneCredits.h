@@ -20,7 +20,7 @@ class SceneCredits : public Scene {
 public:
 	SceneCredits(string sceneName);
 	virtual ~SceneCredits();
-	virtual void render(float cameraX, float cameraY);
+	virtual void render(float camera_x, float camera_y);
 	virtual int update(int dt);
 	void Enter();
 	void Exit();

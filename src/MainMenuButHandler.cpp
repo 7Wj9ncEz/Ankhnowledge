@@ -150,7 +150,7 @@ MainMenuButHandler::~MainMenuButHandler() {
 	this->cursor = 0;
 }
 
-void MainMenuButHandler::render(float cameraX, float cameraY){
+void MainMenuButHandler::render(float camera_x, float camera_y){
 	this->splashSprite->render(0,0);
 	this->hostButton->render(0,0);
 	this->connectButton->render(0,0);

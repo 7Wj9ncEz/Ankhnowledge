@@ -35,7 +35,7 @@ OptionsController::~OptionsController() {
 	// TODO Auto-generated destructor stub
 }
 
-void OptionsController::render(float cameraX, float cameraY){
+void OptionsController::render(float camera_x, float camera_y){
 	this->splashSprite->render(0,0);
 	this->back->render(0,0);
 	this->bgVolume->render(0,0);
@@ -45,18 +45,18 @@ void OptionsController::render(float cameraX, float cameraY){
 	if(currentMusicVolume != this->musicVolume)
 	{
 		AudioHandler * audio = AudioHandler::getInstance();
-		audio->setMusicVolume(currentMusicVolume);
+		audio->set_music_volume(currentMusicVolume);
 		this->musicVolume = currentMusicVolume;
-		//audio->setEffectVolume(this->effectVolume);
+		//audio->set_effect_volume(this->effectVolume);
 	}
 
 	int currentEffectVolume = ((int)(100*soundEffect->calculateValue()));
 	if(currentEffectVolume != this->effectVolume)
 	{
 		AudioHandler * audio = AudioHandler::getInstance();
-		audio->setEffectVolume(currentEffectVolume);
-		audio->setEffect("sand_action.wav");
-		audio->playEffect(0);
+		audio->set_effect_volume(currentEffectVolume);
+		audio->set_effect("sand_action.wav");
+		audio->play_effect(0);
 		this->effectVolume = currentEffectVolume;
 	}
 

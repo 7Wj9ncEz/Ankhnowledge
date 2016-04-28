@@ -17,7 +17,7 @@ class Character;
 class Block: public GameObject 
 {
 public:
-	virtual void render(float cameraX, float cameraY);
+	virtual void render(float camera_x, float camera_y);
 	virtual int update(int dt) = 0;
 	string getType();
 	virtual void reaction(Character * character) = 0;
