@@ -26,4 +26,4 @@ h2. b) Functions
 |float coordinate_y|
 |set_change_sprite|bool change_sprite|no return|Setter for change_sprite variable|
 |set_change_scene|bool change_scene|no return|Setter for change_scene variable|
-|mouse_pressed|bool isPressed|no return|Verifies if the mouse was pressed|
+|mouse_pressed|bool is_pressed|no return|Verifies if the mouse was pressed|

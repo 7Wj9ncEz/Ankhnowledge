@@ -23,7 +23,7 @@ void SceneMainMenu::Enter()
 
 	buttons = new MainMenuButHandler();
 	this->addGameObject(buttons);
-	GameManager::fadeScreen->fadeOut(0,2);
+	GameManager::fadeScreen->fade_out(0,2);
 }
 
 void SceneMainMenu::Exit()

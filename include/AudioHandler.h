@@ -1,4 +1,4 @@
-#ifndef AUDIOHANDLER_H_
+q#ifndef AUDIOHANDLER_H_
 #define AUDIOHANDLER_H_
 
 #include <iostream>
@@ -9,8 +9,7 @@
 
 using namespace std;
 
-class AudioHandler
-{
+class AudioHandler {
 	public:
 		static AudioHandler* getInstance();
 		void update();

@@ -27,10 +27,10 @@ public:
 
 
 private:
-	float endX;
-	float endY;
-	float beginX;
-	float beginY;
+	float end_x;
+	float end_y;
+	float begin_x;
+	float begin_y;
 	bool moving;
 	Animation* animation;
 };

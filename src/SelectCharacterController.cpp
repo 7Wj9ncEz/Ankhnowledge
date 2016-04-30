@@ -59,7 +59,7 @@ SelectCharacterController::SelectCharacterController():GameObject(getX(),getY())
 	xBoard = -2000;
 	yBoard = -2000;
 	locked = true;
-	changeScene = false;
+	change_scene = false;
 	sendMessage("Loaded", "-1");
 
 	timer = 5000;
@@ -227,14 +227,14 @@ int SelectCharacterController::update(int dt){
 			}
 
 
-			if(alan->isPressed() && currentPressed == -1)
+			if(alan->is_pressed() && currentPressed == -1)
 			{
 				currentPressed = 1;
 				xBoard = alan->getX();
 				yBoard = alan->getY();
 				sendMessage("OnPressAlan", "-1");
 			}
-			if(suti->isPressed() && currentPressed == -1)
+			if(suti->is_pressed() && currentPressed == -1)
 			{
 				currentPressed = 2;
 				xBoard = suti->getX();
@@ -244,9 +244,9 @@ int SelectCharacterController::update(int dt){
 		}
 	}
 
-	if(currentPressed != -1 && opponentPressed != -1 && !changeScene)
+	if(currentPressed != -1 && opponentPressed != -1 && !change_scene)
 	{
-		changeScene = true;
+		change_scene = true;
 		if(Network::getID() == 1)
 		{
 			Network::player1Selection = currentPressed;
@@ -257,8 +257,8 @@ int SelectCharacterController::update(int dt){
 			Network::player1Selection = opponentPressed;
 			Network::player2Selection = currentPressed;
 		}
-		if(GameManager::currentScene->changeScene("SceneSelectMap") == 1)
-							GameManager::fadeScreen->fadeIn(1,2);
+		if(GameManager::currentScene->change_scene("SceneSelectMap") == 1)
+							GameManager::fadeScreen->fade_in(1,2);
 	}
 
 	this->boardAnimation->update(dt, true, 0, false);

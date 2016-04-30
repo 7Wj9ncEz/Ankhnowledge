@@ -23,7 +23,7 @@ void SceneSelectCharacter::Enter()
 
 	cc = new SelectCharacterController();
 	this->addGameObject(cc);
-	GameManager::fadeScreen->fadeOut(0,2);
+	GameManager::fadeScreen->fade_out(0,2);
 }
 
 void SceneSelectCharacter::Exit()

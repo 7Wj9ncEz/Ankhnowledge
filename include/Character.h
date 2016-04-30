@@ -61,10 +61,10 @@ class Character:public GameObject {
 		float vx,vy;
 		bool activatedSkill;
 		bool performingAction,on_loop;
-		float endX;
-		float endY;
-		float beginX;
-		float beginY;
+		float end_x;
+		float end_y;
+		float begin_x;
+		float begin_y;
 		int stamina;
 		int initialStamina;
 		bool win;

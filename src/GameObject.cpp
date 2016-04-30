@@ -18,41 +18,41 @@ float GameObject::getY(){
 	return this->y;
 }
 
-bool GameObject::lerp(float beginX, float beginY, float endX, float endY, float time, float  dt)
+bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, float time, float  dt)
 {
 	float xPercentage = 0;
 	float yPercentage = 0;
-	float totalX = endX - beginX;
-	float totalY = endY - beginY;
+	float totalX = end_x - begin_x;
+	float totalY = end_y - begin_y;
 	bool positiveX;
 	bool positiveY;
 
 	bool stillInterpolating = false;
 
-	if(beginX > endX)
+	if(begin_x > end_x)
 	{
 		positiveX = false;
-		xPercentage = (beginX - getX())/ totalX;
+		xPercentage = (begin_x - getX())/ totalX;
 	}
 	else
 	{
 		positiveX = true;
-		xPercentage = (getX() - beginX)/ totalX;
+		xPercentage = (getX() - begin_x)/ totalX;
 	}
 
-	if(beginY > endY)
+	if(begin_y > end_y)
 	{
 		positiveY = false;
-		yPercentage =  (beginY - getY())/ totalY;
+		yPercentage =  (begin_y - getY())/ totalY;
 	}
 	else
 	{
 		positiveY = true;
-		yPercentage = (getY() - beginY)/ totalY;
+		yPercentage = (getY() - begin_y)/ totalY;
 	}
 
 
-	if(xPercentage < 1 && xPercentage > -1 && this->x != endX)
+	if(xPercentage < 1 && xPercentage > -1 && this->x != end_x)
 	{
 		stillInterpolating = true;
 		if(positiveX)
@@ -62,10 +62,10 @@ bool GameObject::lerp(float beginX, float beginY, float endX, float endY, float 
 	}
 	else
 	{
-		this->x = endX;
+		this->x = end_x;
 	}
 
-	if(yPercentage < 1 && yPercentage > -1 && this->y != endY)
+	if(yPercentage < 1 && yPercentage > -1 && this->y != end_y)
 	{
 		stillInterpolating = true;
 		if(positiveY)
@@ -75,7 +75,7 @@ bool GameObject::lerp(float beginX, float beginY, float endX, float endY, float 
 	}
 	else
 	{
-		this->y = endY;
+		this->y = end_y;
 	}
 
 	return stillInterpolating;

@@ -53,7 +53,7 @@ bool HoverButton::isOnTop()
 	return onTop;
 }
 
-bool HoverButton::isPressed()
+bool HoverButton::is_pressed()
 {
 	return pressed;
 }

@@ -61,7 +61,7 @@ private:
 	Scene * splashConnect;
 	Scene * splashSelectMap;
 	Scene * splashSelectCharacter;
-	MessageBox * mb; 
+	MessageBox * mb;
 	InputManager * input;
 	AudioHandler * audio;
 	Shape* shape;
@@ -71,12 +71,12 @@ private:
 	float cameraX2;
 	float cameraY1;
 	float cameraY2;
-	float cameraSpeedX;
+	float camera_speed_x;
 	float cameraSpeedY;
 	float fatorParallaxScrolling;
-	int dt, frameStart, frameEnd;
+	int dt, frame_start, frameEnd;
 	bool quit, renderQuitBox, escPressed;
-	
+
 
 };
 

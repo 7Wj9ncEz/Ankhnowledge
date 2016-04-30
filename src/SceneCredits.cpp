@@ -39,7 +39,7 @@ void SceneCredits::Enter()
 {
 	this->cc = new CreditsController();
 	this->addGameObject(cc);
-	GameManager::fadeScreen->fadeOut(0,2);
+	GameManager::fadeScreen->fade_out(0,2);
 }
 
 void SceneCredits::Exit()

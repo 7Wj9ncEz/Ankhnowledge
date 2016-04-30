@@ -108,7 +108,7 @@ int SelectMapController::update(int dt){
 
 				mapButtons.at(i)->update(dt);
 
-				if(mapButtons.at(i)->isPressed() && currentMap == i)
+				if(mapButtons.at(i)->is_pressed() && currentMap == i)
 				{
 					mapselected = i;
 					cout<<"aqui"<<i<<endl;
@@ -122,13 +122,13 @@ int SelectMapController::update(int dt){
 				}
 			}
 
-			if(leftButton->isPressed() && changingMap == 0 && currentMap > 0)
+			if(leftButton->is_pressed() && changingMap == 0 && currentMap > 0)
 			{
 				moveLeft();
 				sendMessage("Left", "-1");
 			}
 
-			if(rightButton->isPressed() && changingMap == 0 && currentMap < 4)
+			if(rightButton->is_pressed() && changingMap == 0 && currentMap < 4)
 			{
 				moveRight();
 				sendMessage("Right", "-1");
@@ -144,13 +144,13 @@ int SelectMapController::update(int dt){
 		boardX = -2000;
 		boardY = -2000;
 	}
-	changeScene();
+	change_scene();
 
 	receiveMessage();
 	return 0;
 }
 
-void SelectMapController::changeScene(){
+void SelectMapController::change_scene(){
 	if(mapselected == -1)
 		return;
 
@@ -209,28 +209,28 @@ void SelectMapController::chooseMap(int index)
 {
 	if(index == 0)
 		{
-			if(GameManager::currentScene->changeScene("ScenePhaseOne") == 1)
-					GameManager::fadeScreen->fadeIn(1,0.2);
+			if(GameManager::currentScene->change_scene("ScenePhaseOne") == 1)
+					GameManager::fadeScreen->fade_in(1,0.2);
 		}
 		else if(index == 1)
 		{
-			if(GameManager::currentScene->changeScene("ScenePhaseTwo") == 1)
-					GameManager::fadeScreen->fadeIn(1,0.2);
+			if(GameManager::currentScene->change_scene("ScenePhaseTwo") == 1)
+					GameManager::fadeScreen->fade_in(1,0.2);
 		}
 		else if(index == 2)
 		{
-			if(GameManager::currentScene->changeScene("ScenePhaseThree") == 1)
-					GameManager::fadeScreen->fadeIn(1,0.2);
+			if(GameManager::currentScene->change_scene("ScenePhaseThree") == 1)
+					GameManager::fadeScreen->fade_in(1,0.2);
 		}
 		else if(index == 3)
 		{
-			if(GameManager::currentScene->changeScene("ScenePhaseFour") == 1)
-					GameManager::fadeScreen->fadeIn(1,0.2);
+			if(GameManager::currentScene->change_scene("ScenePhaseFour") == 1)
+					GameManager::fadeScreen->fade_in(1,0.2);
 		}
 		else if(index == 4)
 		{
-			if(GameManager::currentScene->changeScene("ScenePhaseFive") == 1)
-					GameManager::fadeScreen->fadeIn(1,0.2);
+			if(GameManager::currentScene->change_scene("ScenePhaseFive") == 1)
+					GameManager::fadeScreen->fade_in(1,0.2);
 		}
 }
 

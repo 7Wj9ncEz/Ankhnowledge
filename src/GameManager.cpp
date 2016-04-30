@@ -91,7 +91,7 @@ void GameManager::initResources(){
 	this->splashSelectCharacter->addScenes(splashMainMenu);
 
 	fadeScreen = new FadeScreen(SDLBase::getScreen()->w, SDLBase::getScreen()->h);
-	fadeScreen->fadeOut(0,2);
+	fadeScreen->fade_out(0,2);
 	currentScene = splashLogo;
 	currentScene->Enter();
 
@@ -99,7 +99,7 @@ void GameManager::initResources(){
 	input = InputManager::getInstance();
 	audio = AudioHandler::getInstance();
 	dt = 0;
-	frameStart = 0;
+	frame_start = 0;
 	frameEnd = 0;
 	quit = false;
 	renderQuitBox = false;
@@ -137,22 +137,22 @@ void GameManager::processEvents(){
 	}
 
 	if( input->isKeyDown(SDLK_UP) )
-		cameraSpeedY -= SCROLL;
+		camera_speed_y -= SCROLL;
 	if( input->isKeyDown(SDLK_DOWN) )
-		cameraSpeedY += SCROLL;
+		camera_speed_y += SCROLL;
 	if( input->isKeyDown(SDLK_LEFT) )
-		cameraSpeedX -= SCROLL;
+		camera_speed_x -= SCROLL;
 	if( input->isKeyDown(SDLK_RIGHT) )
-		cameraSpeedX += SCROLL;
+		camera_speed_x += SCROLL;
 
 	if( input->isKeyUp(SDLK_UP) )
-		cameraSpeedY += SCROLL;
+		camera_speed_y += SCROLL;
 	if( input->isKeyUp(SDLK_DOWN) )
-		cameraSpeedY -= SCROLL;
+		camera_speed_y -= SCROLL;
 	if( input->isKeyUp(SDLK_LEFT) )
-		cameraSpeedX += SCROLL;
+		camera_speed_x += SCROLL;
 	if( input->isKeyUp(SDLK_RIGHT) )
-		cameraSpeedX -= SCROLL;
+		camera_speed_x -= SCROLL;
 
 }
 
@@ -184,8 +184,8 @@ void GameManager::update(int dt){
 		currentScene->update(dt);
 		fadeScreen->update(dt);
 		audio->update();
-		cameraX1 += cameraSpeedX;
-		cameraY1 += cameraSpeedY;
+		cameraX1 += camera_speed_x;
+		cameraY1 += camera_speed_y;
 	}
 }
 
@@ -200,8 +200,8 @@ void GameManager::run(){
 
 	while(!SDL_QuitRequested()){
 
-		frameStart = SDL_GetTicks();
-		dt = frameStart - frameEnd;
+		frame_start = SDL_GetTicks();
+		dt = frame_start - frameEnd;
 
 		if(currentScene->shouldChangeScene() && fadeScreen->isFaded())
 		{

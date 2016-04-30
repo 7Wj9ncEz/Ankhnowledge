@@ -5,9 +5,9 @@ using namespace std;
 
 FadeHandler::FadeHandler(Sprite * sprite) {
 	this->sprite = sprite;
-	this->shouldFadeIn = false;
-	this->shouldFadeOut = false;
-	this->currentPercentage = ((float)sprite->getAlpha()/255);
+	this->should_fade_in = false;
+	this->should_fade_out = false;
+	this->current_percentage = ((float)sprite->getAlpha()/255);
 
 }
 
@@ -15,22 +15,22 @@ FadeHandler::~FadeHandler() {
 	this->sprite = 0;
 }
 
-void FadeHandler::fadeIn(float percentage, float time)
+void FadeHandler::fade_in(float percentage, float time)
 {
-	this->shouldFadeIn = true;
-	this->shouldFadeOut = false;
-	this->percentageOfStop = percentage;
-	this->currentPercentage = ((float)sprite->getAlpha()/255);
-	this->rate = (this->percentageOfStop - this->currentPercentage)/time;
+	this->should_fade_in = true;
+	this->should_fade_out = false;
+	this->percentage_of_stop = percentage;
+	this->current_percentage = ((float)sprite->getAlpha()/255);
+	this->rate = (this->percentage_of_stop - this->current_percentage)/time;
 }
 
-void FadeHandler::fadeOut(float percentage, float time)
+void FadeHandler::fade_out(float percentage, float time)
 {
-	this->shouldFadeOut = true;
-	this->shouldFadeIn = false;
-	this->percentageOfStop = percentage;
-	this->currentPercentage = ((float)sprite->getAlpha()/255);
-	this->rate = (this->currentPercentage - this->percentageOfStop)/time;
+	this->should_fade_out = true;
+	this->should_fade_in = false;
+	this->percentage_of_stop = percentage;
+	this->current_percentage = ((float)sprite->getAlpha()/255);
+	this->rate = (this->current_percentage - this->percentage_of_stop)/time;
 
 }
 
@@ -38,44 +38,44 @@ void FadeHandler::update(float dt)
 {
 	if(!this->sprite)
 		return;
-	/*cout << "currentPercentage: " << this->currentPercentage << endl;
-	cout << "shouldFadeIn: " << this->shouldFadeIn << endl;
-	cout << "shouldFadeOut: " << this->shouldFadeOut << endl;
+	/*cout << "current_percentage: " << this->current_percentage << endl;
+	cout << "should_fade_in: " << this->should_fade_in << endl;
+	cout << "should_fade_out: " << this->should_fade_out << endl;
 	cout << "rate: " << this->rate << endl;
 	cout << "dt : " << dt << endl;*/
-	if(shouldFadeIn)
+	if(should_fade_in)
 	{
-		if(currentPercentage < percentageOfStop)
+		if(current_percentage < percentage_of_stop)
 		{
-			currentPercentage += rate * dt/1000;
-			sprite->setAlpha(255*currentPercentage);
+			current_percentage += rate * dt/1000;
+			sprite->setAlpha(255*current_percentage);
 		}
 		else
 		{
-			shouldFadeIn = false;
-			currentPercentage = percentageOfStop;
-			sprite->setAlpha(255*currentPercentage);
+			should_fade_in = false;
+			current_percentage = percentage_of_stop;
+			sprite->setAlpha(255*current_percentage);
 		}
 	}else
-	if(shouldFadeOut)
+	if(should_fade_out)
 	{
-		if(currentPercentage > percentageOfStop)
+		if(current_percentage > percentage_of_stop)
 		{
-			currentPercentage -= rate*dt/1000;
-			sprite->setAlpha(255*currentPercentage);
+			current_percentage -= rate*dt/1000;
+			sprite->setAlpha(255*current_percentage);
 		}
 		else
 		{
-			shouldFadeOut = false;
-			currentPercentage = percentageOfStop;
-			sprite->setAlpha(255*currentPercentage);
+			should_fade_out = false;
+			current_percentage = percentage_of_stop;
+			sprite->setAlpha(255*current_percentage);
 		}
 	}
 
 }
 
-float FadeHandler::getCurrentPercentage()
+float FadeHandler::get_current_percentage()
 {
-	return this->currentPercentage;
+	return this->current_percentage;
 }
 

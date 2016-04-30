@@ -27,7 +27,7 @@ void InputManager::Update(){
 	}
 
 	keyboard = SDL_GetKeyState(NULL);
-	mouse = SDL_GetMouseState(&mouseX,&mouseY);
+	mouse = SDL_GetMouseState(&mouse_x,&mouse_y);
 
 	SDL_Event event;
 	while(SDL_PollEvent(&event)){
@@ -104,18 +104,18 @@ bool InputManager::isMousePressed(Uint8 button){
 }
 
 bool InputManager::isMouseInside(SDL_Rect * rect){
-	if(mouseX <= (rect->x+rect->w) && mouseX >= rect->x && mouseY <= (rect->y+rect->h) && mouseY >= rect->y)
+	if(mouse_x <= (rect->x+rect->w) && mouse_x >= rect->x && mouse_y <= (rect->y+rect->h) && mouse_y >= rect->y)
 		return true;
 
 	return false;
 }
 
 int InputManager::mousePosX(){
-	return mouseX;
+	return mouse_x;
 }
 
 int InputManager::mousePosY(){
-	return mouseY;
+	return mouse_y;
 }
 
 bool InputManager::QuitGame(){

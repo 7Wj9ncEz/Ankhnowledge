@@ -28,7 +28,7 @@ public:
 	int update(int dt);
 	void mouseOver(Button* bt);
 	void mousePressed(Button* bt,string nextScene);
-	void changeScene();
+	void change_scene();
 	void changeMap(int dt);
 	void receiveMessage();
 	void sendMessage(string action, string info);

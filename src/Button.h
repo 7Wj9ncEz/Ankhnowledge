@@ -15,19 +15,19 @@ public:
 	Button(Sprite* sprite1,Sprite* sprite2,Sprite* sprite3, float x,float y);
 	void render(float camera_x,float camera_y);
 	int update(int dt);
-	void setMouseCoord(float coordinateX, float coordinateY);
-	void mousePressed(bool isPressed);
+	void setMouseCoord(float coordinate_x, float coordinate_y);
+	void mousePressed(bool is_pressed);
 	bool insideButton();
 	bool getChangeScene();
 	virtual ~Button();
-	void setChangeSprite(bool changeSprite);
+	void setChangeSprite(bool change_sprite);
 
 private:
-	Sprite* sprite1,*sprite2,*sprite3,*currentSprite;
-	float x,y,mouseX,mouseY;
-	bool isPressed;
-	bool changeScene;
-	bool changeSprite;
+	Sprite* sprite1,*sprite2,*sprite3,*current_sprite;
+	float x,y,mouse_x,mouse_y;
+	bool is_pressed;
+	bool change_scene;
+	bool change_sprite;
 
 };
 

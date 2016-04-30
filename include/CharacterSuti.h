@@ -13,11 +13,10 @@ class Tile;
 class Skill;
 class Character;
 
-class CharacterSuti:public Character
-{
-        public:
-                CharacterSuti(Tile* tile, int id);
-                ~CharacterSuti();
+class CharacterSuti:public Character {
+  public:
+    CharacterSuti(Tile* tile, int id);
+    ~CharacterSuti();
 };
 
 #endif

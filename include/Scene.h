@@ -16,7 +16,7 @@ public:
 	virtual void Enter() = 0;
 	virtual void Exit() = 0;
 	void addScenes(Scene * scene);
-	int changeScene(string sceneName);
+	int change_scene(string sceneName);
 	string * getName();
 	bool shouldChangeScene();
 	list<GameObject *> getAllGameObject();

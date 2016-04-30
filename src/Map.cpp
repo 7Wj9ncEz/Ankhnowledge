@@ -140,8 +140,8 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 	splashLost = new Sprite(SDLBase::resourcesPath + "youlost.bmp");
 	splashLost->incNumRef();
 	lostHandler = new FadeHandler(splashLost);
-	wonHandler->fadeOut(0,0.1);
-	lostHandler->fadeOut(0,0.1);
+	wonHandler->fade_out(0,0.1);
+	lostHandler->fade_out(0,0.1);
 	gameEnded = false;
 }
 
@@ -290,7 +290,7 @@ int Map::update(int dt) {
 			 	audio->set_effect("youwon.wav");
 			 	audio->play_effect(0);
 
-				wonHandler->fadeIn(2,0.5);
+				wonHandler->fade_in(2,0.5);
 				Network::setLost(false);
 			}
 
@@ -298,7 +298,7 @@ int Map::update(int dt) {
 				audio->set_effect("youlost.ogg");
 			 	audio->play_effect(0);
 
-				lostHandler->fadeIn(2,0.5);
+				lostHandler->fade_in(2,0.5);
 				Network::setLost(true);
 			}
 		}
@@ -312,7 +312,7 @@ int Map::update(int dt) {
 
 	for (unsigned int i = 0; i < tiles.size(); i++) {
 		if (tiles.at(i)->getBlock()) {
-			if (tiles.at(i)->getBlock()->getDestroyedFinalBlock()) {
+			if (tiles.at(i)->getBlock()->get_destroyed_final_block()) {
 			Block* tempBlock = tiles.at(i)->getBlock();
 			tiles.at(i)->setBlock(0);
 			delete tempBlock;

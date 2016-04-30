@@ -39,7 +39,7 @@ private:
 	int currentOnTop, opponentOnTop;
 	int currentPressed, opponentPressed;
 	float xBoard, yBoard;
-	bool locked, changeScene;
+	bool locked, change_scene;
 	float timer;
 };
 

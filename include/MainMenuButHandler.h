@@ -28,7 +28,7 @@ public:
 	int update(int dt);
 	void mouseOver(Button* bt);
 	void mousePressed(Button* bt,string nextScene);
-	void changeScene(string nextScene);
+	void change_scene(string nextScene);
 	void renderConnect();
 	void renderDisconnect();
 	void renderWaiting();

@@ -193,8 +193,8 @@ int MainMenuButHandler::update(int dt){
 	if(Network::connected && thread)
 	{
 		Network::receiveThread();
-		if(GameManager::currentScene->changeScene("SceneSelectCharacter") == 1)
-			GameManager::fadeScreen->fadeIn(1,2);
+		if(GameManager::currentScene->change_scene("SceneSelectCharacter") == 1)
+			GameManager::fadeScreen->fade_in(1,2);
 		thread = false;
 		clickOtherButtons = true;
 	}
@@ -240,7 +240,7 @@ void MainMenuButHandler::mousePressed(Button *bt,string scene){
 		}
 		else if(bt->getChangeScene())
 		{
-			changeScene(scene);
+			change_scene(scene);
 			clickOtherButtons = false;
 			bt->setChangeSprite(0);
 		}
@@ -322,8 +322,8 @@ void MainMenuButHandler::updateConnect(int dt){
 			{
 				renderConnectError = false;
 				Network::receiveThread();
-				if(GameManager::currentScene->changeScene("SceneSelectCharacter") == 1)
-				GameManager::fadeScreen->fadeIn(1,2);											  
+				if(GameManager::currentScene->change_scene("SceneSelectCharacter") == 1)
+				GameManager::fadeScreen->fade_in(1,2);											  
 			}
 			else if (Network::connect(message) == -1) 
 			{
@@ -497,8 +497,8 @@ void MainMenuButHandler::backspace(){
 	}
 }
 
-void MainMenuButHandler::changeScene(string nextScene){
-	if(GameManager::currentScene->changeScene(nextScene) == 1)
-		GameManager::fadeScreen->fadeIn(1,0.2);
+void MainMenuButHandler::change_scene(string nextScene){
+	if(GameManager::currentScene->change_scene(nextScene) == 1)
+		GameManager::fadeScreen->fade_in(1,0.2);
 }
 

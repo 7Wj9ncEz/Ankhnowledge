@@ -136,25 +136,25 @@ void Character::push(Direction dir)
 	switch(dir)
 	{
 		case up:
-			endX = getX();
-			endY = getY() - currentTile->getWidth();
+			end_x = getX();
+			end_y = getY() - currentTile->getWidth();
 			direction = 3;
 		break;
 
 		case down:
-			endX = getX();
-			endY = getY() + currentTile->getWidth();
+			end_x = getX();
+			end_y = getY() + currentTile->getWidth();
 			direction = 0;
 		break;
 		case right:
-			endX = getX() + currentTile->getWidth();
-			endY = getY();
+			end_x = getX() + currentTile->getWidth();
+			end_y = getY();
 			direction = 2;
 		break;
 
 		case left:
-			endX = getX() - currentTile->getWidth();
-			endY = getY();
+			end_x = getX() - currentTile->getWidth();
+			end_y = getY();
 			direction = 1;
 
 		break;
@@ -165,8 +165,8 @@ void Character::push(Direction dir)
 
 	}
 
-	   beginX = getX();
-	   beginY = getY();
+	   begin_x = getX();
+	   begin_y = getY();
 }
 
 void Character::move(Direction dir)
@@ -176,25 +176,25 @@ void Character::move(Direction dir)
 	switch(dir)
 	{
 	    case up:
-	    	endX = getX();
-	    	endY = getY() - currentTile->getWidth();
+	    	end_x = getX();
+	    	end_y = getY() - currentTile->getWidth();
 	    	direction = 3;
 	    break;
 
 	    case down:
-	    	endX = getX();
-			endY = getY() + currentTile->getWidth();
+	    	end_x = getX();
+			end_y = getY() + currentTile->getWidth();
 			direction = 0;
 	    break;
 	    case right:
-	    	endX = getX() + currentTile->getWidth();
-	    	endY = getY();
+	    	end_x = getX() + currentTile->getWidth();
+	    	end_y = getY();
 	    	direction = 2;
 	    break;
 
 	    case left:
-	    	endX = getX() - currentTile->getWidth();
-			endY = getY();
+	    	end_x = getX() - currentTile->getWidth();
+			end_y = getY();
 			direction = 1;
 	    break;
 
@@ -204,15 +204,15 @@ void Character::move(Direction dir)
 
 	}
 
-	   beginX = getX();
-	   beginY = getY();
+	   begin_x = getX();
+	   begin_y = getY();
 }
 
 void Character::interpolateMovement(float dt)
 {
 	if(this->performingAction == true)
 	{
-		if(!lerp(beginX, beginY, endX, endY, 10, dt))
+		if(!lerp(begin_x, begin_y, end_x, end_y, 10, dt))
 		{
 			this->performingAction = false;
 			direction = 4;

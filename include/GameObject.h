@@ -8,7 +8,7 @@ public:
 	virtual void render(float camera_x, float camera_y) = 0;
 	float getX();
 	float getY();
-	bool lerp(float beginX, float beginY, float endX, float endY, float time, float  dt);
+	bool lerp(float begin_x, float begin_y, float end_x, float end_y, float time, float  dt);
 	void setPosition(float x, float y);
 
 protected:

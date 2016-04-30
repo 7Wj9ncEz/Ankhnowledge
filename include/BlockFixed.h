@@ -5,23 +5,22 @@
 #include "Block.h"
 #include "Animation.h"
 
-class BlockFixed: public Block
-{
+class BlockFixed: public Block {
 public:
 	BlockFixed(Sprite * block, float x, float y);
 	int update(int dt);
 	void render(float camerax, float cameray);
 	void reaction(Character * character);
 	virtual ~BlockFixed();
-	enum Direction { up, down, right, left, none };
+	enum Direction {up, down, right, left, none};
 	void interpolateMovement(float dt);
 
 
 private:
-	float endX;
-	float endY;
-	float beginX;
-	float beginY;
+	float end_x;
+	float end_y;
+	float begin_x;
+	float begin_y;
 	bool moving;
 	Animation* animation;
 };

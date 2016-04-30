@@ -22,7 +22,7 @@ Tile::Tile(Sprite * tile, Block * block,float x, float y, int id):GameObject(x,y
 	this->animation = new Animation(20,20,clickableTile,0);
 
 	if (block) {
-		block->setTile(this);
+		block->set_tile(this);
 	}
 
 	else {

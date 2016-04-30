@@ -13,8 +13,8 @@ public:
 	int update(int dt);
 	void render(float camera_x, float camera_y);
 	bool isFaded();
-	void fadeOut(float percentage, float time);
-	void fadeIn(float percentage, float time);
+	void fade_out(float percentage, float time);
+	void fade_in(float percentage, float time);
 
 private:
 	Sprite * sprite;

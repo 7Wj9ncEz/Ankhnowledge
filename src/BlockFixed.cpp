@@ -20,10 +20,10 @@ void BlockFixed::render(float camerax, float cameray) {
 int BlockFixed::update(int dt) {
 	interpolateMovement(dt);
 
-	if (this->animDestroyed)	{
+	if (this->anim_destroyed)	{
 		animation->update(dt,false,0,false);
 		if (animation->get_finished_animation()) {
-			this->finalDestroyed = true;
+			this->final_destroyed = true;
 		}
 
 		else {
@@ -44,7 +44,7 @@ void BlockFixed::reaction(Character * character) {
 void BlockFixed::interpolateMovement(float dt) {
 	if (this->moving == true)
 	{
-		if (!lerp(beginX, beginY, endX, endY, 10, dt)) {
+		if (!lerp(begin_x, begin_y, end_x, end_y, 10, dt)) {
 			this->moving = false;
 		}
 

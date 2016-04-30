@@ -19,7 +19,7 @@ public:
 	bool insideButton();
 	virtual ~HoverButton();
 	bool isOnTop();
-	bool isPressed();
+	bool is_pressed();
 	Sprite * getSprite();
 	float begin;
 

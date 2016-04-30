@@ -19,7 +19,7 @@ void Scene::addScenes(Scene *scene)
 	this->scenes.push_back(scene);
 }
 
-int Scene::changeScene(string sceneName)
+int Scene::change_scene(string sceneName)
 {
 
 	for (list<Scene *>::iterator it = scenes.begin(); it != scenes.end(); it++)

@@ -28,18 +28,18 @@ void FadeScreen::render(float camera_x, float camera_y){
 
 bool FadeScreen::isFaded()
 {
-	if(fadeHandler->getCurrentPercentage() == 1)
+	if(fadeHandler->get_current_percentage() == 1)
 		return true;
 
 	return false;
 }
 
-void FadeScreen::fadeOut(float percentage, float time)
+void FadeScreen::fade_out(float percentage, float time)
 {
-	this->fadeHandler->fadeOut(percentage, time);
+	this->fadeHandler->fade_out(percentage, time);
 }
-void FadeScreen::fadeIn(float percentage, float time)
+void FadeScreen::fade_in(float percentage, float time)
 {
-	this->fadeHandler->fadeIn(percentage, time);
+	this->fadeHandler->fade_in(percentage, time);
 }
 

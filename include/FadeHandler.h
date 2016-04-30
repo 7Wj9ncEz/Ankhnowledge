@@ -9,17 +9,17 @@ class FadeHandler {
 public:
 	FadeHandler(Sprite* sprite);
 	virtual ~FadeHandler();
-	void fadeIn(float percentage, float time);
-	void fadeOut(float percentage, float time);
+	void fade_in(float percentage, float time);
+	void fade_out(float percentage, float time);
 	void update(float dt);
-	float getCurrentPercentage();
+	float get_current_percentage();
 private:
-	bool shouldFadeIn;
-	bool shouldFadeOut;
-	float percentageOfStop;
+	bool should_fade_in;
+	bool should_fade_out;
+	float percentage_of_stop;
 	Sprite * sprite;
 	float time;
-	float currentPercentage;
+	float current_percentage;
 	float rate;
 };
 

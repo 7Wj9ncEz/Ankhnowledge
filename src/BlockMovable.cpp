@@ -25,11 +25,11 @@ void BlockMovable::render(float camerax, float cameray) {
 int BlockMovable::update(int dt) {
 	interpolateMovement(dt);
 
-	if(this->animDestroyed)
+	if(this->anim_destroyed)
 	{
 		animation->update(dt,false,0,false);
 		if (animation->get_finished_animation()) {
-			this->finalDestroyed = true;
+			this->final_destroyed = true;
 		}
 
 		else {
@@ -47,24 +47,24 @@ void BlockMovable::reaction(Character * character) {
 	character->incrementDiscountStamina(2);
 	Tile * nextTile = 0;
 
-	if(character->getCurrentTile()->getRightTile() == getTile()) {
+	if(character->getCurrentTile()->getRightTile() == get_tile()) {
 		dir = right;
-		nextTile = getTile()->getRightTile();
+		nextTile = get_tile()->getRightTile();
 	}
 
-	else if (character->getCurrentTile()->getLeftTile() == getTile()) {
+	else if (character->getCurrentTile()->getLeftTile() == get_tile()) {
 		dir = left;
-		nextTile = getTile()->getLeftTile();
+		nextTile = get_tile()->getLeftTile();
 	}
 
-	else if (character->getCurrentTile()->getUpTile() == getTile()) {
+	else if (character->getCurrentTile()->getUpTile() == get_tile()) {
 		dir = up;
-		nextTile = getTile()->getUpTile();
+		nextTile = get_tile()->getUpTile();
 	}
 
-	else if (character->getCurrentTile()->getDownTile() == getTile()) {
+	else if (character->getCurrentTile()->getDownTile() == get_tile()) {
 		dir = down;
-		nextTile = getTile()->getDownTile();
+		nextTile = get_tile()->getDownTile();
 	}
 
 	if (nextTile && character->hasEnoughStamina() && !nextTile->getCharacter()) {
@@ -74,8 +74,8 @@ void BlockMovable::reaction(Character * character) {
 		 	audio->play_effect(0);
 
 			move(dir);
-			getTile()->setBlock(0);
-			setTile(nextTile);
+			get_tile()->setBlock(0);
+			set_tile(nextTile);
 			nextTile->setBlock(this);
 		}
 
@@ -86,8 +86,8 @@ void BlockMovable::reaction(Character * character) {
 			 	audio->play_effect(0);
 
 				move(dir);
-				getTile()->setBlock(0);
-				setTile(nextTile);
+				get_tile()->setBlock(0);
+				set_tile(nextTile);
 				nextTile->setBlock(this);
 			}
 
@@ -111,31 +111,31 @@ bool BlockMovable::checkNextTile(Character * character, BlockMovable * lastBlock
 	character->incrementDiscountStamina(1);
 	Tile * nextTile = 0;
 
-	if (lastBlock->getTile()->getRightTile() == getTile()) {
+	if (lastBlock->get_tile()->getRightTile() == get_tile()) {
 		dir = right;
-		nextTile = getTile()->getRightTile();
+		nextTile = get_tile()->getRightTile();
 	}
 
-	else if (lastBlock->getTile()->getLeftTile() == getTile()) {
+	else if (lastBlock->get_tile()->getLeftTile() == get_tile()) {
 		dir = left;
-		nextTile = getTile()->getLeftTile();
+		nextTile = get_tile()->getLeftTile();
 	}
 
-	else if (lastBlock->getTile()->getUpTile() == getTile()) {
+	else if (lastBlock->get_tile()->getUpTile() == get_tile()) {
 		dir = up;
-		nextTile = getTile()->getUpTile();
+		nextTile = get_tile()->getUpTile();
 	}
 
-	else if (lastBlock->getTile()->getDownTile() == getTile()) {
+	else if (lastBlock->get_tile()->getDownTile() == get_tile()) {
 		dir = down;
-		nextTile = getTile()->getDownTile();
+		nextTile = get_tile()->getDownTile();
 	}
 
 	if (nextTile && character->hasEnoughStamina() && !nextTile->getCharacter()) {
 		if (!nextTile->getBlock()) {
 			move(dir);
-			getTile()->setBlock(0);
-			setTile(nextTile);
+			get_tile()->setBlock(0);
+			set_tile(nextTile);
 			nextTile->setBlock(this);
 			return true;
 		}
@@ -147,8 +147,8 @@ bool BlockMovable::checkNextTile(Character * character, BlockMovable * lastBlock
 		else if (nextTile->getBlock()->getType() == "BlockMovable") {
 			if (((BlockMovable *)(nextTile->getBlock()))->checkNextTile(character, this)) {
 				move(dir);
-				getTile()->setBlock(0);
-				setTile(nextTile);
+				get_tile()->setBlock(0);
+				set_tile(nextTile);
 				nextTile->setBlock(this);
 				return true;
 			}
@@ -171,22 +171,22 @@ void BlockMovable::move(Direction dir) {
 	this->moving = true;
 	switch (dir) {
 	    case up:
-	    	endX = getX();
-	    	endY = getY() - 20;
+	    	end_x = getX();
+	    	end_y = getY() - 20;
 	    break;
 
 	    case down:
-	    	endX = getX();
-			endY = getY() + 20;
+	    	end_x = getX();
+			end_y = getY() + 20;
 	    break;
 	    case right:
-	    	endX = getX() + 20;
-			endY = getY();
+	    	end_x = getX() + 20;
+			end_y = getY();
 	    break;
 
 	    case left:
-	    	endX = getX() - 20;
-			endY = getY();
+	    	end_x = getX() - 20;
+			end_y = getY();
 
 	    break;
 
@@ -194,13 +194,13 @@ void BlockMovable::move(Direction dir) {
 
 	    break;
 	}
-	   beginX = getX();
-	   beginY = getY();
+	   begin_x = getX();
+	   begin_y = getY();
 }
 
 void BlockMovable::interpolateMovement(float dt) {
 	if (this->moving == true) {
-		if (!lerp(beginX, beginY, endX, endY, 10, dt)) {
+		if (!lerp(begin_x, begin_y, end_x, end_y, 10, dt)) {
 			this->moving = false;
 		}
 

@@ -130,8 +130,8 @@ int Network::receiveMessage(void *){
 		}else
 		{
 			connected = false;
-			if(GameManager::currentScene->changeScene("SceneMainMenu") == 1)
-					GameManager::fadeScreen->fadeIn(1,2);
+			if(GameManager::currentScene->change_scene("SceneMainMenu") == 1)
+					GameManager::fadeScreen->fade_in(1,2);
 			if(currentSocket)
 			{
 				SDLNet_TCP_Close(currentSocket);
