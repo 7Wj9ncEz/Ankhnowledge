@@ -8,15 +8,15 @@ public:
 	virtual ~InputManager();
 	static InputManager* getInstance();
 	void Update();
-	bool isKeyDown(int key);
-	bool isKeyUp(int key);
-	bool isKeyPressed(int key);
-	bool isMouseDown(int button);
-	bool isMouseUp(int button);
-	bool isMousePressed(Uint8 button);
-	int mousePosX();
-	int mousePosY();
-	bool isMouseInside(SDL_Rect * rect);
+	bool is_key_down(int key);
+	bool is_key_up(int key);
+	bool is_key_pressed(int key);
+	bool is_mouse_down(int button);
+	bool is_mouse_up(int button);
+	bool is_mouse_pressed(Uint8 button);
+	int mouse_pos_x();
+	int mouse_pos_y();
+	bool is_mouse_inside(SDL_Rect * rect);
 	bool QuitGame();
 
 private:

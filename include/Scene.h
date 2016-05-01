@@ -11,30 +11,30 @@ using namespace std;
 
 class Scene {
 public:
-	Scene(string sceneName);
+	Scene(string scene_name);
 	virtual ~Scene();
 	virtual void Enter() = 0;
 	virtual void Exit() = 0;
-	void addScenes(Scene * scene);
-	int change_scene(string sceneName);
+	void add_scenes(Scene * scene);
+	int change_scene(string scene_name);
 	string * getName();
-	bool shouldChangeScene();
+	bool should_change_scene();
 	list<GameObject *> getAllGameObject();
 	virtual int update(int dt);
 	virtual void render(float camera_x, float camera_y);
 	Scene * getNextScene();
-	void destroyGameObject(GameObject * gameObject);
-	void cleanDestroyedGameObjects();
-	string getSceneName();
+	void destroy_game_object(GameObject * gameObject);
+	void clean_destroyed_game_objects();
+	string get_scene_name();
 
 protected:
 	list<Scene *> scenes;
 	list<GameObject *> gameObjects;
-	string sceneName;
+	string scene_name;
 	bool sChangeScene;
 	Scene * nextScene;
 	void addGameObject(GameObject * gameObject);
-	void cleanGameObjects();
+	void clean_game_objects();
 	vector<GameObject*> garbage;
 };
 

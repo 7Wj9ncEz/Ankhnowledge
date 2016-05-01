@@ -18,7 +18,7 @@ class CreditsController;
 
 class SceneCredits : public Scene {
 public:
-	SceneCredits(string sceneName);
+	SceneCredits(string scene_name);
 	virtual ~SceneCredits();
 	virtual void render(float camera_x, float camera_y);
 	virtual int update(int dt);

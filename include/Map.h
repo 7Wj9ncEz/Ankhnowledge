@@ -36,11 +36,11 @@ public:
 	void render(float camera_x, float camera_y);
 	int update(int dt);
 	virtual ~Map();
-	void mousePressed(Button *bt, InputManager* input);
-	void mouseOver(Button *bt, InputManager * input);
-	void changeCurrentPlayer();
-	Tile * getTileWithIndex(int index);
-	void tryToSpawnSand();
+	void mouse_pressed(Button *bt, InputManager* input);
+	void mouse_ouver(Button *bt, InputManager * input);
+	void change_current_player();
+	Tile * get_tile_with_index(int index);
+	void try_to_spawn_sand();
 	void spawnSand(int id);
 
 private:
@@ -56,22 +56,22 @@ private:
 	FadeHandler * lostHandler;
 	Character * player1;
 	Character * player2;
-	Character * currentPlayer;
+	Character * current_player;
 	vector<Tile* > tiles;
 	TileMap *tileMap;
 	bool changePlayer;
 
-	bool isFirstRow(int index);
-	bool isFirstColumn(int index);
-	bool isLastRow(int index);
-	bool isLastColumn(int index);
-	Tile * getPressedTile();
+	bool is_first_row(int index);
+	bool is_first_column(int index);
+	bool is_last_row(int index);
+	bool is_last_column(int index);
+	Tile * get_pressed_tile();
 	SDL_Color color;
 	TTF_Font *font;
 	TTF_Font *turn;
-	Button* endButton;
-	int deltaEnd;
-	bool gameEnded;
+	Button* end_button;
+	int delta_end;
+	bool game_ended;
 };
 
 #endif /* MAP_H_ */

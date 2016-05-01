@@ -1,4 +1,4 @@
-/*
+	/*
  * HoverButton.h
  *
  *  Created on: Nov 21, 2013
@@ -16,16 +16,16 @@ public:
 	HoverButton(Sprite* sprite, float x,float y);
 	void render(float camera_x,float camera_y);
 	int update(int dt);
-	bool insideButton();
+	bool inside_button();
 	virtual ~HoverButton();
-	bool isOnTop();
+	bool is_on_top();
 	bool is_pressed();
-	Sprite * getSprite();
+	Sprite * get_sprite();
 	float begin;
 
 private:
 	Sprite* sprite;
-	bool onTop;
+	bool on_top;
 	bool pressed;
 	InputManager *input;
 

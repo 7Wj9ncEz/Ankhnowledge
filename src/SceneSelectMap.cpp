@@ -7,7 +7,7 @@
 
 #include "SceneSelectMap.h"
 
-SceneSelectMap::SceneSelectMap(string sceneName) : Scene (sceneName) {
+SceneSelectMap::SceneSelectMap(string scene_name) : Scene (scene_name) {
 
 }
 
@@ -23,6 +23,6 @@ void SceneSelectMap::Enter()
 
 void SceneSelectMap::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 

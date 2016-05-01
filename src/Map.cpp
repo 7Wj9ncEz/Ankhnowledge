@@ -45,7 +45,7 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 	 * Connecting all the tiles
 	 */
 	for (int i = 0; i < (columns*rows); i++) {
-		if (!isLastColumn(i)) {
+		if (!is_last_column(i)) {
 			tiles.at(i)->setRightTile(tiles.at(i+1));
 		}
 
@@ -53,7 +53,7 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 			// Nothing to do
 		}
 
-		if (!isFirstColumn(i)) {
+		if (!is_first_column(i)) {
 			tiles.at(i)->setLeftTile(tiles.at(i-1));
 		}
 
@@ -61,7 +61,7 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 			// Nothing to do
 		}
 
-		if (!isFirstRow(i)) {
+		if (!is_first_row(i)) {
 			tiles.at(i)->setUpTile(tiles.at(i-columns));
 		}
 
@@ -69,7 +69,7 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 			// Nothing to do
 		}
 
-		if (!isLastRow(i)) {
+		if (!is_last_row(i)) {
 			tiles.at(i)->setDownTile(tiles.at(i+columns));
 		}
 
@@ -79,11 +79,11 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 	}
 	cout<<mapLink<<endl;
 
-	if (Network::player1Selection == 1) {
+	if (Network::player_1_selection == 1) {
 		player1 = new CharacterAlan(tiles.at(tileMap->getP1Position()), 1);
 	}
 
-	else if (Network::player1Selection == 2) {
+	else if (Network::player_1_selection == 2) {
 		player1 = new CharacterSuti(tiles.at(tileMap->getP1Position()), 1);
 	}
 
@@ -91,11 +91,11 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 		// Nothing to do
 	}
 
-	if (Network::player2Selection == 1) {
+	if (Network::player_2_selection == 1) {
 		player2 = new CharacterAlan(tiles.at(tileMap->getP2Position()), 2);
 	}
 
-	else if (Network::player2Selection == 2) {
+	else if (Network::player_2_selection == 2) {
 		player2 = new CharacterSuti(tiles.at(tileMap->getP2Position()), 2);
 	}
 
@@ -106,20 +106,20 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 	player1->setMap(this);
 	player2->setMap(this);
 	
-	if (Network::isFirstTime()) {
-		currentPlayer = player1;
-		currentPlayer->setTurn(true);
+	if (Network::is_first_time()) {
+		current_player = player1;
+		current_player->setTurn(true);
 	}
 
 	else {
-		if ((Network::getID() == 1 && Network::didLost()) || (Network::getID() == 2 && !Network::didLost())) {
-			currentPlayer = player1;
-			currentPlayer->setTurn(true);
+		if ((Network::get_id() == 1 && Network::did_lose()) || (Network::get_id() == 2 && !Network::did_lose())) {
+			current_player = player1;
+			current_player->setTurn(true);
 		}
 
-		else if ((Network::getID() == 2 && Network::didLost()) || (Network::getID() == 1 && !Network::didLost())) {
-			currentPlayer = player2;
-			currentPlayer->setTurn(true);
+		else if ((Network::get_id() == 2 && Network::did_lose()) || (Network::get_id() == 1 && !Network::did_lose())) {
+			current_player = player2;
+			current_player->setTurn(true);
 		}
 
 		else {
@@ -127,13 +127,13 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 		}
 	}
 	changePlayer = false;
-	this->endButton = new Button(
+	this->end_button = new Button(
 									new Sprite(SDLBase::resourcesPath + "endturn_2.png"),
 									new Sprite(SDLBase::resourcesPath + "endturn_1.png"),
 									new Sprite(SDLBase::resourcesPath + "endturn_3.png"),
 									660,
 									460);
-	deltaEnd = 0;
+	delta_end = 0;
 	splashWon = new Sprite(SDLBase::resourcesPath + "youwon.bmp");
 	splashWon->incNumRef();
 	wonHandler = new FadeHandler(splashWon);
@@ -142,7 +142,7 @@ Map::Map(Sprite * tile, Sprite * block, string mapLink, float x, float y):GameOb
 	lostHandler = new FadeHandler(splashLost);
 	wonHandler->fade_out(0,0.1);
 	lostHandler->fade_out(0,0.1);
-	gameEnded = false;
+	game_ended = false;
 }
 
 Map::~Map() {
@@ -202,19 +202,19 @@ void Map::render(float camera_x, float camera_y){
 		player2->render(0,0);
 	}
 
-	if (currentPlayer) {
-		currentPlayer->getHud()->render(0,0);
+	if (current_player) {
+		current_player->getHud()->render(0,0);
 	}
 
 	else {
 		// Nothing to do
 	}
 	stringstream st;
-	st << ((int)(currentPlayer->getStamina()));
+	st << ((int)(current_player->getStamina()));
 	SDLBase::renderText(font, st.str(),color,720,60);
 
-	if (currentPlayer) {
-		if (currentPlayer->getId() == Network::getID()) {
+	if (current_player) {
+		if (current_player->getId() == Network::get_id()) {
 			SDLBase::renderText(turn, "Your", color, 712, 140);
 		}
 
@@ -227,7 +227,7 @@ void Map::render(float camera_x, float camera_y){
 		// Nothing to do
 	}
 
-	endButton->render(0,0);
+	end_button->render(0,0);
 	splashWon->render(0,0);
 	splashLost->render(0,0);
 
@@ -248,10 +248,10 @@ int Map::update(int dt) {
 		}
 	}
 	
-	if (currentPlayer->isUsingSkill()) {
-		if (input->isMousePressed(1)) {
-			Tile* currentTile = getPressedTile();
-			currentPlayer->setSkillDestTile(currentTile);
+	if (current_player->isUsingSkill()) {
+		if (input->is_mouse_pressed(1)) {
+			Tile* currentTile = get_pressed_tile();
+			current_player->setSkillDestTile(currentTile);
 		}
 
 		else {
@@ -266,32 +266,32 @@ int Map::update(int dt) {
 	player1->update(dt);
 	player2->update(dt);
 
-	deltaEnd += dt;
-	mouseOver(endButton, input);
-	mousePressed(endButton, input);
-	this->endButton->update(dt);
+	delta_end += dt;
+	mouse_ouver(end_button, input);
+	mouse_pressed(end_button, input);
+	this->end_button->update(dt);
 
-	if (!currentPlayer->getWin()) {
-		if (currentPlayer->getStamina() <= 0 && !changePlayer) {
+	if (!current_player->getWin()) {
+		if (current_player->getStamina() <= 0 && !changePlayer) {
 			changePlayer = true;
 		}
 
 		if (changePlayer) {
-			changeCurrentPlayer();
+			change_current_player();
 		}
 	}
 
 	else {
 		AudioHandler * audio = AudioHandler::getInstance();
-		if (!gameEnded) {
-			gameEnded = true;
-			Network::setFirstTime(false);
-			if (currentPlayer->getId() == Network::getID()) {	
+		if (!game_ended) {
+			game_ended = true;
+			Network::set_first_time(false);
+			if (current_player->getId() == Network::get_id()) {	
 			 	audio->set_effect("youwon.wav");
 			 	audio->play_effect(0);
 
 				wonHandler->fade_in(2,0.5);
-				Network::setLost(false);
+				Network::set_lost(false);
 			}
 
 			else {
@@ -299,7 +299,7 @@ int Map::update(int dt) {
 			 	audio->play_effect(0);
 
 				lostHandler->fade_in(2,0.5);
-				Network::setLost(true);
+				Network::set_lost(true);
 			}
 		}
 
@@ -307,7 +307,7 @@ int Map::update(int dt) {
 			// Nothing to do
 		}
 
-		currentPlayer->setTurn(false);
+		current_player->setTurn(false);
 	}
 
 	for (unsigned int i = 0; i < tiles.size(); i++) {
@@ -333,7 +333,7 @@ int Map::update(int dt) {
 	return 0;
 }
 
-Tile * Map::getPressedTile() {
+Tile * Map::get_pressed_tile() {
 	for (unsigned int i = 0; i < tiles.size(); i++)
 	{
 		if (tiles.at(i)->isClickable()) {
@@ -355,30 +355,30 @@ Tile * Map::getPressedTile() {
 }
 
 
-bool Map::isFirstRow(int index) {
+bool Map::is_first_row(int index) {
 	return (index < columns);
 }
 
-bool Map::isFirstColumn(int index) {
+bool Map::is_first_column(int index) {
 	return ((index % columns) == 0);
 }
 
-bool Map::isLastRow(int index) {
+bool Map::is_last_row(int index) {
 	return ((index + columns) > (columns*rows - 1));
 }
 
-bool Map::isLastColumn(int index) {
+bool Map::is_last_column(int index) {
 	return ((index % columns) == (columns - 1));
 }
 
-void Map::mousePressed(Button *bt, InputManager* input) {
+void Map::mouse_pressed(Button *bt, InputManager* input) {
 
-	if ((input->isMousePressed(1)) && (bt->insideButton()) == 1) {
-		bt->mousePressed(true);
-		if (deltaEnd > 1000 && !currentPlayer->isPerformingAction() && currentPlayer->getId() == Network::getID() && !currentPlayer->isUsingSkill()) {
-			deltaEnd = 0;
-			changeCurrentPlayer();
-			currentPlayer->sendMessage("EndTurn", "-1");
+	if ((input->is_mouse_pressed(1)) && (bt->inside_button()) == 1) {
+		bt->mouse_pressed(true);
+		if (delta_end > 1000 && !current_player->isPerformingAction() && current_player->getId() == Network::get_id() && !current_player->isUsingSkill()) {
+			delta_end = 0;
+			change_current_player();
+			current_player->send_message("EndTurn", "-1");
 		}
 
 		else {
@@ -388,21 +388,21 @@ void Map::mousePressed(Button *bt, InputManager* input) {
 	}
 
 	else {
-		bt->mousePressed(false);
+		bt->mouse_pressed(false);
 	}
 }
 
-void Map::mouseOver(Button *bt, InputManager * input){
-	bt->setMouseCoord(input->mousePosX(),input->mousePosY());
+void Map::mouse_ouver(Button *bt, InputManager * input){
+	bt->setMouseCoord(input->mouse_pos_x(),input->mouse_pos_y());
 }
 
-void Map::changeCurrentPlayer() {
-	if (!currentPlayer->isPerformingAction() && !currentPlayer->isUsingSkill()) {
+void Map::change_current_player() {
+	if (!current_player->isPerformingAction() && !current_player->isUsingSkill()) {
 		AudioHandler * audio = AudioHandler::getInstance();
 	 	audio->set_effect("passar_turno.ogg");
 	 	audio->play_effect(0);
-	 	if ((Network::getID()== 2 && currentPlayer->getId() == 1) || (Network::getID()==1 && currentPlayer->getId() == 2)) {
-	 		tryToSpawnSand();
+	 	if ((Network::get_id()== 2 && current_player->getId() == 1) || (Network::get_id()==1 && current_player->getId() == 2)) {
+	 		try_to_spawn_sand();
 	 	}
 
 	 	else {
@@ -410,12 +410,12 @@ void Map::changeCurrentPlayer() {
 	 	}
 
 		changePlayer = false;
-		if (currentPlayer->getId() == 1) {
-			currentPlayer = player2;
+		if (current_player->getId() == 1) {
+			current_player = player2;
 		}
 
 		else {
-			currentPlayer = player1;
+			current_player = player1;
 		}
 
 		player1->setStamina(player1->getInitialStamina());
@@ -425,7 +425,7 @@ void Map::changeCurrentPlayer() {
 	}
 }
 
-void Map::tryToSpawnSand() {
+void Map::try_to_spawn_sand() {
 	string msg = "";
 	for (unsigned int i = 0; i < tiles.size(); i++) {
 		if (tiles.at(i)->generateSandBlock()) {
@@ -448,7 +448,7 @@ void Map::tryToSpawnSand() {
 		msg += " ";
 		msg += "end";
 		cout<<msg<<endl;
-		currentPlayer->spawnSand(msg);
+		current_player->spawnSand(msg);
 		SDL_Delay(50);
 	}
 
@@ -461,6 +461,6 @@ void Map::spawnSand(int id) {
 	tiles.at(id)->createSandBlock();
 }
 
-Tile * Map::getTileWithIndex(int index) {
+Tile * Map::get_tile_with_index(int index) {
 	return tiles.at(index);
 }

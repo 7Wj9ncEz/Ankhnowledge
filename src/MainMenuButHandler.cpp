@@ -168,16 +168,16 @@ void MainMenuButHandler::render(float camera_x, float camera_y){
 }
 
 int MainMenuButHandler::update(int dt){
-	mouseOver(hostButton);
-	mousePressed(hostButton,"ScenePhaseOne");
-	mouseOver(connectButton);
-	mousePressed(connectButton,"SceneConnect");
-	mouseOver(optionsButton);
-	mousePressed(optionsButton,"SceneOptions");
-	mouseOver(creditsButton);
-	mousePressed(creditsButton,"SceneCredits");
-	mouseOver(quitButton);
-	mousePressed(quitButton,"Quit");
+	mouse_ouver(hostButton);
+	mouse_pressed(hostButton,"ScenePhaseOne");
+	mouse_ouver(connectButton);
+	mouse_pressed(connectButton,"SceneConnect");
+	mouse_ouver(optionsButton);
+	mouse_pressed(optionsButton,"SceneOptions");
+	mouse_ouver(creditsButton);
+	mouse_pressed(creditsButton,"SceneCredits");
+	mouse_ouver(quitButton);
+	mouse_pressed(quitButton,"Quit");
 
 	this->hostButton->update(dt);
 	this->connectButton->update(dt);
@@ -192,7 +192,7 @@ int MainMenuButHandler::update(int dt){
 
 	if(Network::connected && thread)
 	{
-		Network::receiveThread();
+		Network::receive_thread();
 		if(GameManager::currentScene->change_scene("SceneSelectCharacter") == 1)
 			GameManager::fadeScreen->fade_in(1,2);
 		thread = false;
@@ -201,20 +201,20 @@ int MainMenuButHandler::update(int dt){
 	return 0;
 }
 
-void MainMenuButHandler::mouseOver(Button *bt){
-	bt->setMouseCoord(input->mousePosX(),input->mousePosY());
-	if((bt->insideButton() == 1) && (clickOtherButtons == false))
+void MainMenuButHandler::mouse_ouver(Button *bt){
+	bt->setMouseCoord(input->mouse_pos_x(),input->mouse_pos_y());
+	if((bt->inside_button() == 1) && (clickOtherButtons == false))
 		bt->setChangeSprite(1);
 
 }
 
-void MainMenuButHandler::mousePressed(Button *bt,string scene){
+void MainMenuButHandler::mouse_pressed(Button *bt,string scene){
 
 	
 
-	if((input->isMousePressed(1)) && (bt->insideButton()) == 1 && (clickOtherButtons == true))
+	if((input->is_mouse_pressed(1)) && (bt->inside_button()) == 1 && (clickOtherButtons == true))
 	{
-		bt->mousePressed(true);
+		bt->mouse_pressed(true);
 
 		if(bt == hostButton)
 		{
@@ -247,7 +247,7 @@ void MainMenuButHandler::mousePressed(Button *bt,string scene){
 	}
 	else
 	{
-		bt->mousePressed(false);
+		bt->mouse_pressed(false);
 	}
 }
 
@@ -290,12 +290,12 @@ bool MainMenuButHandler::isInsideBox(MessageBox* messageBox){
 
 void MainMenuButHandler::updateConnect(int dt){
 	clickOtherButtons = false;
-	if(isInsideBox(connectBox) == true && (input->isMousePressed(1)))
+	if(isInsideBox(connectBox) == true && (input->is_mouse_pressed(1)))
 	{
 		read = true;
 		connectBox->activateCursor();
 	}
-	else if(isInsideBox(connectBox) == false && (input->isMousePressed(1)))
+	else if(isInsideBox(connectBox) == false && (input->is_mouse_pressed(1)))
 	{
 		read = false;
 		connectBox->deactivateCursor();
@@ -321,7 +321,7 @@ void MainMenuButHandler::updateConnect(int dt){
 		  	if(Network::connect(message) == 0)
 			{
 				renderConnectError = false;
-				Network::receiveThread();
+				Network::receive_thread();
 				if(GameManager::currentScene->change_scene("SceneSelectCharacter") == 1)
 				GameManager::fadeScreen->fade_in(1,2);											  
 			}
@@ -357,7 +357,7 @@ void MainMenuButHandler::updateWaiting(int dt){
 			clickOtherButtons = true;
 			host = false;
 			thread = false;
-			Network::closeConnection();
+			Network::close_connection();
 			Network::cancel = true;
 			waitingBox->deactivateConfirm();
 		}
@@ -367,67 +367,67 @@ void MainMenuButHandler::updateWaiting(int dt){
 }
 
 void MainMenuButHandler::readInput(){
-	if(input->isKeyUp(SDLK_0))
+	if(input->is_key_up(SDLK_0))
 	{
 		message = message + "0";
 		connectBox->increaseCursor(18);		
 		sizeMessage++;
 	}
-	if(input->isKeyUp(SDLK_1))
+	if(input->is_key_up(SDLK_1))
 	{
 		message = message + "1";
 		connectBox->increaseCursor(8.1);	
 		sizeMessage++;	
 	}
-	if(input->isKeyUp(SDLK_2))
+	if(input->is_key_up(SDLK_2))
 	{
 		message = message + "2";
 		connectBox->increaseCursor(14);	
 		sizeMessage++;	
 	}
-	if(input->isKeyUp(SDLK_3))
+	if(input->is_key_up(SDLK_3))
 	{
 		message = message + "3";
 		connectBox->increaseCursor(15);		
 		sizeMessage++;
 	}
-	if(input->isKeyUp(SDLK_4))
+	if(input->is_key_up(SDLK_4))
 	{
 		message = message + "4";
 		connectBox->increaseCursor(17);	
 		sizeMessage++;	
 	}
-	if(input->isKeyUp(SDLK_5))
+	if(input->is_key_up(SDLK_5))
 	{
 		message = message + "5";
 		connectBox->increaseCursor(15);	
 		sizeMessage++;	
 	}
-	if(input->isKeyUp(SDLK_6))
+	if(input->is_key_up(SDLK_6))
 	{
 		message = message + "6";
 		connectBox->increaseCursor(16);	
 		sizeMessage++;	
 	}
-	if(input->isKeyUp(SDLK_7))
+	if(input->is_key_up(SDLK_7))
 	{
 		message = message + "7";
 		connectBox->increaseCursor(15);	
 		sizeMessage++;	
 	}
-	if(input->isKeyUp(SDLK_8))
+	if(input->is_key_up(SDLK_8))
 	{
 		message = message + "8";
 		connectBox->increaseCursor(15);	
 		sizeMessage++;	
 	}
-	if(input->isKeyUp(SDLK_9))
+	if(input->is_key_up(SDLK_9))
 	{
 		message = message + "9";
 		connectBox->increaseCursor(16);	
 		sizeMessage++;	
 	}
-	if(input->isKeyUp(SDLK_PERIOD))
+	if(input->is_key_up(SDLK_PERIOD))
 	{
 		message = message + ".";
 		connectBox->increaseCursor(6);	
@@ -438,7 +438,7 @@ void MainMenuButHandler::readInput(){
 
 void MainMenuButHandler::backspace(){
 	string lastNumber;
-	if(input->isKeyUp(SDLK_BACKSPACE) && (sizeMessage > 0 || sizeMessage == 0))
+	if(input->is_key_up(SDLK_BACKSPACE) && (sizeMessage > 0 || sizeMessage == 0))
 	{
 		if(sizeMessage != 0)
 		{

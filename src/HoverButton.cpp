@@ -10,7 +10,7 @@
 HoverButton::HoverButton(Sprite* sprite, float x, float y):GameObject(x,y) {
 	this->sprite = sprite;
 	this->sprite->incNumRef();
-	onTop = false;
+	on_top = false;
 	pressed = false;
 	input = InputManager::getInstance();
 }
@@ -29,12 +29,12 @@ void HoverButton::render(float camera_x, float camera_y){
 }
 
 int HoverButton::update(int dt){
-	if(insideButton())
-		onTop = true;
+	if(inside_button())
+		on_top = true;
 	else
-		onTop = false;
+		on_top = false;
 
-	if(insideButton() && this->input->isMouseDown(0))
+	if(inside_button() && this->input->is_mouse_down(0))
 	{
 		pressed = true;
 	}else
@@ -43,14 +43,14 @@ int HoverButton::update(int dt){
 	return 0;
 }
 
-bool HoverButton::insideButton(){
-	return ((this->input->mousePosX() > this->x) && (this->input->mousePosX() < (this->x + this->sprite->getWidth())) &&
-			(this->input->mousePosY() > this->y) && (this->input->mousePosY() < (this->y + this->sprite->getHeight())));
+bool HoverButton::inside_button(){
+	return ((this->input->mouse_pos_x() > this->x) && (this->input->mouse_pos_x() < (this->x + this->sprite->getWidth())) &&
+			(this->input->mouse_pos_y() > this->y) && (this->input->mouse_pos_y() < (this->y + this->sprite->getHeight())));
 }
 
-bool HoverButton::isOnTop()
+bool HoverButton::is_on_top()
 {
-	return onTop;
+	return on_top;
 }
 
 bool HoverButton::is_pressed()
@@ -58,7 +58,7 @@ bool HoverButton::is_pressed()
 	return pressed;
 }
 
-Sprite * HoverButton::getSprite()
+Sprite * HoverButton::get_sprite()
 {
 	return this->sprite;
 }

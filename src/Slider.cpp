@@ -38,11 +38,11 @@ void Slider::render(float camera_x, float camera_y) {
 
 int Slider::update(int dt) {
 
-	if (input->isMousePressed(1) && onButton() == 1) {
+	if (input->is_mouse_pressed(1) && onButton() == 1) {
 		slideButton = true;
 	}
 
-	else if (input->isMousePressed(1) == 0) {
+	else if (input->is_mouse_pressed(1) == 0) {
 		slideButton = false;
 	}
 
@@ -57,7 +57,7 @@ int Slider::update(int dt) {
 void Slider::slide() {
 	if (this->slideButton) {
 		pastXButton = xButton;
-		xButton = input->mousePosX();
+		xButton = input->mouse_pos_x();
 		if ((xButton + button->getWidth()/2 > this->xBar + bar->getWidth()) || (xButton + button->getWidth()/2 < this->xBar)) {
 			xButton = pastXButton;
 		}
@@ -81,6 +81,6 @@ bool Slider::getSlideButton() {
 }
 
 bool Slider::onButton() {
-	return ((input->mousePosX() > this->xButton) && (input->mousePosX() < (this->xButton + this->button->getWidth())) &&
-			(input->mousePosY() > this->yButton) && (input->mousePosY() < (this->yButton + this->button->getHeight())));
+	return ((input->mouse_pos_x() > this->xButton) && (input->mouse_pos_x() < (this->xButton + this->button->getWidth())) &&
+			(input->mouse_pos_y() > this->yButton) && (input->mouse_pos_y() < (this->yButton + this->button->getHeight())));
 }

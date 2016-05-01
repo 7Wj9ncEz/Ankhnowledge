@@ -7,7 +7,7 @@
 
 #include "SceneGameOver.h"
 
-SceneGameOver::SceneGameOver(string sceneName) : Scene (sceneName)  {
+SceneGameOver::SceneGameOver(string scene_name) : Scene (scene_name)  {
 	// TODO Auto-generated constructor stub
 
 }
@@ -27,6 +27,6 @@ void SceneGameOver::Enter()
 
 void SceneGameOver::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 

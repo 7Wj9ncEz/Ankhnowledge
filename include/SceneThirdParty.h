@@ -14,7 +14,7 @@
 
 class SceneThirdParty : public Scene{
 public:
-	SceneThirdParty(string sceneName);
+	SceneThirdParty(string scene_name);
 	virtual ~SceneThirdParty();
 	void Enter();
 	void Exit();

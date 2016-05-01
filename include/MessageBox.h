@@ -24,7 +24,7 @@ public:
 	void render(float camera_x, float camera_y);
 	int update(int dt);
 	void buttonPressed(Button *button, string buttonName);
-	void mouseOver(Button *bt);
+	void mouse_ouver(Button *bt);
 	bool confirmPressed();
 	bool cancelPressed();
 	void deactivateCancel();

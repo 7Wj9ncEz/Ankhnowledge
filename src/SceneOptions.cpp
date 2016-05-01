@@ -8,7 +8,7 @@
 #include <iostream>
 #include "SceneOptions.h"
 
-SceneOptions::SceneOptions(string sceneName) : Scene (sceneName)  {
+SceneOptions::SceneOptions(string scene_name) : Scene (scene_name)  {
 	this->sound = new Sprite(SDLBase::resourcesPath + "somred.png");
 	this->sound->incNumRef();
 	this->soundAnimation = new Animation(50,50,sound,0);
@@ -53,6 +53,6 @@ int SceneOptions::update(int dt)
 
 void SceneOptions::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 

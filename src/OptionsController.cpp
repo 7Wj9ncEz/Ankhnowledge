@@ -72,8 +72,8 @@ void OptionsController::render(float camera_x, float camera_y){
 }
 
 int OptionsController::update(int dt){
-	mouseOver(back);
-	mousePressed(back,"SceneMainMenu");
+	mouse_ouver(back);
+	mouse_pressed(back,"SceneMainMenu");
 	this->back->update(dt);
 	if(soundEffect->getSlideButton()== false)
 	{	
@@ -86,15 +86,15 @@ int OptionsController::update(int dt){
 	return 0;
 }
 
-void OptionsController::mouseOver(Button *bt){
-	bt->setMouseCoord(input->mousePosX(),input->mousePosY());
+void OptionsController::mouse_ouver(Button *bt){
+	bt->setMouseCoord(input->mouse_pos_x(),input->mouse_pos_y());
 }
 
-void OptionsController::mousePressed(Button *bt,string scene){
+void OptionsController::mouse_pressed(Button *bt,string scene){
 
-	if(input->isMousePressed(1) && bt->insideButton() == 1)
+	if(input->is_mouse_pressed(1) && bt->inside_button() == 1)
 	{
-		bt->mousePressed(true);
+		bt->mouse_pressed(true);
 
 		if(bt->getChangeScene())
 		{
@@ -103,7 +103,7 @@ void OptionsController::mousePressed(Button *bt,string scene){
 	}
 	else
 	{
-		bt->mousePressed(false);
+		bt->mouse_pressed(false);
 	}
 }
 

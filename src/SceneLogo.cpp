@@ -5,7 +5,7 @@
 
 #include "SceneLogo.h"
 
-SceneLogo::SceneLogo(string sceneName) : Scene (sceneName) {
+SceneLogo::SceneLogo(string scene_name) : Scene (scene_name) {
 
 }
 
@@ -29,5 +29,5 @@ void SceneLogo::Enter()
 
 void SceneLogo::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }

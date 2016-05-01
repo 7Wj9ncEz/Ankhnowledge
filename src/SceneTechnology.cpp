@@ -7,7 +7,7 @@
 
 #include "SceneTechnology.h"
 
-SceneTechnology::SceneTechnology(string sceneName) : Scene (sceneName) {
+SceneTechnology::SceneTechnology(string scene_name) : Scene (scene_name) {
 
 }
 
@@ -25,6 +25,6 @@ void SceneTechnology::Enter()
 
 void SceneTechnology::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 

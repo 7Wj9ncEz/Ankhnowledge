@@ -14,10 +14,10 @@ TCPsocket Network::currentSocket, Network::communicationSocket;
 char Network::buffer[512];
 vector<string> Network::messageQueue;
 SDL_Thread * Network::thread,* Network::lThread;
-bool Network::endGame, Network::connected, Network::firstTime, Network::lost, Network::disconnected;
+bool Network::end_game, Network::connected, Network::first_time, Network::lost, Network::disconnected;
 bool Network::cancel;
 SDL_mutex *Network::mutex, *Network::mutex2;
-int Network::player1Selection, Network::player2Selection;
+int Network::player_1_selection, Network::player_2_selection;
 
 Network::Network() {
 
@@ -33,16 +33,16 @@ void Network::init(){
 	connected = 0;
 	currentSocket = 0;
 	communicationSocket = 0;
-	endGame = false;
+	end_game = false;
 	mutex = SDL_CreateMutex();
 	mutex2 = SDL_CreateMutex();
 	id = -1;
-	firstTime = false;
+	first_time = false;
 	lost = false;
 	disconnected = false;
 	Network::cancel = false;
-	player1Selection = 0;
-	player2Selection = 0;
+	player_1_selection = 0;
+	player_2_selection = 0;
 
 }
 
@@ -89,7 +89,7 @@ int Network::connect(string ipaddress){
 
 	id = 2;
 	connected = true;
-	firstTime = true;
+	first_time = true;
 	lost = false;
 
 	return 0;
@@ -99,7 +99,7 @@ void Network::disconnect(){
 
 }
 
-void Network::sendMessage(string message){
+void Network::send_message(string message){
 	if(SDLNet_TCP_Send(communicationSocket, (void *) message.c_str(), message.size()+1) < (int)message.size())
 	{
 		cout << "Erro no envio da MENSAGEM: " << SDLNet_GetError() << endl;
@@ -107,7 +107,7 @@ void Network::sendMessage(string message){
 	}
 }
 
-int Network::receiveMessage(void *){
+int Network::receive_message(void *){
 
 	while((connected))
 	{
@@ -152,15 +152,15 @@ int Network::receiveMessage(void *){
 	return 0;
 }
 
-void Network::receiveThread(){
-	thread = SDL_CreateThread(receiveMessage, NULL);
+void Network::receive_thread(){
+	thread = SDL_CreateThread(receive_message, NULL);
 }
 
-void Network::listeningThread(){
+void Network::listening_thread(){
 	lThread = SDL_CreateThread(listening, NULL);
 }
 
-string Network::readMessage()
+string Network::read_message()
 {
 	string message = "";
 	if(SDL_mutexP(mutex) == 0)
@@ -192,7 +192,7 @@ int Network::host()
 		return -1;
 	}
 
-	listeningThread();
+	listening_thread();
 
 	return 0;
 }
@@ -215,7 +215,7 @@ int Network::listening(void *)
 		if((communicationSocket = SDLNet_TCP_Accept(currentSocket)))
 		{
 			connected = true;
-			firstTime = true;
+			first_time = true;
 			lost = false;
 			id = 1;
 			
@@ -227,7 +227,7 @@ int Network::listening(void *)
 
 }
 
-void Network::closeConnection(){
+void Network::close_connection(){
 	if(currentSocket)
 	{
 		SDLNet_TCP_Close(currentSocket);
@@ -239,28 +239,28 @@ void Network::closeConnection(){
 	}
 }
 
-int Network::getID()
+int Network::get_id()
 {
 	return id;
 }
 
-bool Network::isFirstTime()
+bool Network::is_first_time()
 {
-	return firstTime;
+	return first_time;
 }
 
-bool Network::didLost()
+bool Network::did_lose()
 {
 	return lost;
 }
 
-void Network::setLost(bool value)
+void Network::set_lost(bool value)
 {
 	lost = value;
 }
 
-void Network::setFirstTime(bool value)
+void Network::set_first_time(bool value)
 {
-	firstTime = value;
+	first_time = value;
 }
 

@@ -16,7 +16,7 @@
 
 class SceneMainMenu : public Scene{
 public:
-	SceneMainMenu (string sceneName);
+	SceneMainMenu (string scene_name);
 	virtual ~SceneMainMenu ();
 	void Enter();
 	void Exit();

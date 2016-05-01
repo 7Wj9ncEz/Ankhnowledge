@@ -8,7 +8,7 @@
 #include "ScenePhaseOne.h"
 #include "AudioHandler.h"
 
-ScenePhaseOne::ScenePhaseOne(string sceneName) : Scene (sceneName) {
+ScenePhaseOne::ScenePhaseOne(string scene_name) : Scene (scene_name) {
 
 
 }
@@ -37,6 +37,6 @@ void ScenePhaseOne::Enter()
 
 void ScenePhaseOne::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 

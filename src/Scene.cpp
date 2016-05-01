@@ -4,8 +4,8 @@
 #include <iostream>
 #include <stdio.h>
 
-Scene::Scene(string sceneName) {
-	this->sceneName = sceneName;
+Scene::Scene(string scene_name) {
+	this->scene_name = scene_name;
 	this->sChangeScene = false;
 	this->nextScene = 0;
 }
@@ -14,17 +14,17 @@ Scene::~Scene() {
 	gameObjects.clear();
 }
 
-void Scene::addScenes(Scene *scene)
+void Scene::add_scenes(Scene *scene)
 {
 	this->scenes.push_back(scene);
 }
 
-int Scene::change_scene(string sceneName)
+int Scene::change_scene(string scene_name)
 {
 
 	for (list<Scene *>::iterator it = scenes.begin(); it != scenes.end(); it++)
 	{
-		if((*(*it)->getName()) == sceneName)
+		if((*(*it)->getName()) == scene_name)
 		{
 			nextScene = (*it);
 			this->sChangeScene = true;
@@ -36,10 +36,10 @@ int Scene::change_scene(string sceneName)
 
 string * Scene::getName()
 {
-	return &(this->sceneName);
+	return &(this->scene_name);
 }
 
-bool Scene::shouldChangeScene()
+bool Scene::should_change_scene()
 {
 	return this->sChangeScene;
 }
@@ -54,7 +54,7 @@ void Scene::addGameObject(GameObject * gameObject)
 	this->gameObjects.push_back(gameObject);
 }
 
-void Scene::cleanGameObjects()
+void Scene::clean_game_objects()
 {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
@@ -86,18 +86,18 @@ Scene * Scene::getNextScene()
 	return this->nextScene;
 }
 
-string Scene::getSceneName(){
-	return this->sceneName;
+string Scene::get_scene_name(){
+	return this->scene_name;
 }
 
-void Scene::destroyGameObject(GameObject * gameObject)
+void Scene::destroy_game_object(GameObject * gameObject)
 {
 	this->garbage.push_back(gameObject);
 
 	//delete gameObject;
 }
 
-void Scene::cleanDestroyedGameObjects()
+void Scene::clean_destroyed_game_objects()
 {
 	if(!this->garbage.empty())
 	{

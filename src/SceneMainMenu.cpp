@@ -7,7 +7,7 @@
 
 #include "SceneMainMenu.h"
 
-SceneMainMenu::SceneMainMenu(string sceneName) : Scene (sceneName) {
+SceneMainMenu::SceneMainMenu(string scene_name) : Scene (scene_name) {
 
 }
 
@@ -28,6 +28,6 @@ void SceneMainMenu::Enter()
 
 void SceneMainMenu::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 

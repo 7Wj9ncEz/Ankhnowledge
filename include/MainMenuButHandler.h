@@ -26,8 +26,8 @@ public:
 	virtual ~MainMenuButHandler();
 	void render(float camera_x, float camera_y);
 	int update(int dt);
-	void mouseOver(Button* bt);
-	void mousePressed(Button* bt,string nextScene);
+	void mouse_ouver(Button* bt);
+	void mouse_pressed(Button* bt,string nextScene);
 	void change_scene(string nextScene);
 	void renderConnect();
 	void renderDisconnect();
@@ -55,10 +55,9 @@ private:
 	float boxInputX, boxInputY,boxX,boxY;
 	SDL_Color color;
 	TTF_Font *font;
-	bool read,tryToConnect,clickOtherButtons,sendMessage,host, thread, renderConnectError;
+	bool read,tryToConnect,clickOtherButtons,send_message,host, thread, renderConnectError;
 	string message;
 	int sizeMessage;
 };
 
 #endif /* MAINMENUBUTHANDLER_H_ */
-

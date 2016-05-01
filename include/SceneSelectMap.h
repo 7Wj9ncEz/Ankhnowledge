@@ -16,7 +16,7 @@ class SelectMapController;
 
 class SceneSelectMap : public Scene {
 public:
-	SceneSelectMap(string sceneName);
+	SceneSelectMap(string scene_name);
 	virtual ~SceneSelectMap();
 	void Enter();
 	void Exit();

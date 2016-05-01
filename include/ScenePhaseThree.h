@@ -19,7 +19,7 @@
 
 class ScenePhaseThree  : public Scene{
 public:
-	ScenePhaseThree(string sceneName);
+	ScenePhaseThree(string scene_name);
 	virtual ~ScenePhaseThree();
 	void Enter();
 	void Exit();

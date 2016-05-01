@@ -61,34 +61,34 @@ void GameManager::initResources(){
 	this->box_spr = new Sprite(SDLBase::resourcesPath + "leavethegamebox.png");
 	this->mb = new MessageBox(box_spr, "yes","no",250,200);	
 
-	this->splashLogo->addScenes(splashTechnology);
-	this->splashTechnology->addScenes(splashThirdParty);
-	this->splashThirdParty->addScenes(splashLegal);
-	this->splashLegal->addScenes(splashMainMenu);
-	this->splashMainMenu->addScenes(splashPhaseOne);
-	this->splashMainMenu->addScenes(splashCredits);
-	this->splashMainMenu->addScenes(splashOptions);
-	this->splashMainMenu->addScenes(splashSelectCharacter);
-	this->splashOptions->addScenes(splashMainMenu);
-	this->splashCredits->addScenes(splashMainMenu);
-	this->splashPhaseOne->addScenes(splashMainMenu);
-	this->splashPhaseOne->addScenes(splashSelectCharacter);
-	this->splashPhaseTwo->addScenes(splashMainMenu);
-	this->splashPhaseTwo->addScenes(splashSelectCharacter);
-	this->splashPhaseThree->addScenes(splashMainMenu);
-	this->splashPhaseThree->addScenes(splashSelectCharacter);
-	this->splashPhaseFour->addScenes(splashMainMenu);
-	this->splashPhaseFour->addScenes(splashSelectCharacter);
-	this->splashPhaseFive->addScenes(splashMainMenu);
-	this->splashPhaseFive->addScenes(splashSelectCharacter);
-	this->splashSelectMap->addScenes(splashPhaseOne);
-	this->splashSelectMap->addScenes(splashPhaseTwo);
-	this->splashSelectMap->addScenes(splashPhaseThree);
-	this->splashSelectMap->addScenes(splashPhaseFour);
-	this->splashSelectMap->addScenes(splashPhaseFive);
-	this->splashSelectMap->addScenes(splashMainMenu);
-	this->splashSelectCharacter->addScenes(splashSelectMap);
-	this->splashSelectCharacter->addScenes(splashMainMenu);
+	this->splashLogo->add_scenes(splashTechnology);
+	this->splashTechnology->add_scenes(splashThirdParty);
+	this->splashThirdParty->add_scenes(splashLegal);
+	this->splashLegal->add_scenes(splashMainMenu);
+	this->splashMainMenu->add_scenes(splashPhaseOne);
+	this->splashMainMenu->add_scenes(splashCredits);
+	this->splashMainMenu->add_scenes(splashOptions);
+	this->splashMainMenu->add_scenes(splashSelectCharacter);
+	this->splashOptions->add_scenes(splashMainMenu);
+	this->splashCredits->add_scenes(splashMainMenu);
+	this->splashPhaseOne->add_scenes(splashMainMenu);
+	this->splashPhaseOne->add_scenes(splashSelectCharacter);
+	this->splashPhaseTwo->add_scenes(splashMainMenu);
+	this->splashPhaseTwo->add_scenes(splashSelectCharacter);
+	this->splashPhaseThree->add_scenes(splashMainMenu);
+	this->splashPhaseThree->add_scenes(splashSelectCharacter);
+	this->splashPhaseFour->add_scenes(splashMainMenu);
+	this->splashPhaseFour->add_scenes(splashSelectCharacter);
+	this->splashPhaseFive->add_scenes(splashMainMenu);
+	this->splashPhaseFive->add_scenes(splashSelectCharacter);
+	this->splashSelectMap->add_scenes(splashPhaseOne);
+	this->splashSelectMap->add_scenes(splashPhaseTwo);
+	this->splashSelectMap->add_scenes(splashPhaseThree);
+	this->splashSelectMap->add_scenes(splashPhaseFour);
+	this->splashSelectMap->add_scenes(splashPhaseFive);
+	this->splashSelectMap->add_scenes(splashMainMenu);
+	this->splashSelectCharacter->add_scenes(splashSelectMap);
+	this->splashSelectCharacter->add_scenes(splashMainMenu);
 
 	fadeScreen = new FadeScreen(SDLBase::getScreen()->w, SDLBase::getScreen()->h);
 	fadeScreen->fade_out(0,2);
@@ -118,7 +118,7 @@ void GameManager::processEvents(){
 		SDL_PushEvent( &quit );
 	}
 
-	if(input->isKeyDown(SDLK_ESCAPE) && escPressed == false){	
+	if(input->is_key_down(SDLK_ESCAPE) && escPressed == false){	
 		// se a tecla ESC foi pressionada, sair do programa
 		renderQuitBox = true;
 		escPressed = true;
@@ -127,31 +127,31 @@ void GameManager::processEvents(){
 
 	//Skip
 
-	if((input->isKeyDown(SDLK_SPACE)) 
-	&& ((currentScene->getSceneName() == "SceneLogo")
-	|| (currentScene->getSceneName() == "SceneTechnology")
-	|| (currentScene->getSceneName() == "SceneThirdParty")
-	|| (currentScene->getSceneName() == "SceneLegal"))){
+	if((input->is_key_down(SDLK_SPACE)) 
+	&& ((currentScene->get_scene_name() == "SceneLogo")
+	|| (currentScene->get_scene_name() == "SceneTechnology")
+	|| (currentScene->get_scene_name() == "SceneThirdParty")
+	|| (currentScene->get_scene_name() == "SceneLegal"))){
 	    currentScene = splashMainMenu;
 	    currentScene->Enter();
 	}
 
-	if( input->isKeyDown(SDLK_UP) )
+	if( input->is_key_down(SDLK_UP) )
 		camera_speed_y -= SCROLL;
-	if( input->isKeyDown(SDLK_DOWN) )
+	if( input->is_key_down(SDLK_DOWN) )
 		camera_speed_y += SCROLL;
-	if( input->isKeyDown(SDLK_LEFT) )
+	if( input->is_key_down(SDLK_LEFT) )
 		camera_speed_x -= SCROLL;
-	if( input->isKeyDown(SDLK_RIGHT) )
+	if( input->is_key_down(SDLK_RIGHT) )
 		camera_speed_x += SCROLL;
 
-	if( input->isKeyUp(SDLK_UP) )
+	if( input->is_key_up(SDLK_UP) )
 		camera_speed_y += SCROLL;
-	if( input->isKeyUp(SDLK_DOWN) )
+	if( input->is_key_up(SDLK_DOWN) )
 		camera_speed_y -= SCROLL;
-	if( input->isKeyUp(SDLK_LEFT) )
+	if( input->is_key_up(SDLK_LEFT) )
 		camera_speed_x += SCROLL;
-	if( input->isKeyUp(SDLK_RIGHT) )
+	if( input->is_key_up(SDLK_RIGHT) )
 		camera_speed_x -= SCROLL;
 
 }
@@ -203,7 +203,7 @@ void GameManager::run(){
 		frame_start = SDL_GetTicks();
 		dt = frame_start - frameEnd;
 
-		if(currentScene->shouldChangeScene() && fadeScreen->isFaded())
+		if(currentScene->should_change_scene() && fadeScreen->isFaded())
 		{
 			currentScene->Exit();
 			currentScene = currentScene->getNextScene();
@@ -230,6 +230,6 @@ void GameManager::run(){
 			SDL_Delay(1000/30 -dt);
 		}
 
-		this->currentScene->cleanDestroyedGameObjects();
+		this->currentScene->clean_destroyed_game_objects();
 	}
 }

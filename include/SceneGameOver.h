@@ -15,7 +15,7 @@
 
 class SceneGameOver : public Scene {
 public:
-	SceneGameOver(string sceneName);
+	SceneGameOver(string scene_name);
 	virtual ~SceneGameOver();
 	void Enter();
 	void Exit();

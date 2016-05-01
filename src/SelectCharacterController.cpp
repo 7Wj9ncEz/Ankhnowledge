@@ -49,8 +49,8 @@ SelectCharacterController::SelectCharacterController():GameObject(getX(),getY())
 	alan = new HoverButton(new Sprite(SDLBase::resourcesPath + "adamselect.png"),0,0);
 	suti = new HoverButton(new Sprite(SDLBase::resourcesPath + "sutiselect.png"),0,0);
 
-	alan->setPosition(400-alan->getSprite()->getWidth(), 450);
-	suti->setPosition(400+alan->getSprite()->getWidth(), 450);
+	alan->setPosition(400-alan->get_sprite()->getWidth(), 450);
+	suti->setPosition(400+alan->get_sprite()->getWidth(), 450);
 
 	currentOnTop = -1;
 	opponentOnTop = -1;
@@ -60,7 +60,7 @@ SelectCharacterController::SelectCharacterController():GameObject(getX(),getY())
 	yBoard = -2000;
 	locked = true;
 	change_scene = false;
-	sendMessage("Loaded", "-1");
+	send_message("Loaded", "-1");
 
 	timer = 5000;
 
@@ -89,43 +89,43 @@ SelectCharacterController::~SelectCharacterController() {
 void SelectCharacterController::render(float camera_x, float camera_y){
 	splashSprite->render(0,0);
 
-	if(	(Network::getID() == 1 && (currentOnTop == 1 || currentPressed == 1)) ||
-		(Network::getID() == 2 && (opponentOnTop == 1 || opponentPressed == 1)))
+	if(	(Network::get_id() == 1 && (currentOnTop == 1 || currentPressed == 1)) ||
+		(Network::get_id() == 2 && (opponentOnTop == 1 || opponentPressed == 1)))
 	{
 		alanFaceP1->render(150,25);
 	}
 		//alanFaceP1->render(100,150);
 
-	if(	(Network::getID() == 1 && (currentOnTop == 2 || currentPressed == 2)) ||
-		(Network::getID() == 2 && (opponentOnTop == 2 || opponentPressed == 2)))
+	if(	(Network::get_id() == 1 && (currentOnTop == 2 || currentPressed == 2)) ||
+		(Network::get_id() == 2 && (opponentOnTop == 2 || opponentPressed == 2)))
 	{
 		sutiFaceP1->render(150,25);
 	}
 		//sutiFaceP1->render(100,150);
 
-	if(	(Network::getID() == 2 && (currentOnTop == 1 || currentPressed == 1)) ||
-		(Network::getID() == 1 && (opponentOnTop == 1 || opponentPressed == 1)))
+	if(	(Network::get_id() == 2 && (currentOnTop == 1 || currentPressed == 1)) ||
+		(Network::get_id() == 1 && (opponentOnTop == 1 || opponentPressed == 1)))
 	{
 		alanFaceP2->render(675-alanFaceP2->getWidth(),25);
 	}
 		//alanFaceP2->render(700-alanFaceP2->getWidth(),150);
 
-	if(	(Network::getID() == 2 && (currentOnTop == 2 || currentPressed == 2)) ||
-		(Network::getID() == 1 && (opponentOnTop == 2 || opponentPressed == 2)))
+	if(	(Network::get_id() == 2 && (currentOnTop == 2 || currentPressed == 2)) ||
+		(Network::get_id() == 1 && (opponentOnTop == 2 || opponentPressed == 2)))
 	{
 		sutiFaceP2->render(675-sutiFaceP2->getWidth(),25);
 	}
 		//sutiFaceP2->render(700-sutiFaceP2->getWidth(),150);
 
-	if(	(Network::getID() == 1 && (currentPressed != -1)) ||
-		(Network::getID() == 2 && (opponentPressed != -1)))
+	if(	(Network::get_id() == 1 && (currentPressed != -1)) ||
+		(Network::get_id() == 2 && (opponentPressed != -1)))
 	{
 		p1Board->render(150,25);
 	}
 		//p1Board->render(100,150);
 
-	if(	(Network::getID() == 2 && (currentPressed != -1)) ||
-		(Network::getID() == 1 && (opponentPressed != -1)))
+	if(	(Network::get_id() == 2 && (currentPressed != -1)) ||
+		(Network::get_id() == 1 && (opponentPressed != -1)))
 	{
 		p2Board->render(675-alanFaceP2->getWidth(),25);
 	}
@@ -187,43 +187,43 @@ int SelectCharacterController::update(int dt){
 				currentPressed = random;
 				if(random == 1)
 				{
-					sendMessage("OnPressAlan", "-1");
+					send_message("OnPressAlan", "-1");
 				}
 				else if(random == 2)
 				{
-					sendMessage("OnPressSuti", "-1");
+					send_message("OnPressSuti", "-1");
 				}
 			}else
 			{
 				if(currentOnTop == 1)
 				{
 					currentPressed = 1;
-					sendMessage("OnPressAlan", "-1");
+					send_message("OnPressAlan", "-1");
 				}
 				else if(currentOnTop == 2)
 				{
 					currentPressed = 2;
-					sendMessage("OnPressSuti", "-1");
+					send_message("OnPressSuti", "-1");
 				}
 			}
 		}
 
 		if(timer > 0)
 			{
-			if(alan->isOnTop() && currentPressed == -1 && currentOnTop != 1)
+			if(alan->is_on_top() && currentPressed == -1 && currentOnTop != 1)
 			{
 				currentOnTop = 1;
 				xBoard = alan->getX();
 				yBoard = alan->getY();
-				sendMessage("OnTopAlan", "-1");
+				send_message("OnTopAlan", "-1");
 			}
 
-			if(suti->isOnTop() && currentPressed == -1 && currentOnTop != 2)
+			if(suti->is_on_top() && currentPressed == -1 && currentOnTop != 2)
 			{
 				currentOnTop = 2;
 				xBoard = suti->getX();
 				yBoard = suti->getY();
-				sendMessage("OnTopSuti", "-1");
+				send_message("OnTopSuti", "-1");
 			}
 
 
@@ -232,14 +232,14 @@ int SelectCharacterController::update(int dt){
 				currentPressed = 1;
 				xBoard = alan->getX();
 				yBoard = alan->getY();
-				sendMessage("OnPressAlan", "-1");
+				send_message("OnPressAlan", "-1");
 			}
 			if(suti->is_pressed() && currentPressed == -1)
 			{
 				currentPressed = 2;
 				xBoard = suti->getX();
 				yBoard = suti->getY();
-				sendMessage("OnPressSuti", "-1");
+				send_message("OnPressSuti", "-1");
 			}
 		}
 	}
@@ -247,15 +247,15 @@ int SelectCharacterController::update(int dt){
 	if(currentPressed != -1 && opponentPressed != -1 && !change_scene)
 	{
 		change_scene = true;
-		if(Network::getID() == 1)
+		if(Network::get_id() == 1)
 		{
-			Network::player1Selection = currentPressed;
-			Network::player2Selection = opponentPressed;
+			Network::player_1_selection = currentPressed;
+			Network::player_2_selection = opponentPressed;
 		}
-		if(Network::getID() == 2)
+		if(Network::get_id() == 2)
 		{
-			Network::player1Selection = opponentPressed;
-			Network::player2Selection = currentPressed;
+			Network::player_1_selection = opponentPressed;
+			Network::player_2_selection = currentPressed;
 		}
 		if(GameManager::currentScene->change_scene("SceneSelectMap") == 1)
 							GameManager::fadeScreen->fade_in(1,2);
@@ -264,14 +264,14 @@ int SelectCharacterController::update(int dt){
 	this->boardAnimation->update(dt, true, 0, false);
 	this->vsAnimation->update(dt, true, 0, false);
 
-	receiveMessage();
+	receive_message();
 	return 0;
 
 }
 
-void SelectCharacterController::receiveMessage()
+void SelectCharacterController::receive_message()
 {
-	string message = Network::readMessage();
+	string message = Network::read_message();
 	if(message == "")
 		return;
 
@@ -308,10 +308,10 @@ void SelectCharacterController::receiveMessage()
 	}
 }
 
-void SelectCharacterController::sendMessage(string action, string info)
+void SelectCharacterController::send_message(string action, string info)
 {
 	string msg = action + " " + info;
-	Network::sendMessage(msg);
+	Network::send_message(msg);
 }
 
 string SelectCharacterController::intToString(int intenger)

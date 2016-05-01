@@ -1,6 +1,6 @@
 #include "SceneCredits.h"
 
-SceneCredits::SceneCredits(string sceneName) : Scene (sceneName)  {
+SceneCredits::SceneCredits(string scene_name) : Scene (scene_name)  {
 	this->sprite = new Sprite(SDLBase::resourcesPath + "animacao_creditos.png");
 	this->sprite->incNumRef();
 	this->spriteAnimation = new Animation(20,40,sprite,0);
@@ -44,7 +44,7 @@ void SceneCredits::Enter()
 
 void SceneCredits::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 
 

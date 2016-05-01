@@ -51,7 +51,7 @@ class Character:public GameObject {
 		void deactivateSkill();
 		void useSkill(int tileIndex);
 		void setMap(Map * map);
-		void sendMessage(string action, string info);
+		void send_message(string action, string info);
 		void spawnSand(string msg);
 
 	protected:
@@ -77,7 +77,7 @@ class Character:public GameObject {
 		virtual bool canChangeTile(Tile * tile);
 		void setClickableTiles(Tile *origin, int reach, bool considerBlock, bool clickable);
 		int discountStamina;
-		void receiveMessage();
+		void receive_message();
 		string intToString(int intenger);
 		Map * map;
 };

@@ -1,4 +1,4 @@
-
+	
 #ifndef GAMEMANAGER_H_
 #define GAMEMANAGER_H_
 
@@ -72,7 +72,7 @@ private:
 	float cameraY1;
 	float cameraY2;
 	float camera_speed_x;
-	float cameraSpeedY;
+	float camera_speed_y;
 	float fatorParallaxScrolling;
 	int dt, frame_start, frameEnd;
 	bool quit, renderQuitBox, escPressed;

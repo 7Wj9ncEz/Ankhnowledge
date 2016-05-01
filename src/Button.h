@@ -16,8 +16,8 @@ public:
 	void render(float camera_x,float camera_y);
 	int update(int dt);
 	void setMouseCoord(float coordinate_x, float coordinate_y);
-	void mousePressed(bool is_pressed);
-	bool insideButton();
+	void mouse_pressed(bool is_pressed);
+	bool inside_button();
 	bool getChangeScene();
 	virtual ~Button();
 	void setChangeSprite(bool change_sprite);

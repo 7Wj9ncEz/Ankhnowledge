@@ -28,11 +28,11 @@ SelectMapController::SelectMapController():GameObject(getX(),getY()) {
 
 	leftButton = new HoverButton(new Sprite(SDLBase::resourcesPath + "left.png"),120,250);
 	rightButton = new HoverButton(new Sprite(SDLBase::resourcesPath + "right.png"),0,0);
-	rightButton->setPosition(800 - rightButton->getSprite()->getWidth()-120,250);
+	rightButton->setPosition(800 - rightButton->get_sprite()->getWidth()-120,250);
 
 	for(unsigned int i = 0; i < mapButtons.size(); i++)
 	{
-		mapButtons.at(i)->setPosition(800/2-mapButtons.at(i)->getSprite()->getWidth()/2 + i*540,100);
+		mapButtons.at(i)->setPosition(800/2-mapButtons.at(i)->get_sprite()->getWidth()/2 + i*540,100);
 	}
 
 
@@ -49,7 +49,7 @@ SelectMapController::SelectMapController():GameObject(getX(),getY()) {
 	currentMap = 0;
 	locked = false;
 	changingMap = 0;
-	sendMessage("Loaded", "-1");
+	send_message("Loaded", "-1");
 }
 
 SelectMapController::~SelectMapController() {
@@ -95,7 +95,7 @@ int SelectMapController::update(int dt){
 
 	if(!locked)
 	{
-		if((Network::isFirstTime() && Network::getID() == 1) || Network::didLost())
+		if((Network::is_first_time() && Network::get_id() == 1) || Network::did_lose())
 		{
 			for(unsigned int i = 0; i < mapButtons.size(); i++)
 			{
@@ -114,7 +114,7 @@ int SelectMapController::update(int dt){
 					cout<<"aqui"<<i<<endl;
 				}
 
-				if(mapButtons.at(i)->isOnTop() && acumulated2 >500 && currentMap == i)
+				if(mapButtons.at(i)->is_on_top() && acumulated2 >500 && currentMap == i)
 				{
 					boardX = mapButtons.at(i)->getX();
 					boardY = mapButtons.at(i)->getY();
@@ -125,13 +125,13 @@ int SelectMapController::update(int dt){
 			if(leftButton->is_pressed() && changingMap == 0 && currentMap > 0)
 			{
 				moveLeft();
-				sendMessage("Left", "-1");
+				send_message("Left", "-1");
 			}
 
 			if(rightButton->is_pressed() && changingMap == 0 && currentMap < 4)
 			{
 				moveRight();
-				sendMessage("Right", "-1");
+				send_message("Right", "-1");
 			}
 		}
 	}
@@ -146,7 +146,7 @@ int SelectMapController::update(int dt){
 	}
 	change_scene();
 
-	receiveMessage();
+	receive_message();
 	return 0;
 }
 
@@ -156,7 +156,7 @@ void SelectMapController::change_scene(){
 
 	cout<<"Mapa selecionado"<< mapselected <<endl;
 	chooseMap(mapselected);
-	sendMessage("ChoseMap", intToString(mapselected));
+	send_message("ChoseMap", intToString(mapselected));
 	mapselected = -1;
 }
 
@@ -234,9 +234,9 @@ void SelectMapController::chooseMap(int index)
 		}
 }
 
-void SelectMapController::receiveMessage()
+void SelectMapController::receive_message()
 {
-	string message = Network::readMessage();
+	string message = Network::read_message();
 	if(message == "")
 		return;
 
@@ -269,10 +269,10 @@ void SelectMapController::receiveMessage()
 	}
 }
 
-void SelectMapController::sendMessage(string action, string info)
+void SelectMapController::send_message(string action, string info)
 {
 	string msg = action + " " + info;
-	Network::sendMessage(msg);
+	Network::send_message(msg);
 }
 
 string SelectMapController::intToString(int intenger)

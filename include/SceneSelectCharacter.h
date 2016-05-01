@@ -16,7 +16,7 @@ class SelectCharacterController;
 
 class SceneSelectCharacter : public Scene {
 public:
-	SceneSelectCharacter(string sceneName);
+	SceneSelectCharacter(string scene_name);
 	virtual ~SceneSelectCharacter();
 	void Enter();
 	void Exit();

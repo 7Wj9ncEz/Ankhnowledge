@@ -18,7 +18,7 @@
 
 class ScenePhaseTwo : public Scene{
 public:
-	ScenePhaseTwo (string sceneName);
+	ScenePhaseTwo (string scene_name);
 	virtual ~ScenePhaseTwo ();
 	void Enter();
 	void Exit();

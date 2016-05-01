@@ -26,12 +26,12 @@ public:
 	virtual ~SelectMapController();
 	void render(float camera_x, float camera_y);
 	int update(int dt);
-	void mouseOver(Button* bt);
-	void mousePressed(Button* bt,string nextScene);
+	void mouse_ouver(Button* bt);
+	void mouse_pressed(Button* bt,string nextScene);
 	void change_scene();
 	void changeMap(int dt);
-	void receiveMessage();
-	void sendMessage(string action, string info);
+	void receive_message();
+	void send_message(string action, string info);
 	string intToString(int intenger);
 
 private:

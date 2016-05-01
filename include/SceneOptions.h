@@ -19,7 +19,7 @@ class OptionsController;
 
 class SceneOptions : public Scene {
 public:
-	SceneOptions(string sceneName);
+	SceneOptions(string scene_name);
 	virtual ~SceneOptions();
 	virtual void render(float camera_x, float camera_y);
 	virtual int update(int dt);

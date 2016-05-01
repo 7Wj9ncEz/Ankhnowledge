@@ -89,7 +89,7 @@ int MessageBox::update(int dt){
 	
 	if(confirm)
 	{
-		mouseOver(confirm);
+		mouse_ouver(confirm);
 		buttonPressed(confirm,"confirm");
 		confirm->update(dt);
 		
@@ -97,7 +97,7 @@ int MessageBox::update(int dt){
 
 	if(cancel)
 	{
-		mouseOver(cancel);
+		mouse_ouver(cancel);
 		buttonPressed(cancel,"cancel");
 		cancel->update(dt);
 	}
@@ -108,14 +108,14 @@ return 0;
 }
 
 bool MessageBox::isInsideBox(){
-	return ((input->mousePosX() > this->boxInputX) && (input->mousePosX() < (this->boxInputX + this->boxInput->getWidth())) && (input->mousePosY() > this->boxInputY + 25) && (input->mousePosY() < (this->boxInputY + 25 + boxInput->getHeight())));
+	return ((input->mouse_pos_x() > this->boxInputX) && (input->mouse_pos_x() < (this->boxInputX + this->boxInput->getWidth())) && (input->mouse_pos_y() > this->boxInputY + 25) && (input->mouse_pos_y() < (this->boxInputY + 25 + boxInput->getHeight())));
 }
 
 void MessageBox::buttonPressed(Button *bt, string buttonName){
 
-if((input->isMousePressed(1)) && (bt->insideButton()) == 1)
+if((input->is_mouse_pressed(1)) && (bt->inside_button()) == 1)
 {
-	bt->mousePressed(true);
+	bt->mouse_pressed(true);
 	if(buttonName == "confirm")
 		confirmPress = true;
 	else
@@ -123,7 +123,7 @@ if((input->isMousePressed(1)) && (bt->insideButton()) == 1)
 	bt->setChangeSprite(1);
 }
 else {
-	bt->mousePressed(false);
+	bt->mouse_pressed(false);
 }
  
 
@@ -145,9 +145,9 @@ void MessageBox::deactivateCursor(){
 	this->renderCursorAnim = false;
 }
 
-void MessageBox::mouseOver(Button *bt){
-	bt->setMouseCoord(input->mousePosX(),input->mousePosY());
-	if((bt->insideButton() == 1))		
+void MessageBox::mouse_ouver(Button *bt){
+	bt->setMouseCoord(input->mouse_pos_x(),input->mouse_pos_y());
+	if((bt->inside_button() == 1))		
 		bt->setChangeSprite(1);
 
 }

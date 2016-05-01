@@ -7,7 +7,7 @@
 
 #include "SceneThirdParty.h"
 
-SceneThirdParty::SceneThirdParty(string sceneName) : Scene (sceneName) {
+SceneThirdParty::SceneThirdParty(string scene_name) : Scene (scene_name) {
 
 }
 
@@ -25,6 +25,6 @@ void SceneThirdParty::Enter()
 
 void SceneThirdParty::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 

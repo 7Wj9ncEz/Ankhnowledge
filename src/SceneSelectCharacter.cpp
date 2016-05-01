@@ -7,7 +7,7 @@
 
 #include "SceneSelectCharacter.h"
 #include <string>
-SceneSelectCharacter::SceneSelectCharacter(string sceneName) : Scene (sceneName) {
+SceneSelectCharacter::SceneSelectCharacter(string scene_name) : Scene (scene_name) {
 
 }
 
@@ -28,6 +28,6 @@ void SceneSelectCharacter::Enter()
 
 void SceneSelectCharacter::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 

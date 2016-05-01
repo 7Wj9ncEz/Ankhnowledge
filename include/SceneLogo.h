@@ -8,7 +8,7 @@
 
 class SceneLogo : public Scene{
 public:
-	SceneLogo(string sceneName);
+	SceneLogo(string scene_name);
 	virtual ~SceneLogo();
 	void Enter();
 	void Exit();

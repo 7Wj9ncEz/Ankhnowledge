@@ -14,7 +14,7 @@
 
 class SceneLegal : public Scene {
 public:
-	SceneLegal(string sceneName);
+	SceneLegal(string scene_name);
 	virtual ~SceneLegal();
 	void Enter();
 	void Exit();

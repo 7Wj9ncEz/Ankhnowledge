@@ -42,11 +42,11 @@ void Button::render(float camera_x, float camera_y){
 
 int Button::update(int dt){
 
-	if( (insideButton() == true) && (is_pressed == false) && (change_sprite == true))
+	if( (inside_button() == true) && (is_pressed == false) && (change_sprite == true))
 	{
 		this->current_sprite = sprite2;
 	}
-	else if ((insideButton() == true) && (is_pressed == true) && (change_sprite == true))
+	else if ((inside_button() == true) && (is_pressed == true) && (change_sprite == true))
 	{
 		this->current_sprite = sprite3;
 		this->change_scene = true;
@@ -59,7 +59,7 @@ int Button::update(int dt){
 	return 0;
 }
 
-bool Button::insideButton(){
+bool Button::inside_button(){
 	return ((this->mouse_x > this->x) && (this->mouse_x < (this->x + this->current_sprite->getWidth())) &&
 			(this->mouse_y > this->y) && (this->mouse_y < (this->y + this->current_sprite->getHeight())));
 }
@@ -75,7 +75,7 @@ void Button::setChangeSprite(bool change_sprite){
 	this->change_sprite = change_sprite;
 }
 
-void Button::mousePressed(bool is_pressed){
+void Button::mouse_pressed(bool is_pressed){
 	this->is_pressed = is_pressed;
 }
 

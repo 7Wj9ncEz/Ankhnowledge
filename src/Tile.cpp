@@ -77,8 +77,8 @@ bool Tile::insideTile() {
 	InputManager* input;
 	input = InputManager::getInstance();
 
-	return ((input->mousePosX() > this->x) && (input->mousePosX() < (this->x + this->tile->getWidth())) &&
-			(input->mousePosY() > this->y) && (input->mousePosY() < (this->y + this->tile->getHeight())));
+	return ((input->mouse_pos_x() > this->x) && (input->mouse_pos_x() < (this->x + this->tile->getWidth())) &&
+			(input->mouse_pos_y() > this->y) && (input->mouse_pos_y() < (this->y + this->tile->getHeight())));
 
 }
 

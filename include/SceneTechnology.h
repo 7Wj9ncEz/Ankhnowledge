@@ -14,7 +14,7 @@
 
 class SceneTechnology : public Scene{
 public:
-	SceneTechnology(string sceneName);
+	SceneTechnology(string scene_name);
 	virtual ~SceneTechnology();
 	void Enter();
 	void Exit();

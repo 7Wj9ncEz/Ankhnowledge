@@ -56,16 +56,16 @@ int Character::update(int dt)
 	{
 		if(this->dt > DT)
 		{
-			if (input->isKeyPressed(SDLK_y) && Network::getID() == this->id)
+			if (input->is_key_pressed(SDLK_y) && Network::get_id() == this->id)
 			{
 				deactivateSkill();
-				sendMessage("DeactivateSkill", "-1");
+				send_message("DeactivateSkill", "-1");
 
 			}
-			else if(this->skillDestTile && Network::getID() == this->id)
+			else if(this->skillDestTile && Network::get_id() == this->id)
 			{	
 				useSkill(skillDestTile->id);
-				sendMessage("UseSkill", intToString(skillDestTile->id));
+				send_message("UseSkill", intToString(skillDestTile->id));
 				skillDestTile = 0;
 			}
 			
@@ -75,16 +75,16 @@ int Character::update(int dt)
 	
 	else
 	{
-		if(turn && !performingAction && Network::getID() == this->id)
+		if(turn && !performingAction && Network::get_id() == this->id)
 		{
-			if (input->isKeyPressed(SDLK_y))
+			if (input->is_key_pressed(SDLK_y))
 			{
 				if(this->dt > DT)
 				{
 					if((this->skill) && (this->stamina >= this->skill->getRequiredStamina()))
 					{
 						activateSkill();
-						sendMessage("ActivateSkill", "-1");
+						send_message("ActivateSkill", "-1");
 					}
 
 					this->dt = 0;
@@ -92,18 +92,18 @@ int Character::update(int dt)
 			}
 		}
 		
-		if(turn && !performingAction && input->isKeyPressed(SDLK_u) && Network::getID() == this->id)
+		if(turn && !performingAction && input->is_key_pressed(SDLK_u) && Network::get_id() == this->id)
 		{
 			pushUpdate(input);
 		}
-		else if(turn && !performingAction && Network::getID() == this->id)
+		else if(turn && !performingAction && Network::get_id() == this->id)
 		{
 			moveUpdate(input);
 		}
 	}
 
-	if(turn && !performingAction && Network::getID() != this->id)
-		receiveMessage();
+	if(turn && !performingAction && Network::get_id() != this->id)
+		receive_message();
 
 	interpolateMovement(dt);
 	if(activatedSkill == true)
@@ -334,22 +334,22 @@ void Character::pushUpdate(InputManager * input, Direction dir)
 			needToSend = false;
 
 	Tile * nextTile = 0;
-	if (input->isKeyPressed(SDLK_d) || dir == right)
+	if (input->is_key_pressed(SDLK_d) || dir == right)
 	{
 		dir = right;
 		nextTile = currentTile->getRightTile();
 	}else
-	if (input->isKeyPressed(SDLK_a) || dir == left)
+	if (input->is_key_pressed(SDLK_a) || dir == left)
 	{
 		dir = left;
 		nextTile = currentTile->getLeftTile();
 	}else
-	if (input->isKeyPressed(SDLK_s) || dir == down)
+	if (input->is_key_pressed(SDLK_s) || dir == down)
 	{
 		dir = down;
 		nextTile = currentTile->getDownTile();
 	}else
-	if (input->isKeyPressed(SDLK_w) || dir == up)
+	if (input->is_key_pressed(SDLK_w) || dir == up)
 	{
 		dir = up;
 		nextTile = currentTile->getUpTile();
@@ -379,7 +379,7 @@ void Character::pushUpdate(InputManager * input, Direction dir)
 		discountStamina = 0;
 		push(dir);
 		if(needToSend)
-			sendMessage("Push", intToString((int)dir));
+			send_message("Push", intToString((int)dir));
 		changeCurrentTile(nextTile);
 	}
 
@@ -395,22 +395,22 @@ void Character::moveUpdate(InputManager * input, Direction dir)
 		needToSend = false;
 
 	Tile * nextTile = 0;
-	if ((input->isKeyPressed(SDLK_d) && canChangeTile(currentTile->getRightTile()) && dir == none) || dir == right)
+	if ((input->is_key_pressed(SDLK_d) && canChangeTile(currentTile->getRightTile()) && dir == none) || dir == right)
 	{
 		dir = right;
 		nextTile = currentTile->getRightTile();
 	}else
-	if ((input->isKeyPressed(SDLK_a) && canChangeTile(currentTile->getLeftTile()) && dir == none) || dir == left)
+	if ((input->is_key_pressed(SDLK_a) && canChangeTile(currentTile->getLeftTile()) && dir == none) || dir == left)
 	{
 		dir = left;
 		nextTile = currentTile->getLeftTile();
 	}else
-	if ((input->isKeyPressed(SDLK_s)  && canChangeTile(currentTile->getDownTile()) && dir == none) || dir == down)
+	if ((input->is_key_pressed(SDLK_s)  && canChangeTile(currentTile->getDownTile()) && dir == none) || dir == down)
 	{
 		dir = down;
 		nextTile = currentTile->getDownTile();
 	}else
-	if ((input->isKeyPressed(SDLK_w)  && canChangeTile(currentTile->getUpTile()) && dir == none) || dir == up)
+	if ((input->is_key_pressed(SDLK_w)  && canChangeTile(currentTile->getUpTile()) && dir == none) || dir == up)
 	{
 		dir = up;
 		nextTile = currentTile->getUpTile();
@@ -428,7 +428,7 @@ void Character::moveUpdate(InputManager * input, Direction dir)
 			{
 				block->reaction(this);
 				if(needToSend)
-					sendMessage("Move", intToString((int)dir));
+					send_message("Move", intToString((int)dir));
 			}
 			if(block->getType() == "BlockSand")
 			{
@@ -437,7 +437,7 @@ void Character::moveUpdate(InputManager * input, Direction dir)
 				{
 					move(dir);
 					if(needToSend)
-						sendMessage("Move", intToString((int)dir));
+						send_message("Move", intToString((int)dir));
 				}
 				nextTile->setBlock(0);
 				setStamina(getStamina() - 3);
@@ -454,7 +454,7 @@ void Character::moveUpdate(InputManager * input, Direction dir)
 				{
 					move(dir);
 					if(needToSend)
-						sendMessage("Move", intToString((int)dir));
+						send_message("Move", intToString((int)dir));
 				}
 				nextTile->setBlock(0);
 				setStamina(getStamina() + 2);
@@ -472,7 +472,7 @@ void Character::moveUpdate(InputManager * input, Direction dir)
 			{
 				move(dir);
 				if(needToSend)
-					sendMessage("Move", intToString((int)dir));
+					send_message("Move", intToString((int)dir));
 			}
 		}
 
@@ -502,12 +502,12 @@ Sprite * Character::getHud()
 	return this->hud;
 }
 
-void Character::sendMessage(string action, string info)
+void Character::send_message(string action, string info)
 {
 
 	string direction;
 	string msg = action + " " + info;
-	Network::sendMessage(msg);
+	Network::send_message(msg);
 
 }
 
@@ -536,7 +536,7 @@ void Character::useSkill(int tileIndex)
 {
 	this->stamina -= skill->getRequiredStamina();
 	Tile::setClickableTiles(currentTile, skill->getReach(), skill->getConsiderBlocks(), false);
-	skill->execute(this->currentTile, map->getTileWithIndex(tileIndex));
+	skill->execute(this->currentTile, map->get_tile_with_index(tileIndex));
 	this->activatedSkill = false;
 }
 
@@ -547,12 +547,12 @@ void Character::setMap(Map * map)
 
 void Character::spawnSand(string msg)
 {
-	sendMessage("SpawnSand", msg);
+	send_message("SpawnSand", msg);
 }
 
-void Character::receiveMessage()
+void Character::receive_message()
 {
-	string message = Network::readMessage();
+	string message = Network::read_message();
 	if(message == "")
 		return;
 
@@ -589,7 +589,7 @@ void Character::receiveMessage()
 	}
 	if(action == "EndTurn")
 	{
-		map->changeCurrentPlayer();
+		map->change_current_player();
 	}
 	if(action == "SpawnSand")
 	{

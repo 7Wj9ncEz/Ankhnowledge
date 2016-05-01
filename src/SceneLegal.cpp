@@ -7,7 +7,7 @@
 
 #include "SceneLegal.h"
 
-SceneLegal::SceneLegal(string sceneName) : Scene (sceneName) {
+SceneLegal::SceneLegal(string scene_name) : Scene (scene_name) {
 
 }
 
@@ -25,6 +25,6 @@ void SceneLegal::Enter()
 
 void SceneLegal::Exit()
 {
-	this->cleanGameObjects();
+	this->clean_game_objects();
 }
 
