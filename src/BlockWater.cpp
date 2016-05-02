@@ -1,3 +1,12 @@
+/*
+ * BlockTreasure.cpp
+ *
+ * Class responsible by handling the creation of water blocks.
+ * 
+ *  Created on: Nov 7, 2013
+ *      Author: makoto
+ */
+
 #include "BlockWater.h"
 
 BlockWater::BlockWater(Sprite * block, float x, float y):Block(block,x,y) {

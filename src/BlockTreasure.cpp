@@ -1,6 +1,8 @@
 /*
  * BlockTreasure.cpp
  *
+ * Class responsible by handling the victory condition of the game.
+ * 
  *  Created on: Nov 7, 2013
  *      Author: makoto
  */

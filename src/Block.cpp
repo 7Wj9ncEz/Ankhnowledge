@@ -1,6 +1,8 @@
 /*
  * Block.cpp
  *
+ *  Class responsible by creating all kind of blocks from the game.   
+ *
  *  Created on: Oct 28, 2013
  *      Author: makoto
  */

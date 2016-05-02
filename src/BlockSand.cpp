@@ -1,3 +1,10 @@
+/*
+ * BlockMovable.cpp
+ *
+ * Class that handles how the Sand block interacts with characters.
+ *
+ */
+
 #include "BlockSand.h"
 #include <iostream>
 

@@ -1,6 +1,8 @@
 /*
  * BlockMovable.cpp
  *
+ * Class responsible by setting how Movable blocks movements though the scenery.
+ *
  *  Created on: Nov 5, 2013
  *      Author: makoto
  */

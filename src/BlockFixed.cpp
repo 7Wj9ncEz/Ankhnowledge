@@ -1,3 +1,10 @@
+/*
+ * BlockFixed.cpp
+ *
+ * Class responsible by setting Fixed Blocks behaviour. 
+ * 
+ */
+
 #include "BlockFixed.h"
 #include <iostream>
 

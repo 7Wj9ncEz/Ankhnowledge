@@ -1,8 +1,14 @@
+/*
+ * AudioHandler.cpp
+ *
+ * Class responsible by setting up all sounds used. 
+ * 
+ */
+
+
 #include <iostream>
 #include <string>
-
 #include "SDL/SDL_mixer.h"
-
 #include "AudioHandler.h"
 #include "SDLBase.h"
 #include "Scene.h"
