@@ -1,0 +1,25 @@
+h1. Scene
+
+h2. a) Variables
+
+|_.Name|_.Type|_.Description|
+|scene_name|string|Shows the name of the scene|
+|s_change_scene|bool|Shows the system if it's time to change the scene|
+|next_scene|Scene|Shows the system what's the scene's number that's supposed to be next|
+
+h2. b) Functions
+
+|_.Name|_.Parameters|_.Return Type|_.Description|
+|add_scenes|Scene *scene|no return|Adds a new scene into a scene array (queue type)|
+|change_scene|string scene_name|int|Changes a game scene and returns a number that shows if it was a success or if there was an error|
+|get_scene_name|no parameters|string|Returns the scene's name (scene_name variable)|
+|should_change_name|no parameters|bool|Returns if the scene should change or not (s_change_scene variable)|
+|get_all_game_objects|no parameters|list<*Game_object>|Returns a list that shows all game_objects|
+|add_game_object|Game_object *game_object|no return|Adds a new Game_object into a game_object array (queue type)|
+|clean_game_objects|no parameters|no return|clears all the list<*Game_object> from the scene|
+|update|int dt|int|Function that updates all the game_objects that compose the scene and shows if the update was done correctly|
+|/2. render|float camera_x|/2. no return|/2. Function that render game_objects towards the camera (x & y) positions|
+|float camera_y|
+|get_next_scene|no parameters|Scene|Returns the Scene that's supposed to be next in the Game|
+|destroy_game_object|GameObject *game_object|no return|Sends the game object(s) sent to this function to the garbage|
+|clean_destroyed_game_objects|no parameters|no return|Clears the garbage bin filled with game_objects|

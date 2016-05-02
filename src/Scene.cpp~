@@ -4,8 +4,8 @@
 #include <iostream>
 #include <stdio.h>
 
-Scene::Scene(string sceneName) {
-	this->sceneName = sceneName;
+Scene::Scene(string scene_name) {
+	this->scene_name = scene_name;
 	this->sChangeScene = false;
 	this->nextScene = 0;
 }
@@ -14,17 +14,17 @@ Scene::~Scene() {
 	gameObjects.clear();
 }
 
-void Scene::addScenes(Scene *scene)
+void Scene::add_scenes(Scene *scene)
 {
 	this->scenes.push_back(scene);
 }
 
-int Scene::changeScene(string sceneName)
+int Scene::change_scene(string scene_name)
 {
 
 	for (list<Scene *>::iterator it = scenes.begin(); it != scenes.end(); it++)
 	{
-		if((*(*it)->getName()) == sceneName)
+		if((*(*it)->getName()) == scene_name)
 		{
 			nextScene = (*it);
 			this->sChangeScene = true;
@@ -36,10 +36,10 @@ int Scene::changeScene(string sceneName)
 
 string * Scene::getName()
 {
-	return &(this->sceneName);
+	return &(this->scene_name);
 }
 
-bool Scene::shouldChangeScene()
+bool Scene::should_change_scene()
 {
 	return this->sChangeScene;
 }
@@ -54,9 +54,14 @@ void Scene::addGameObject(GameObject * gameObject)
 	this->gameObjects.push_back(gameObject);
 }
 
-void Scene::cleanGameObjects()
+void Scene::clean_game_objects()
 {
+	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
+	{
+		delete (*it);
+	}
 	gameObjects.clear();
+	sChangeScene = false;
 }
 
 int Scene::update(int dt)
@@ -68,11 +73,11 @@ int Scene::update(int dt)
 	return 0;
 }
 
-void Scene::render(float cameraX, float cameraY)
+void Scene::render(float camera_x, float camera_y)
 {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
-		(*it)->render(cameraX, cameraY);
+		(*it)->render(camera_x, camera_y);
 	}
 }
 
@@ -81,19 +86,23 @@ Scene * Scene::getNextScene()
 	return this->nextScene;
 }
 
-void Scene::destroyGameObject(GameObject * gameObject)
+string Scene::get_scene_name(){
+	return this->scene_name;
+}
+
+void Scene::destroy_game_object(GameObject * gameObject)
 {
 	this->garbage.push_back(gameObject);
 
 	//delete gameObject;
 }
 
-void Scene::cleanDestroyedGameObjects()
+void Scene::clean_destroyed_game_objects()
 {
 	if(!this->garbage.empty())
 	{
 
-	for(int i = 0; i < this->garbage.size(); i++)
+	for(unsigned int i = 0; i < this->garbage.size(); i++)
 	{
 		gameObjects.remove(this->garbage.at(i));
 		delete garbage.at(i);
