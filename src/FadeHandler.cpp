@@ -1,10 +1,3 @@
-/*
- * FadeHandler.cpp
- *
- * Class responsible by how fading(making them appear or dissapear from the screen) behaviour works.
- * 
- */
-
 
 #include "FadeHandler.h"
 #include <iostream>

@@ -1,10 +1,3 @@
-/*
- * GameManager.cpp
- *
- * Game's core. This class is responsible by instanciating all scenes.
- * 
- */
-
 
 #include "GameManager.h"
 
