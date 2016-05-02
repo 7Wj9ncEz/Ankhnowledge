@@ -1,3 +1,11 @@
+/*
+ * CharacterAlan.cpp
+ *
+ * Class responsible by setting up all Suti's sprites and defining his skill.
+ * 
+ */
+
+
 #include <iostream>
 
 #include "CharacterSuti.h"

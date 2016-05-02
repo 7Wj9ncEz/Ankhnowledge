@@ -1,6 +1,8 @@
 /*
  * Button.cpp
  *
+ * Class responsible by creating and rendering all game interface buttons.
+ *
  *  Created on: Oct 9, 2013
  *      Author: al
  */

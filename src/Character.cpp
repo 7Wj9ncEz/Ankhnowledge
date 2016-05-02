@@ -1,5 +1,14 @@
-#include <iostream>
+/*
+ * Character.cpp
+ *
+ * Class responsible by setting up Character's behaviour, and how he interacts with Button pressing.
+ * 
+ *  Created on: Nov 7, 2013
+ *      Author: makoto
+ */
 
+
+#include <iostream>
 #include "Character.h"
 #include "Skill.h"
 #include <sstream>

@@ -1,5 +1,7 @@
 /*
- * OptionsController.cpp
+ * CreditsController.cpp
+ * 
+ * Class responsible by creating Game Menu's Credit Scene.
  *
  *  Created on: Oct 29, 2013
  *      Author: al
