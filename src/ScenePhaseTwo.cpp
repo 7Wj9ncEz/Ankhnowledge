@@ -1,8 +1,7 @@
 /*
  * ScenePhaseTwo.cpp
  *
- *  Created on: Nov 26, 2013
- *      Author: makoto
+ * Responsible for changing the game phase to the one number "two"
  */
 
 #include "ScenePhaseTwo.h"
@@ -17,8 +16,10 @@ ScenePhaseTwo::~ScenePhaseTwo() {
 	// TODO Auto-generated destructor stub
 }
 
-void ScenePhaseTwo::Enter()
-{
+/**
+ * Changes the game scene to the phase two
+**/
+void ScenePhaseTwo::Enter() {
 	AudioHandler * audio = AudioHandler::getInstance();
 	audio->stopMusic();
 	audio->set_music("fase2.ogg");
@@ -35,8 +36,9 @@ void ScenePhaseTwo::Enter()
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
-void ScenePhaseTwo::Exit()
-{
+/**
+ * Cleans all the game_objects created by the class "ScenePhaseTwo"
+**/
+void ScenePhaseTwo::Exit() {
 	this->clean_game_objects();
 }
-

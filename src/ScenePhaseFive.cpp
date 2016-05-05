@@ -1,8 +1,7 @@
 /*
  * ScenePhaseFive.cpp
  *
- *  Created on: Nov 26, 2013
- *      Author: makoto
+ * Responsible for changing the game phase to the one number "five"
  */
 
 #include "ScenePhaseFive.h"
@@ -17,8 +16,10 @@ ScenePhaseFive::~ScenePhaseFive() {
 	// TODO Auto-generated destructor stub
 }
 
-void ScenePhaseFive::Enter()
-{
+/**
+ * Changes the game scene to the phase five
+**/
+void ScenePhaseFive::Enter() {
 	AudioHandler * audio = AudioHandler::getInstance();
 	audio->stopMusic();
 	audio->set_music("fase5.ogg");
@@ -35,8 +36,9 @@ void ScenePhaseFive::Enter()
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
-void ScenePhaseFive::Exit()
-{
+/**
+ * Cleans all the game_objects created by the class "ScenePhaseFive"
+**/
+void ScenePhaseFive::Exit() {
 	this->clean_game_objects();
 }
-

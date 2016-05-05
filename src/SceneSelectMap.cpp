@@ -1,8 +1,7 @@
 /*
  * SceneSelectMap.cpp
  *
- *  Created on: Nov 21, 2013
- *      Author: makoto
+ * Scene responsible for the map selection
  */
 
 #include "SceneSelectMap.h"
@@ -14,15 +13,18 @@ SceneSelectMap::SceneSelectMap(string scene_name) : Scene (scene_name) {
 SceneSelectMap::~SceneSelectMap() {
 }
 
-void SceneSelectMap::Enter()
-{
+/**
+ * Changes the game scene to the map selection
+**/
+void SceneSelectMap::Enter() {
 	cc = new SelectMapController();
 		this->addGameObject(cc);
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
-void SceneSelectMap::Exit()
-{
+/**
+ * Cleans all the game_objects created by the class "SceneSelectMap"
+**/
+void SceneSelectMap::Exit() {
 	this->clean_game_objects();
 }
-

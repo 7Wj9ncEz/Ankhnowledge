@@ -1,8 +1,7 @@
 /*
  * ScenePhaseFour.cpp
  *
- *  Created on: Nov 26, 2013
- *      Author: makoto
+ * Responsible for changing the game phase to the one number "four"
  */
 
 #include "ScenePhaseFour.h"
@@ -17,8 +16,10 @@ ScenePhaseFour::~ScenePhaseFour() {
 	// TODO Auto-generated destructor stub
 }
 
-void ScenePhaseFour::Enter()
-{
+/**
+ * Changes the game scene to the phhase four
+**/
+void ScenePhaseFour::Enter() {
 	AudioHandler * audio = AudioHandler::getInstance();
 	audio->stopMusic();
 	audio->set_music("fase4.ogg");
@@ -35,8 +36,9 @@ void ScenePhaseFour::Enter()
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
-void ScenePhaseFour::Exit()
-{
+/**
+ * Cleans all the game_objects created by the class "ScenePhaseFour"
+**/
+void ScenePhaseFour::Exit() {
 	this->clean_game_objects();
 }
-

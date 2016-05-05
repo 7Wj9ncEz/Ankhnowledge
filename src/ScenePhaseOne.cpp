@@ -1,8 +1,7 @@
 /*
  * ScenePhaseOne.cpp
  *
- *  Created on: Oct 8, 2013
- *      Author: al
+ * Responsible for changing the game phase to the one number "one"
  */
 
 #include "ScenePhaseOne.h"
@@ -17,8 +16,10 @@ ScenePhaseOne::~ScenePhaseOne() {
 	// TODO Auto-generated destructor stub
 }
 
-void ScenePhaseOne::Enter()
-{
+/**
+ * Changes the game scene to the phase one
+**/
+void ScenePhaseOne::Enter() {
 	AudioHandler * audio = AudioHandler::getInstance();
 	audio->stopMusic();
 	audio->set_music("fase1.ogg");
@@ -35,8 +36,9 @@ void ScenePhaseOne::Enter()
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
-void ScenePhaseOne::Exit()
-{
+/**
+ * Cleans all the game_objects created by the class "ScenePhaseOne"
+**/
+void ScenePhaseOne::Exit() {
 	this->clean_game_objects();
 }
-

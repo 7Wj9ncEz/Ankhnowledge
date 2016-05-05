@@ -1,8 +1,7 @@
 /*
  * SceneSelectCharacter.cpp
  *
- *  Created on: Nov 21, 2013
- *      Author: makoto
+ * Scene responsible for the character selection
  */
 
 #include "SceneSelectCharacter.h"
@@ -14,8 +13,10 @@ SceneSelectCharacter::SceneSelectCharacter(string scene_name) : Scene (scene_nam
 SceneSelectCharacter::~SceneSelectCharacter() {
 }
 
-void SceneSelectCharacter::Enter()
-{
+/**
+ * Changes the game scene to the chacter selection
+**/
+void SceneSelectCharacter::Enter() {
 	AudioHandler * audio = AudioHandler::getInstance();
  	audio->stopMusic();
    	audio->set_music("tela_de_selecao_de_mapas.ogg");
@@ -26,8 +27,9 @@ void SceneSelectCharacter::Enter()
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
-void SceneSelectCharacter::Exit()
-{
+/**
+ * Cleans all the game_objects created by the class "SceneSelectCharacter"
+**/
+void SceneSelectCharacter::Exit() {
 	this->clean_game_objects();
 }
-

@@ -1,8 +1,7 @@
 /*
  * SceneTechnology.cpp
  *
- *  Created on: Oct 7, 2013
- *      Author: makoto
+ * Scene responsible for showing the user the Technology map
  */
 
 #include "SceneTechnology.h"
@@ -14,6 +13,9 @@ SceneTechnology::SceneTechnology(string scene_name) : Scene (scene_name) {
 SceneTechnology::~SceneTechnology() {
 }
 
+/**
+ * Changes the game scene the technology map
+**/
 void SceneTechnology::Enter()
 {
 	this->splashSprite = new Sprite(SDLBase::resourcesPath + "splashtechnology.png");
@@ -23,8 +25,10 @@ void SceneTechnology::Enter()
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
+/**
+ * Cleans all the game_objects created by the class "SceneTechnology"
+**/
 void SceneTechnology::Exit()
 {
 	this->clean_game_objects();
 }
-

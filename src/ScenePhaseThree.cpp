@@ -1,8 +1,7 @@
 /*
  * ScenePhaseThree.cpp
  *
- *  Created on: Nov 26, 2013
- *      Author: makoto
+ *  Responsible for changing the game phase to the one number "three"
  */
 
 #include "ScenePhaseThree.h"
@@ -17,8 +16,10 @@ ScenePhaseThree::~ScenePhaseThree() {
 	// TODO Auto-generated destructor stub
 }
 
-void ScenePhaseThree::Enter()
-{
+/**
+ * Changes the game scene to the phase four
+**/
+void ScenePhaseThree::Enter() {
 	AudioHandler * audio = AudioHandler::getInstance();
 	audio->stopMusic();
 	audio->set_music("fase3.ogg");
@@ -35,8 +36,9 @@ void ScenePhaseThree::Enter()
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
-void ScenePhaseThree::Exit()
-{
+/**
+ * Cleans all the game_objects created by the class "ScenePhaseThree"
+**/
+void ScenePhaseThree::Exit() {
 	this->clean_game_objects();
 }
-
