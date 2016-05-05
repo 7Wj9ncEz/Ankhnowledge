@@ -1,11 +1,11 @@
 /*
  * Animation.cpp
  *
- *  Class handles the rendering of all animations used. 
+ *  Class handles the rendering of all animations used.
  *
  *  Created on: Oct 27, 2013
  *      Author: al
- * 
+ *
  */
 
 #include "Animation.h"
@@ -91,7 +91,7 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
   }
 
 	if ((this->dt > frame_rate)) {
-		if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
+    if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
 			reset_start_frame();
 			finished_animation = false;
 		}
@@ -103,13 +103,12 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
 		else {
 			current_frame++;
 			this->dt = 0;
-		}
+    }
 	}
 
   else {
     // Nothing to do
   }
-
 }
 
 void Animation::reset_start_frame() {

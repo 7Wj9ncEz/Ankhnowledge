@@ -78,7 +78,7 @@ void SelectMapController::render(float camera_x, float camera_y){
 	}
 	for(unsigned int i = 0; i < mapNames.size(); i++)
 	{
-		if(i == 0)
+		if (i == 0)
 			mapNames.at(i)->render(mapButtons.at(i)->getX()+60, 50);
 		else
 			mapNames.at(i)->render(mapButtons.at(i)->getX()+95, 50);
@@ -108,13 +108,13 @@ int SelectMapController::update(int dt){
 
 				mapButtons.at(i)->update(dt);
 
-				if(mapButtons.at(i)->is_pressed() && currentMap == i)
+				if (mapButtons.at(i)->is_pressed() && currentMap == i)
 				{
 					mapselected = i;
 					cout<<"aqui"<<i<<endl;
 				}
 
-				if(mapButtons.at(i)->is_on_top() && acumulated2 >500 && currentMap == i)
+				if (mapButtons.at(i)->is_on_top() && acumulated2 >500 && currentMap == i)
 				{
 					boardX = mapButtons.at(i)->getX();
 					boardY = mapButtons.at(i)->getY();
@@ -122,13 +122,13 @@ int SelectMapController::update(int dt){
 				}
 			}
 
-			if(leftButton->is_pressed() && changingMap == 0 && currentMap > 0)
+			if (leftButton->is_pressed() && changingMap == 0 && currentMap > 0)
 			{
 				moveLeft();
 				send_message("Left", "-1");
 			}
 
-			if(rightButton->is_pressed() && changingMap == 0 && currentMap < 4)
+			if (rightButton->is_pressed() && changingMap == 0 && currentMap < 4)
 			{
 				moveRight();
 				send_message("Right", "-1");
@@ -151,7 +151,7 @@ int SelectMapController::update(int dt){
 }
 
 void SelectMapController::change_scene(){
-	if(mapselected == -1)
+	if (mapselected == -1)
 		return;
 
 	cout<<"Mapa selecionado"<< mapselected <<endl;
@@ -163,10 +163,10 @@ void SelectMapController::change_scene(){
 void SelectMapController::changeMap(int dt)
 {
 
-	if(acumulated2 < 2000)
+	if (acumulated2 < 2000)
 		acumulated2 += dt;
 
-	if(changingMap != 0)
+	if (changingMap != 0)
 	{
 		for(unsigned int i = 0; i < mapButtons.size(); i++)
 		{
@@ -175,7 +175,7 @@ void SelectMapController::changeMap(int dt)
 
 		acumulated += dt;
 
-		if(acumulated > 1000)
+		if (acumulated > 1000)
 			changingMap = 0;
 	}
 }
@@ -207,29 +207,29 @@ void SelectMapController::moveRight()
 
 void SelectMapController::chooseMap(int index)
 {
-	if(index == 0)
+	if (index == 0)
 		{
-			if(GameManager::currentScene->change_scene("ScenePhaseOne") == 1)
+			if (GameManager::currentScene->change_scene("ScenePhaseOne") == 1)
 					GameManager::fadeScreen->fade_in(1,0.2);
 		}
-		else if(index == 1)
+		else if (index == 1)
 		{
-			if(GameManager::currentScene->change_scene("ScenePhaseTwo") == 1)
+			if (GameManager::currentScene->change_scene("ScenePhaseTwo") == 1)
 					GameManager::fadeScreen->fade_in(1,0.2);
 		}
-		else if(index == 2)
+		else if (index == 2)
 		{
-			if(GameManager::currentScene->change_scene("ScenePhaseThree") == 1)
+			if (GameManager::currentScene->change_scene("ScenePhaseThree") == 1)
 					GameManager::fadeScreen->fade_in(1,0.2);
 		}
-		else if(index == 3)
+		else if (index == 3)
 		{
-			if(GameManager::currentScene->change_scene("ScenePhaseFour") == 1)
+			if (GameManager::currentScene->change_scene("ScenePhaseFour") == 1)
 					GameManager::fadeScreen->fade_in(1,0.2);
 		}
-		else if(index == 4)
+		else if (index == 4)
 		{
-			if(GameManager::currentScene->change_scene("ScenePhaseFive") == 1)
+			if (GameManager::currentScene->change_scene("ScenePhaseFive") == 1)
 					GameManager::fadeScreen->fade_in(1,0.2);
 		}
 }
@@ -237,7 +237,7 @@ void SelectMapController::chooseMap(int index)
 void SelectMapController::receive_message()
 {
 	string message = Network::read_message();
-	if(message == "")
+	if (message == "")
 		return;
 
 	istringstream iss(message);
@@ -249,21 +249,21 @@ void SelectMapController::receive_message()
 	iss >> info;
 
 
-	if(action == "Left")
+	if (action == "Left")
 	{
 		moveLeft();
 	}
 	else
-	if(action == "Right")
+	if (action == "Right")
 	{
 		moveRight();
 	}
 	else
-	if(action == "ChoseMap")
+	if (action == "ChoseMap")
 	{
 		chooseMap(atoi(info.c_str()));
 	}
-	if(action == "Loaded")
+	if (action == "Loaded")
 	{
 		locked = false;
 	}

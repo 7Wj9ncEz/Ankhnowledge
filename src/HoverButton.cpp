@@ -23,18 +23,18 @@ HoverButton::~HoverButton() {
 
 
 void HoverButton::render(float camera_x, float camera_y){
-	if(this->sprite) {
+	if (this->sprite) {
 		this->sprite->render(x,y);
 	}
 }
 
 int HoverButton::update(int dt){
-	if(inside_button())
+	if (inside_button())
 		on_top = true;
 	else
 		on_top = false;
 
-	if(inside_button() && this->input->is_mouse_down(0))
+	if (inside_button() && this->input->is_mouse_down(0))
 	{
 		pressed = true;
 	}else

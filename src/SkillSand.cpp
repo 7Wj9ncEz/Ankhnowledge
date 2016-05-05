@@ -22,7 +22,7 @@ void SkillSand::execute(Tile * origin, Tile * dest)
 
 	Block *oldBlock = dest->getBlock();
 
-	if(oldBlock)
+	if (oldBlock)
 	{
 		oldBlock->set_destroyed_anim_block(true);
 

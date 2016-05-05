@@ -43,9 +43,9 @@ void FadeHandler::update(float dt)
 	cout << "should_fade_out: " << this->should_fade_out << endl;
 	cout << "rate: " << this->rate << endl;
 	cout << "dt : " << dt << endl;*/
-	if(should_fade_in)
+	if (should_fade_in)
 	{
-		if(current_percentage < percentage_of_stop)
+		if (current_percentage < percentage_of_stop)
 		{
 			current_percentage += rate * dt/1000;
 			sprite->setAlpha(255*current_percentage);
@@ -57,9 +57,9 @@ void FadeHandler::update(float dt)
 			sprite->setAlpha(255*current_percentage);
 		}
 	}else
-	if(should_fade_out)
+	if (should_fade_out)
 	{
-		if(current_percentage > percentage_of_stop)
+		if (current_percentage > percentage_of_stop)
 		{
 			current_percentage -= rate*dt/1000;
 			sprite->setAlpha(255*current_percentage);

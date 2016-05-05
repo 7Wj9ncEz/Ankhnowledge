@@ -26,7 +26,7 @@ Network::Network() {
 void Network::init(){
 	rc = SDLNet_Init();
 
-	if(rc == -1)
+	if (rc == -1)
 	{
 		cout << "Erro na inicializacao da NET: " << SDLNet_GetError() << endl;
 	}
@@ -54,12 +54,12 @@ void Network::finish(){
 	SDL_KillThread(lThread);
 	SDL_DestroyMutex(mutex);
 
-	if(currentSocket)
+	if (currentSocket)
 	{
 		SDLNet_TCP_Close(currentSocket);
 	}
 	
-	if(communicationSocket)
+	if (communicationSocket)
 	{
 		SDLNet_TCP_Close(communicationSocket);
 	}
@@ -75,14 +75,14 @@ int Network::connect(string ipaddress){
 
 	rc = SDLNet_ResolveHost(&ip, ipaddress.c_str(), 3000);
 
-	if(rc == -1)
+	if (rc == -1)
 	{
 		return -1;
 	}
 
 	communicationSocket = SDLNet_TCP_Open(&ip);
 
-	if(communicationSocket == NULL)
+	if (communicationSocket == NULL)
 	{
 		return -1;
 	}
@@ -100,7 +100,7 @@ void Network::disconnect(){
 }
 
 void Network::send_message(string message){
-	if(SDLNet_TCP_Send(communicationSocket, (void *) message.c_str(), message.size()+1) < (int)message.size())
+	if (SDLNet_TCP_Send(communicationSocket, (void *) message.c_str(), message.size()+1) < (int)message.size())
 	{
 		cout << "Erro no envio da MENSAGEM: " << SDLNet_GetError() << endl;
 		return;
@@ -113,9 +113,9 @@ int Network::receive_message(void *){
 	{
 		//cout<<"trying to receive message"<<endl;
 
-		if(SDLNet_TCP_Recv(communicationSocket, buffer, 512) > 0)
+		if (SDLNet_TCP_Recv(communicationSocket, buffer, 512) > 0)
 		{
-			if(SDL_mutexP(mutex) == 0)
+			if (SDL_mutexP(mutex) == 0)
 			{
 				string message = buffer;
 				//cout<<"recebi a msn: "<<message<<endl;
@@ -130,14 +130,14 @@ int Network::receive_message(void *){
 		}else
 		{
 			connected = false;
-			if(GameManager::currentScene->change_scene("SceneMainMenu") == 1)
+			if (GameManager::currentScene->change_scene("SceneMainMenu") == 1)
 					GameManager::fadeScreen->fade_in(1,2);
-			if(currentSocket)
+			if (currentSocket)
 			{
 				SDLNet_TCP_Close(currentSocket);
 			}
 
-			if(communicationSocket)
+			if (communicationSocket)
 			{
 				SDLNet_TCP_Close(communicationSocket);
 			}
@@ -163,7 +163,7 @@ void Network::listening_thread(){
 string Network::read_message()
 {
 	string message = "";
-	if(SDL_mutexP(mutex) == 0)
+	if (SDL_mutexP(mutex) == 0)
 	{
 		if(!messageQueue.empty())
 		{
@@ -180,14 +180,14 @@ int Network::host()
 {
 	rc = SDLNet_ResolveHost(&ip, NULL, 3000);
 
-	if(rc == -1)
+	if (rc == -1)
 	{
 		return -1;
 	}
 
 	currentSocket = SDLNet_TCP_Open(&ip);
 
-	if(currentSocket == NULL)
+	if (currentSocket == NULL)
 	{
 		return -1;
 	}
@@ -201,9 +201,9 @@ int Network::listening(void *)
 {
 	while(!connected)
 	{
-		if(SDL_mutexP(mutex2) == 0)
+		if (SDL_mutexP(mutex2) == 0)
 		{
-			if(cancel)
+			if (cancel)
 			{
 				SDL_mutexV(mutex2);
 				break;
@@ -228,12 +228,12 @@ int Network::listening(void *)
 }
 
 void Network::close_connection(){
-	if(currentSocket)
+	if (currentSocket)
 	{
 		SDLNet_TCP_Close(currentSocket);
 	}
 
-	if(communicationSocket)
+	if (communicationSocket)
 	{
 		SDLNet_TCP_Close(communicationSocket);
 	}

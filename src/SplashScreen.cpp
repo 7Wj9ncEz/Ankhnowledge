@@ -24,7 +24,7 @@ int SplashScreen::update(int dt) {
 
 	if ((SDLBase::getTime() - initialTime > 5000) && !activated) {
 		activated = true;
-		if(GameManager::currentScene->change_scene(nextScene) == 1) {
+		if (GameManager::currentScene->change_scene(nextScene) == 1) {
 			GameManager::fadeScreen->fade_in(1,2);
 		}
 
@@ -41,7 +41,7 @@ int SplashScreen::update(int dt) {
 }
 
 void SplashScreen::render(float camera_x, float camera_y) {
-	if(sprite) {
+	if (sprite) {
 			this->sprite->render(0,0);
 	}
 

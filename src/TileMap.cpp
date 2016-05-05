@@ -40,7 +40,7 @@ void TileMap::load(std::string mapPath) {
 
     // Opens the file indicating the read
     FILE* mapFile = fopen(mapPath.c_str(), "r");
-    if(mapFile == NULL) {
+    if (mapFile == NULL) {
         return;
     }
     int index = 0;

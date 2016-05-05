@@ -243,7 +243,7 @@ void Tile::setClickableTiles(Tile *origin, int reach, bool considerBlock, bool c
 			}
 
 			else if (considerBlock)	{
-				if(tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater")	{
+				if (tile->getBlock()->getType() == "BlockSand" || tile->getBlock()->getType() == "BlockWater")	{
 					//Do nothing
 				}
 

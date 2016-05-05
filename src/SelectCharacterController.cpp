@@ -138,27 +138,27 @@ void SelectCharacterController::render(float camera_x, float camera_y){
 
 	stringstream sstimer;
 	sstimer << (int)this->timer/1000;
-	if(sstimer.str() == "5")
+	if (sstimer.str() == "5")
 	{
 		five->render(375,325);
 	}
-	else if(sstimer.str() == "4")
+	else if (sstimer.str() == "4")
 	{
 		four->render(375,325);
 	}
-	else if(sstimer.str() == "3")
+	else if (sstimer.str() == "3")
 	{
 		three->render(375,325);
 	}
-	else if(sstimer.str() == "2")
+	else if (sstimer.str() == "2")
 	{
 		two->render(375,325);
 	}
-	else if(sstimer.str() == "1")
+	else if (sstimer.str() == "1")
 	{
 		one->render(375,325);
 	}
-	else if(sstimer.str() == "0")
+	else if (sstimer.str() == "0")
 	{
 		zero->render(375,325);
 	}
@@ -171,36 +171,36 @@ int SelectCharacterController::update(int dt){
 
 	if(!locked)
 	{
-		if(currentPressed == -1 ||opponentPressed == -1)
+		if (currentPressed == -1 ||opponentPressed == -1)
 		{
-		if(timer > 0)
+		if (timer > 0)
 			timer -= dt;
 		else
 			timer = 0;
 		}
-		if(timer == 0 && currentPressed == -1)
+		if (timer == 0 && currentPressed == -1)
 		{
-			if(currentOnTop == -1)
+			if (currentOnTop == -1)
 			{
 				srand (time(NULL));
 				int random = (rand()%2)+1;
 				currentPressed = random;
-				if(random == 1)
+				if (random == 1)
 				{
 					send_message("OnPressAlan", "-1");
 				}
-				else if(random == 2)
+				else if (random == 2)
 				{
 					send_message("OnPressSuti", "-1");
 				}
 			}else
 			{
-				if(currentOnTop == 1)
+				if (currentOnTop == 1)
 				{
 					currentPressed = 1;
 					send_message("OnPressAlan", "-1");
 				}
-				else if(currentOnTop == 2)
+				else if (currentOnTop == 2)
 				{
 					currentPressed = 2;
 					send_message("OnPressSuti", "-1");
@@ -208,9 +208,9 @@ int SelectCharacterController::update(int dt){
 			}
 		}
 
-		if(timer > 0)
+		if (timer > 0)
 			{
-			if(alan->is_on_top() && currentPressed == -1 && currentOnTop != 1)
+			if (alan->is_on_top() && currentPressed == -1 && currentOnTop != 1)
 			{
 				currentOnTop = 1;
 				xBoard = alan->getX();
@@ -218,7 +218,7 @@ int SelectCharacterController::update(int dt){
 				send_message("OnTopAlan", "-1");
 			}
 
-			if(suti->is_on_top() && currentPressed == -1 && currentOnTop != 2)
+			if (suti->is_on_top() && currentPressed == -1 && currentOnTop != 2)
 			{
 				currentOnTop = 2;
 				xBoard = suti->getX();
@@ -227,14 +227,14 @@ int SelectCharacterController::update(int dt){
 			}
 
 
-			if(alan->is_pressed() && currentPressed == -1)
+			if (alan->is_pressed() && currentPressed == -1)
 			{
 				currentPressed = 1;
 				xBoard = alan->getX();
 				yBoard = alan->getY();
 				send_message("OnPressAlan", "-1");
 			}
-			if(suti->is_pressed() && currentPressed == -1)
+			if (suti->is_pressed() && currentPressed == -1)
 			{
 				currentPressed = 2;
 				xBoard = suti->getX();
@@ -244,20 +244,20 @@ int SelectCharacterController::update(int dt){
 		}
 	}
 
-	if(currentPressed != -1 && opponentPressed != -1 && !change_scene)
+	if (currentPressed != -1 && opponentPressed != -1 && !change_scene)
 	{
 		change_scene = true;
-		if(Network::get_id() == 1)
+		if (Network::get_id() == 1)
 		{
 			Network::player_1_selection = currentPressed;
 			Network::player_2_selection = opponentPressed;
 		}
-		if(Network::get_id() == 2)
+		if (Network::get_id() == 2)
 		{
 			Network::player_1_selection = opponentPressed;
 			Network::player_2_selection = currentPressed;
 		}
-		if(GameManager::currentScene->change_scene("SceneSelectMap") == 1)
+		if (GameManager::currentScene->change_scene("SceneSelectMap") == 1)
 							GameManager::fadeScreen->fade_in(1,2);
 	}
 
@@ -272,7 +272,7 @@ int SelectCharacterController::update(int dt){
 void SelectCharacterController::receive_message()
 {
 	string message = Network::read_message();
-	if(message == "")
+	if (message == "")
 		return;
 
 	istringstream iss(message);
@@ -284,25 +284,25 @@ void SelectCharacterController::receive_message()
 	iss >> info;
 
 
-	if(action == "OnTopAlan")
+	if (action == "OnTopAlan")
 	{
 		opponentOnTop = 1;
 	}
 	else
-	if(action == "OnTopSuti")
+	if (action == "OnTopSuti")
 	{
 		opponentOnTop  = 2;
 	}
 	else
-	if(action == "OnPressAlan")
+	if (action == "OnPressAlan")
 	{
 		opponentPressed = 1;
 	}
-	if(action == "OnPressSuti")
+	if (action == "OnPressSuti")
 	{
 		opponentPressed = 2;
 	}
-	if(action == "Loaded")
+	if (action == "Loaded")
 	{
 		locked = false;
 	}

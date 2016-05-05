@@ -29,9 +29,9 @@ AudioHandler::~AudioHandler()  {
 	Mix_FreeMusic(current_music);
 	Mix_CloseAudio();
 	Mix_Quit();
-	if(this->current_music)
+	if (this->current_music)
 		Mix_FreeMusic(this->current_music);
-	if(this->current_effect)
+	if (this->current_effect)
 		Mix_FreeChunk(this->current_effect);
 }
 

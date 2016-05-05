@@ -37,7 +37,7 @@ Button::~Button() {
 
 
 void Button::render(float camera_x, float camera_y){
-	if(this->current_sprite) {
+	if (this->current_sprite) {
 		this->current_sprite->render(this->x - camera_x,this->y - camera_y);
 	}
 }

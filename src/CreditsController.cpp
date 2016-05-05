@@ -43,11 +43,11 @@ void CreditsController::mouse_ouver(Button *bt){
 
 void CreditsController::mouse_pressed(Button *bt,string scene){
 
-	if(input->is_mouse_pressed(1) && bt->inside_button() == 1)
+	if (input->is_mouse_pressed(1) && bt->inside_button() == 1)
 	{
 		bt->mouse_pressed(true);
 
-		if(bt->getChangeScene())
+		if (bt->getChangeScene())
 		{
 			change_scene(scene);
 		}
@@ -59,6 +59,6 @@ void CreditsController::mouse_pressed(Button *bt,string scene){
 }
 
 void CreditsController::change_scene(string nextScene){
-	if(GameManager::currentScene->change_scene(nextScene) == 1)
+	if (GameManager::currentScene->change_scene(nextScene) == 1)
 		GameManager::fadeScreen->fade_in(1,0.2);
 }

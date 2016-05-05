@@ -94,11 +94,11 @@ int Sprite::getAlpha() {
 }
 
 void Sprite::setAlpha(int alpha) {
-	if(alpha < 0) {
+	if (alpha < 0) {
 			alpha = 0;
 	}
 
-	else if(alpha > 255) {
+	else if (alpha > 255) {
 		alpha = 255;
 	}
 

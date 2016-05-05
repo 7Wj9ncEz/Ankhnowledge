@@ -69,21 +69,21 @@ void InputManager::Update(){
 }
 
 bool InputManager::is_key_down(int key){
-	if(keyDown[key])
+	if (keyDown[key])
 		return true;
 
 	return false;
 }
 
 bool InputManager::is_key_up(int key){
-	if(keyUp[key])
+	if (keyUp[key])
 		return true;
 
 	return false;
 }
 
 bool InputManager::is_mouse_down(int key){
-	if(mouseDown[key]){
+	if (mouseDown[key]){
 		std::cout<<key<<std::endl;
 		return true;
 	}
@@ -92,27 +92,27 @@ bool InputManager::is_mouse_down(int key){
 }
 
 bool InputManager::is_mouse_up(int key){
-	if(mouseUp[key])
+	if (mouseUp[key])
 		return true;
 
 	return false;
 }
 
 bool InputManager::is_key_pressed(int key){
-	if(keyboard[key])
+	if (keyboard[key])
 		return true;
 
 	return false;
 }
 
 bool InputManager::is_mouse_pressed(Uint8 button){
-	if(mouse&SDL_BUTTON(button))
+	if (mouse&SDL_BUTTON(button))
 		return true;
 	return false;
 }
 
 bool InputManager::is_mouse_inside(SDL_Rect * rect){
-	if(mouse_x <= (rect->x+rect->w) && mouse_x >= rect->x && mouse_y <= (rect->y+rect->h) && mouse_y >= rect->y)
+	if (mouse_x <= (rect->x+rect->w) && mouse_x >= rect->x && mouse_y <= (rect->y+rect->h) && mouse_y >= rect->y)
 		return true;
 
 	return false;

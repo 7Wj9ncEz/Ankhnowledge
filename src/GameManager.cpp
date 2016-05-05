@@ -112,13 +112,13 @@ void GameManager::initResources(){
 void GameManager::processEvents(){
 	// procura um event
 	input->Update();
-	if(input->QuitGame()){
+	if (input->QuitGame()){
 		SDL_Event quit;
 		quit.type = SDL_QUIT;
 		SDL_PushEvent( &quit );
 	}
 
-	if(input->is_key_down(SDLK_ESCAPE) && escPressed == false){	
+	if (input->is_key_down(SDLK_ESCAPE) && escPressed == false){	
 		// se a tecla ESC foi pressionada, sair do programa
 		renderQuitBox = true;
 		escPressed = true;
@@ -165,7 +165,7 @@ void GameManager::update(int dt){
     		SDL_PushEvent( &quit );
 	}
 	
-	if(renderQuitBox)
+	if (renderQuitBox)
 	{
 		mb->update(dt);
 		if (mb->confirmPressed())
@@ -191,7 +191,7 @@ void GameManager::update(int dt){
 
 void GameManager::render(float camera_x, float camera_y){
 	currentScene->render(0,0);
-	if(renderQuitBox)		
+	if (renderQuitBox)		
 		mb->render(0,0);
 	fadeScreen->render(0,0);
 }
@@ -203,7 +203,7 @@ void GameManager::run(){
 		frame_start = SDL_GetTicks();
 		dt = frame_start - frameEnd;
 
-		if(currentScene->should_change_scene() && fadeScreen->isFaded())
+		if (currentScene->should_change_scene() && fadeScreen->isFaded())
 		{
 			currentScene->Exit();
 			currentScene = currentScene->getNextScene();
@@ -212,7 +212,7 @@ void GameManager::run(){
 
 
 
-		if(dt >= 1000/30){
+		if (dt >= 1000/30){
 			/* Captura de Input*/
 			processEvents();
 

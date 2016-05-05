@@ -19,7 +19,7 @@ int FadeScreen::update(int dt){
 }
 
 void FadeScreen::render(float camera_x, float camera_y){
-	if(sprite)
+	if (sprite)
 		this->sprite->render(0,0);
 
 		//Mudar isso quando tiver uma imagem com as dimensoes certas
@@ -28,7 +28,7 @@ void FadeScreen::render(float camera_x, float camera_y){
 
 bool FadeScreen::isFaded()
 {
-	if(fadeHandler->get_current_percentage() == 1)
+	if (fadeHandler->get_current_percentage() == 1)
 		return true;
 
 	return false;

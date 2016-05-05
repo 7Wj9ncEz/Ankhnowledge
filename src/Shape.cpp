@@ -13,7 +13,7 @@ Shape::Shape() {
 }
 
 Shape::~Shape() {
-	if(surface){
+	if (surface){
 		SDL_FreeSurface(surface);
 	}
 }

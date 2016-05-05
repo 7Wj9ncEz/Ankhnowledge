@@ -1,8 +1,7 @@
 /*
  * SceneLegal.cpp
  *
- *  Created on: Oct 8, 2013
- *      Author: makoto
+ * Classes that creates the "LegalScene" for the user
  */
 
 #include "SceneLegal.h"
@@ -14,8 +13,10 @@ SceneLegal::SceneLegal(string scene_name) : Scene (scene_name) {
 SceneLegal::~SceneLegal() {
 }
 
-void SceneLegal::Enter()
-{
+/**
+ * Shows on the screen the LegalScene with it's sprites
+**/
+void SceneLegal::Enter() {
 	this->splashSprite = new Sprite(SDLBase::resourcesPath + "splashlegal.png");
 	string nextScene = "SceneMainMenu" ;
 	SplashScreen * splashScreen =  new SplashScreen(splashSprite,nextScene);
@@ -23,8 +24,9 @@ void SceneLegal::Enter()
 	GameManager::fadeScreen->fade_out(0,2);
 }
 
-void SceneLegal::Exit()
-{
+/**
+ * Cleans all the objects in the "Legal Scene"
+**/
+void SceneLegal::Exit() {
 	this->clean_game_objects();
 }
-

@@ -47,7 +47,7 @@ SDL_Surface* SDLBase::loadImage(std::string arquivo){
 	SDL_Surface *surface = NULL;
 		SDL_Surface *surtemp;
 		surface = IMG_Load(arquivo.c_str());
-		if(surface->format->Amask){
+		if (surface->format->Amask){
 			surtemp = SDL_DisplayFormatAlpha(surface);
 
 		}else{

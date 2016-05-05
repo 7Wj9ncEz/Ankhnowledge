@@ -3720,7 +3720,7 @@ for ac_symprfx in "" "_"; do
 "     /Section length .*#relocs.*(pick any)/{hide[last_section]=1};"\
 "     \$ 0!~/External *\|/{next};"\
 "     / 0+ UNDEF /{next}; / UNDEF \([^|]\)*()/{next};"\
-"     {if(hide[section]) next};"\
+"     {if (hide[section]) next};"\
 "     {f=0}; \$ 0~/\(\).*\|/{f=1}; {printf f ? \"T \" : \"D \"};"\
 "     {split(\$ 0, a, /\||\r/); split(a[2], s)};"\
 "     s[1]~/^[@?]/{print s[1], s[1]; next};"\

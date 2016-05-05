@@ -27,7 +27,7 @@ void BlockMovable::render(float camerax, float cameray) {
 int BlockMovable::update(int dt) {
 	interpolateMovement(dt);
 
-	if(this->anim_destroyed)
+	if (this->anim_destroyed)
 	{
 		animation->update(dt,false,0,false);
 		if (animation->get_finished_animation()) {
@@ -49,7 +49,7 @@ void BlockMovable::reaction(Character * character) {
 	character->incrementDiscountStamina(2);
 	Tile * nextTile = 0;
 
-	if(character->getCurrentTile()->getRightTile() == get_tile()) {
+	if (character->getCurrentTile()->getRightTile() == get_tile()) {
 		dir = right;
 		nextTile = get_tile()->getRightTile();
 	}

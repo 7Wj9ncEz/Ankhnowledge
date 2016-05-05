@@ -73,21 +73,21 @@ MessageBox::~MessageBox(){
 
 void MessageBox::render(float camera_x, float camera_y){
 	box->render(x,y);
-	if(boxInput)
+	if (boxInput)
 		boxInput->render(this->boxInputX,this->boxInputY + 30);	
-	if(confirm)
+	if (confirm)
 		confirm->render(0,0);
 
-	if(cancel)
+	if (cancel)
 		cancel->render(0,0);
-	if(renderCursorAnim)
+	if (renderCursorAnim)
 		this->cursor->animate(100, boxInputX + 9 + incCursor,boxInputY + 30);
 	
 }
 
 int MessageBox::update(int dt){
 	
-	if(confirm)
+	if (confirm)
 	{
 		mouse_ouver(confirm);
 		buttonPressed(confirm,"confirm");
@@ -95,13 +95,13 @@ int MessageBox::update(int dt){
 		
 	}
 
-	if(cancel)
+	if (cancel)
 	{
 		mouse_ouver(cancel);
 		buttonPressed(cancel,"cancel");
 		cancel->update(dt);
 	}
-	if(renderCursorAnim)
+	if (renderCursorAnim)
 		cursor->update(dt, true,0,0);
 
 return 0;
@@ -116,7 +116,7 @@ void MessageBox::buttonPressed(Button *bt, string buttonName){
 if((input->is_mouse_pressed(1)) && (bt->inside_button()) == 1)
 {
 	bt->mouse_pressed(true);
-	if(buttonName == "confirm")
+	if (buttonName == "confirm")
 		confirmPress = true;
 	else
 		cancelPress = true;
@@ -171,6 +171,6 @@ void MessageBox::increaseCursor(float inc){
 void MessageBox::decreaseCursor(float inc){
 	float tempInc = incCursor;	
 	incCursor -= inc;
-	if(incCursor < 0)
+	if (incCursor < 0)
 		incCursor = tempInc;
 }

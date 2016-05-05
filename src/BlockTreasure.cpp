@@ -28,7 +28,7 @@ void BlockTreasure::render(float camera_x,float camera_y) {
 
 int BlockTreasure::update(int dt)
 {
-	if(open)
+	if (open)
 	{
 		animation->update(dt,false,0,false);
 		if (GameManager::currentScene->change_scene("SceneSelectCharacter") == 1 && !activated && animation->get_finished_animation() == true) {

@@ -42,7 +42,7 @@ void OptionsController::render(float camera_x, float camera_y){
 	this->soundEffect->render(0,0);
 
 	int currentMusicVolume = ((int)(100*bgVolume->calculateValue()));
-	if(currentMusicVolume != this->musicVolume)
+	if (currentMusicVolume != this->musicVolume)
 	{
 		AudioHandler * audio = AudioHandler::getInstance();
 		audio->set_music_volume(currentMusicVolume);
@@ -51,7 +51,7 @@ void OptionsController::render(float camera_x, float camera_y){
 	}
 
 	int currentEffectVolume = ((int)(100*soundEffect->calculateValue()));
-	if(currentEffectVolume != this->effectVolume)
+	if (currentEffectVolume != this->effectVolume)
 	{
 		AudioHandler * audio = AudioHandler::getInstance();
 		audio->set_effect_volume(currentEffectVolume);
@@ -75,11 +75,11 @@ int OptionsController::update(int dt){
 	mouse_ouver(back);
 	mouse_pressed(back,"SceneMainMenu");
 	this->back->update(dt);
-	if(soundEffect->getSlideButton()== false)
+	if (soundEffect->getSlideButton()== false)
 	{	
 		this->bgVolume->update(dt);
 	}
-	if(bgVolume->getSlideButton() == false)
+	if (bgVolume->getSlideButton() == false)
 	{	
 		this->soundEffect->update(dt);
 	}
@@ -92,11 +92,11 @@ void OptionsController::mouse_ouver(Button *bt){
 
 void OptionsController::mouse_pressed(Button *bt,string scene){
 
-	if(input->is_mouse_pressed(1) && bt->inside_button() == 1)
+	if (input->is_mouse_pressed(1) && bt->inside_button() == 1)
 	{
 		bt->mouse_pressed(true);
 
-		if(bt->getChangeScene())
+		if (bt->getChangeScene())
 		{
 			change_scene(scene);
 		}
@@ -108,6 +108,6 @@ void OptionsController::mouse_pressed(Button *bt,string scene){
 }
 
 void OptionsController::change_scene(string nextScene){
-	if(GameManager::currentScene->change_scene(nextScene) == 1)
+	if (GameManager::currentScene->change_scene(nextScene) == 1)
 		GameManager::fadeScreen->fade_in(1,0.2);
 }
