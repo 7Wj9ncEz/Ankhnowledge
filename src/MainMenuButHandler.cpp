@@ -2,9 +2,6 @@
  * MainMenuButHandler.cpp
  *
  * Responsible by creating all MainMenu Button Sprites.
- *
- *  Created on: Oct 9, 2013
- *      Author: al
  */
 
 #include "MainMenuButHandler.h"
@@ -160,13 +157,28 @@ void MainMenuButHandler::render(float camera_x, float camera_y){
 	this->creditsButton->render(0,0);
 	this->quitButton->render(0,0);
 
-	if (tryToConnect)
+	if (tryToConnect) {
 		renderConnect();
+	}
+
+	else {
+		// Nothing to do
+	}
 	
-	if (host)
+	if (host) {
 		renderWaiting();
+	}
+	
+	else {
+		// Nothing to do
+	}
+	
 	if (Network::disconnected)
 		renderDisconnect();
+		
+	else {
+		// Nothing to do
+	}
 }
 
 int MainMenuButHandler::update(int dt){
@@ -187,16 +199,27 @@ int MainMenuButHandler::update(int dt){
 	this->creditsButton->update(dt);
 	this->quitButton->update(dt);
 	
-	if (tryToConnect)
+	if (tryToConnect) {
 		updateConnect(dt);
+	}
+	
+	else {
+		// Nothing to do
+	}
 	updateDisconnect(dt);
 	updateWaiting(dt);
 
-	if (Network::connected && thread)
-	{
+	if (Network::connected && thread) {
 		Network::receive_thread();
-		if (GameManager::currentScene->change_scene("SceneSelectCharacter") == 1)
+		
+		if (GameManager::currentScene->change_scene("SceneSelectCharacter") == 1) {
 			GameManager::fadeScreen->fade_in(1,2);
+		}
+		
+		else {
+			// Nothing to do
+		}
+		
 		thread = false;
 		clickOtherButtons = true;
 	}
@@ -205,50 +228,60 @@ int MainMenuButHandler::update(int dt){
 
 void MainMenuButHandler::mouse_ouver(Button *bt){
 	bt->setMouseCoord(input->mouse_pos_x(),input->mouse_pos_y());
-	if((bt->inside_button() == 1) && (clickOtherButtons == false))
+	if ((bt->inside_button() == 1) && (clickOtherButtons == false)) {
 		bt->setChangeSprite(1);
-
+	}
+	
+	else {
+		// Nothing to do
+	}
 }
 
 void MainMenuButHandler::mouse_pressed(Button *bt,string scene){
 
 	
 
-	if((input->is_mouse_pressed(1)) && (bt->inside_button()) == 1 && (clickOtherButtons == true))
-	{
+	if ((input->is_mouse_pressed(1)) && (bt->inside_button()) == 1 && (clickOtherButtons == true)) {
 		bt->mouse_pressed(true);
 
-		if (bt == hostButton)
-		{
-			if(!host){
+		if (bt == hostButton) {
+			if (!host) {
 				Network::cancel = false;
 				Network::host();
 				host = true;
 				thread = true;
 				clickOtherButtons = false;
 			}
-		}else
+		}
+		
+		else {
+			// Nothing to do
+		}
 
-		if (scene.compare("Quit") == 0){
+		if (scene.compare("Quit") == 0) {
 			SDL_Event quit;
 		    quit.type = SDL_QUIT;
 			SDL_PushEvent( &quit );
 		}
-		else if (scene.compare("SceneConnect") == 0)
-		{
+		
+		else if (scene.compare("SceneConnect") == 0) {
 			tryToConnect = true;
 			clickOtherButtons = false;
 			bt->setChangeSprite(0);
 		}
-		else if (bt->getChangeScene())
-		{
+		
+		else if (bt->getChangeScene()) {
 			change_scene(scene);
 			clickOtherButtons = false;
 			bt->setChangeSprite(0);
 		}
+		
+		else {
+			// Nothing to do
+		}
 	}
-	else
-	{
+	
+	else {
 		bt->mouse_pressed(false);
 	}
 }
@@ -257,82 +290,100 @@ void MainMenuButHandler::renderConnect(){
 	clickOtherButtons = false;
 	connectBox->render(0,0);
 
-	if (message.size() != 0)
-	{
-	SDLBase::renderText(font, message ,color,boxInputX + 10,boxInputY + 15);
-	}
-	else if (read){
-		connectBox->renderCursor();
-	}
-
-	if (renderConnectError)
-	{
-		SDLBase::renderText(font, "It wasn't possible to connect. Try again.",color,boxInputX - 65,boxInputY - 73);
-		
+	if (message.size() != 0) {
+		SDLBase::renderText(font, message , color, boxInputX + 10, boxInputY + 15);
 	}
 	
+	else if (read) {
+		connectBox->renderCursor();
+	}
+	
+	else {
+		// Nothing to do
+	}
+
+	if (renderConnectError) {
+		SDLBase::renderText(font, "It wasn't possible to connect. Try again.",color,boxInputX - 65,boxInputY - 73);
+	}
+	
+	else {
+		// Nothing to do
+	}
 
 }
 
-void MainMenuButHandler::renderDisconnect(){
+void MainMenuButHandler::renderDisconnect() {
 	clickOtherButtons = false;
 	disconnectBox->render(0,0);
-
 }
 
-void MainMenuButHandler::renderWaiting(){
+void MainMenuButHandler::renderWaiting() {
 	clickOtherButtons = false;
 	waitingBox->render(0,0);
 	waitAnim->animate(100,260,260);
 }
 
-bool MainMenuButHandler::isInsideBox(MessageBox* messageBox){
+bool MainMenuButHandler::isInsideBox(MessageBox* messageBox) {
 	return connectBox->isInsideBox();
 }
 
-void MainMenuButHandler::updateConnect(int dt){
+void MainMenuButHandler::updateConnect(int dt) {
 	clickOtherButtons = false;
-	if (isInsideBox(connectBox) == true && (input->is_mouse_pressed(1)))
-	{
+	if (isInsideBox(connectBox) == true && (input->is_mouse_pressed(1))) {
 		read = true;
 		connectBox->activateCursor();
 	}
-	else if (isInsideBox(connectBox) == false && (input->is_mouse_pressed(1)))
-	{
+	
+	else if (isInsideBox(connectBox) == false && (input->is_mouse_pressed(1))) {
 		read = false;
 		connectBox->deactivateCursor();
 	}
+	
+	else {
+		// Nothing to do
+	}
 
-	if (read)
-	{
-		if (message.size() < 15)
-		{
+	if (read) {
+		if (message.size() < 15) {
 			readInput();
 		}
-		else
-		{
+		
+		else {
 			backspace();
 		}
 	}
 	connectBox->update(dt);
-	if (connectBox->confirmPressed())
-	{
-		if(!Network::connected)
-		{
+	if (connectBox->confirmPressed()) {
+		if(!Network::connected) {
 			connectBox->deactivateConfirm();
-		  	if (Network::connect(message) == 0)
-			{
+		  	if (Network::connect(message) == 0) {
 				renderConnectError = false;
 				Network::receive_thread();
-				if (GameManager::currentScene->change_scene("SceneSelectCharacter") == 1)
-				GameManager::fadeScreen->fade_in(1,2);											  
+				if (GameManager::currentScene->change_scene("SceneSelectCharacter") == 1) {
+					GameManager::fadeScreen->fade_in(1,2);
+				}
+				
+				else {
+					// Nothing to do
+				}
 			}
-			else if (Network::connect(message) == -1) 
-			{
+			
+			else if (Network::connect(message) == -1) {
 				renderConnectError = true;
 			}
 			
+			else {
+				// Nothing to do
+			}
 		}
+		
+		else {
+			// Nothing to do
+		}
+	}
+	
+	else {
+		// Nothing to do
 	}
 
 	
@@ -341,21 +392,21 @@ void MainMenuButHandler::updateConnect(int dt){
 
 void MainMenuButHandler::updateDisconnect(int dt){
 	disconnectBox->update(dt);
-	if (disconnectBox->confirmPressed())
-	{
+	if (disconnectBox->confirmPressed()) {
 		Network::disconnected = false;
 		clickOtherButtons = true;
 	}
-
+	
+	else {
+		// Nothing to do
+	}
 }
 
 void MainMenuButHandler::updateWaiting(int dt){
 	waitAnim->update(dt,true,0, false);
-	if (SDL_mutexP(Network::mutex2) == 0)
-	{
+	if (SDL_mutexP(Network::mutex2) == 0) {
 		waitingBox->update(dt);
-		if (waitingBox->confirmPressed() && !Network::cancel)
-		{
+		if (waitingBox->confirmPressed() && !Network::cancel) {
 			clickOtherButtons = true;
 			host = false;
 			thread = false;
@@ -363,87 +414,137 @@ void MainMenuButHandler::updateWaiting(int dt){
 			Network::cancel = true;
 			waitingBox->deactivateConfirm();
 		}
+		
+		else {
+			// Nothing to do
+		}
 
 			SDL_mutexV(Network::mutex2);
+	}
+	
+	else {
+		// Nothing to do
 	}
 }
 
 void MainMenuButHandler::readInput(){
-	if (input->is_key_up(SDLK_0))
-	{
+	if (input->is_key_up(SDLK_0)) {
 		message = message + "0";
 		connectBox->increaseCursor(18);		
 		sizeMessage++;
 	}
-	if (input->is_key_up(SDLK_1))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_1)) {
 		message = message + "1";
 		connectBox->increaseCursor(8.1);	
 		sizeMessage++;	
 	}
-	if (input->is_key_up(SDLK_2))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_2)) {
 		message = message + "2";
 		connectBox->increaseCursor(14);	
 		sizeMessage++;	
 	}
-	if (input->is_key_up(SDLK_3))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_3)) {
 		message = message + "3";
 		connectBox->increaseCursor(15);		
 		sizeMessage++;
 	}
-	if (input->is_key_up(SDLK_4))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_4)) {
 		message = message + "4";
 		connectBox->increaseCursor(17);	
 		sizeMessage++;	
 	}
-	if (input->is_key_up(SDLK_5))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_5)) {
 		message = message + "5";
 		connectBox->increaseCursor(15);	
 		sizeMessage++;	
 	}
-	if (input->is_key_up(SDLK_6))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_6)) {
 		message = message + "6";
 		connectBox->increaseCursor(16);	
 		sizeMessage++;	
 	}
-	if (input->is_key_up(SDLK_7))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_7)) {
 		message = message + "7";
 		connectBox->increaseCursor(15);	
 		sizeMessage++;	
 	}
-	if (input->is_key_up(SDLK_8))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_8)) {
 		message = message + "8";
 		connectBox->increaseCursor(15);	
 		sizeMessage++;	
 	}
-	if (input->is_key_up(SDLK_9))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_9)) {
 		message = message + "9";
 		connectBox->increaseCursor(16);	
 		sizeMessage++;	
 	}
-	if (input->is_key_up(SDLK_PERIOD))
-	{
+	
+	else {
+		// Nothing to do
+	}
+	
+	if (input->is_key_up(SDLK_PERIOD)) {
 		message = message + ".";
 		connectBox->increaseCursor(6);	
 		sizeMessage++;	
 	}
+	
+	else {
+		// Nothing to do
+	}
+	
 	backspace();
 }
 
 void MainMenuButHandler::backspace(){
 	string lastNumber;
-	if (input->is_key_up(SDLK_BACKSPACE) && (sizeMessage > 0 || sizeMessage == 0))
-	{
-		if (sizeMessage != 0)
-		{
+	if (input->is_key_up(SDLK_BACKSPACE) && (sizeMessage > 0 || sizeMessage == 0)) {
+		if (sizeMessage != 0) {
 			stringstream ss;
 			char lastChar = message.at(sizeMessage - 1);
 			ss << lastChar;
@@ -451,56 +552,68 @@ void MainMenuButHandler::backspace(){
 			message = message.substr(0, message.size()-1);
 			sizeMessage--;
 		}
+		
+		else {
+			// Nothing to do
+		}
 	
-		if( lastNumber == "1")
-		{
+		if( lastNumber == "1") {
 			connectBox->decreaseCursor(8.1);		
 		}
-		else if( lastNumber == "2")
-		{
+		
+		else if( lastNumber == "2") {
 			connectBox->decreaseCursor(14);		
 		}
-		else if( lastNumber == "3")
-		{
+		
+		else if( lastNumber == "3") {
 			connectBox->decreaseCursor(15);		
 		}
-		else if( lastNumber == "4")
-		{
+		
+		else if( lastNumber == "4") {
 			connectBox->decreaseCursor(17);		
 		}
-		else if( lastNumber == "5")
-		{
+		
+		else if( lastNumber == "5") {
 			connectBox->decreaseCursor(15);		
 		}
-		else if( lastNumber == "6")
-		{
+		
+		else if( lastNumber == "6") {
 			connectBox->decreaseCursor(16);		
 		}
-		else if( lastNumber == "7")
-		{
+		
+		else if( lastNumber == "7") {
 			connectBox->decreaseCursor(15);		
 		}
-		else if( lastNumber == "8")
-		{
+		
+		else if( lastNumber == "8") {
 			connectBox->decreaseCursor(15);		
 		}
-		else if( lastNumber == "9")
-		{
+		
+		else if( lastNumber == "9") {
 			connectBox->decreaseCursor(16);		
 		}
-		else if( lastNumber == "0")
-		{
+		
+		else if( lastNumber == "0") {
 			connectBox->decreaseCursor(18);		
 		}
-		else
-		{
+		
+		else {
 			connectBox->decreaseCursor(6);
 		}
+	}
+	
+	else {
+		// Nothing to do
 	}
 }
 
 void MainMenuButHandler::change_scene(string nextScene){
-	if (GameManager::currentScene->change_scene(nextScene) == 1)
+	if (GameManager::currentScene->change_scene(nextScene) == 1) {
 		GameManager::fadeScreen->fade_in(1,0.2);
+	}
+	
+	else {
+		// Nothing to do
+	}
 }
 
