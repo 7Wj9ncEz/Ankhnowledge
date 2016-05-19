@@ -27,7 +27,7 @@ public:
 	static int getTime();
 	static string resourcesPath;
 	static void initializeSDLTTF();
-	static TTF_Font* loadFont(const char* fontName,int size);
+	static TTF_Font* loadFont(const char* font_name,int size);
 	static void renderText(TTF_Font*font,string text,SDL_Color color,float x,float y);
 private:
 	static SDL_Surface* screen;

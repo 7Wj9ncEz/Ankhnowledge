@@ -3,9 +3,6 @@
  *
  *  Class handles the rendering of all animations used.
  *
- *  Created on: Oct 27, 2013
- *      Author: al
- *
  */
 
 #include "Animation.h"
