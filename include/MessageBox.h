@@ -25,7 +25,7 @@ public:
 	int update(int dt);
 	void buttonPressed(Button *button, string buttonName);
 	void mouse_ouver(Button *bt);
-	bool confirmPressed();
+	bool confirm_pressed();
 	bool cancelPressed();
 	void deactivateCancel();
 	void deactivateConfirm();

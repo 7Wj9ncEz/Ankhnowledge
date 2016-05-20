@@ -10,23 +10,22 @@
 
 Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int direction) {
 
-  // Asserts
-  assert(sprite != NULL);
-  assert(sprite_width >= 0);
-  assert(sprite_height >= 0);
+    // Asserts
+    assert(sprite != NULL);
+    assert(sprite_width >= 0);
+    assert(sprite_height >= 0);
 
-  // Makes a new sprite instance
-  this->animation = sprite;
-  this->sprite_width = sprite_width;
-  this->sprite_height = sprite_height;
-  this->columns =  animation->getWidth() / sprite_width;
-  this->dt = 0;
-  this->start_frame = direction * columns;
-  this->previous_direction = direction;
-  this->current_frame = start_frame;
-  this->animate_sprite = true;
-  this->finished_animation = false;
-
+    // Makes a new sprite instance
+    this->animation = sprite;
+    this->sprite_width = sprite_width;
+    this->sprite_height = sprite_height;
+    this->columns =  animation->getWidth() / sprite_width;
+    this->dt = 0;
+    this->start_frame = direction * columns;
+    this->previous_direction = direction;
+    this->current_frame = start_frame;
+    this->animate_sprite = true;
+    this->finished_animation = false;
 }
 
 Animation::~Animation() {
@@ -45,10 +44,10 @@ Animation::~Animation() {
 **/
 void Animation::render(int index, float pos_x, float pos_y) {
 
-  // Asserts
-  assert(index >= 0);
-  assert(pos_x >= 0);
-  assert(pos_y >= 0);
+    // Asserts
+    assert(index >= 0);
+    assert(pos_x >= 0);
+    assert(pos_y >= 0);
 
 	int x = index % columns;
 	int y = index / columns;
@@ -62,11 +61,13 @@ void Animation::render(int index, float pos_x, float pos_y) {
 
 void Animation::animate(int frame_rate, float pos_x, float pos_y) {
 
-  // Asserts
-  assert(frame_rate >= 0);
+    // Asserts
+    assert(frame_rate >= 0);
+    assert(pos_x >= 0);
+    assert(pos_y >= 0);
 
-  this->frame_rate = frame_rate;
-	render(current_frame, pos_x, pos_y);
+    this->frame_rate = frame_rate;
+    render(current_frame, pos_x, pos_y);
 }
 
 /**
@@ -80,8 +81,8 @@ void Animation::animate(int frame_rate, float pos_x, float pos_y) {
 **/
 void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
 
-  // Asserts
-  assert(dt >= 0);
+    // Asserts
+    assert(dt >= 0);
 
 	this->dt = this->dt + dt;
 	int last_frame = columns;
@@ -93,38 +94,38 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
 		this->finished_animation = false;
 	}
 
-  else {
-    // Nothing to do
-  }
+    else {
+        // Nothing to do
+    }
 
 	if (single_frame) {
 		last_frame = 1;
 		this->finished_animation = false;
 	}
 
-  else {
-    // Nothing to do
-  }
+    else {
+        // Nothing to do
+    }
 
 	if ((this->dt > frame_rate)) {
-    if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
-			reset_start_frame();
-			finished_animation = false;
+        if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
+    			reset_start_frame();
+    			finished_animation = false;
 		}
 
-    else if ((current_frame == start_frame + last_frame -1) && (on_loop == false)) {
-			this->finished_animation = true;
+        else if ((current_frame == start_frame + last_frame -1) && (on_loop == false)) {
+    			this->finished_animation = true;
 		}
 
 		else {
 			current_frame++;
 			this->dt = 0;
-    }
+        }
 	}
 
-  else {
-    // Nothing to do
-  }
+    else {
+        // Nothing to do
+    }
 }
 
 /**

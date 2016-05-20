@@ -212,8 +212,8 @@ int MainMenuButHandler::update(int dt){
 	if (Network::connected && thread) {
 		Network::receive_thread();
 		
-		if (GameManager::currentScene->change_scene("SceneSelectCharacter") == 1) {
-			GameManager::fadeScreen->fade_in(1,2);
+		if (GameManager::current_scene->change_scene("SceneSelectCharacter") == 1) {
+			GameManager::fade_screen->fade_in(1,2);
 		}
 		
 		else {
@@ -353,14 +353,14 @@ void MainMenuButHandler::updateConnect(int dt) {
 		}
 	}
 	connectBox->update(dt);
-	if (connectBox->confirmPressed()) {
+	if (connectBox->confirm_pressed()) {
 		if(!Network::connected) {
 			connectBox->deactivateConfirm();
 		  	if (Network::connect(message) == 0) {
 				renderConnectError = false;
 				Network::receive_thread();
-				if (GameManager::currentScene->change_scene("SceneSelectCharacter") == 1) {
-					GameManager::fadeScreen->fade_in(1,2);
+				if (GameManager::current_scene->change_scene("SceneSelectCharacter") == 1) {
+					GameManager::fade_screen->fade_in(1,2);
 				}
 				
 				else {
@@ -392,7 +392,7 @@ void MainMenuButHandler::updateConnect(int dt) {
 
 void MainMenuButHandler::updateDisconnect(int dt){
 	disconnectBox->update(dt);
-	if (disconnectBox->confirmPressed()) {
+	if (disconnectBox->confirm_pressed()) {
 		Network::disconnected = false;
 		clickOtherButtons = true;
 	}
@@ -406,7 +406,7 @@ void MainMenuButHandler::updateWaiting(int dt){
 	waitAnim->update(dt,true,0, false);
 	if (SDL_mutexP(Network::mutex2) == 0) {
 		waitingBox->update(dt);
-		if (waitingBox->confirmPressed() && !Network::cancel) {
+		if (waitingBox->confirm_pressed() && !Network::cancel) {
 			clickOtherButtons = true;
 			host = false;
 			thread = false;
@@ -608,8 +608,8 @@ void MainMenuButHandler::backspace(){
 }
 
 void MainMenuButHandler::change_scene(string nextScene){
-	if (GameManager::currentScene->change_scene(nextScene) == 1) {
-		GameManager::fadeScreen->fade_in(1,0.2);
+	if (GameManager::current_scene->change_scene(nextScene) == 1) {
+		GameManager::fade_screen->fade_in(1,0.2);
 	}
 	
 	else {

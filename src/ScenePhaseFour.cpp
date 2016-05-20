@@ -33,7 +33,7 @@ void ScenePhaseFour::Enter() {
 	SplashScreen * splashScreen =  new SplashScreen(splashSprite,nextScene);
 	this->addGameObject(splashScreen);
 	this->addGameObject(map);
-	GameManager::fadeScreen->fade_out(0,2);
+	GameManager::fade_screen->fade_out(0,2);
 }
 
 /**

@@ -108,6 +108,6 @@ void OptionsController::mouse_pressed(Button *bt,string scene){
 }
 
 void OptionsController::change_scene(string nextScene){
-	if (GameManager::currentScene->change_scene(nextScene) == 1)
-		GameManager::fadeScreen->fade_in(1,0.2);
+	if (GameManager::current_scene->change_scene(nextScene) == 1)
+		GameManager::fade_screen->fade_in(1,0.2);
 }

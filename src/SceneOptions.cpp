@@ -25,7 +25,7 @@ void SceneOptions::Enter()
 	this->oc = new OptionsController();
 	this->addGameObject(oc);
 
-	GameManager::fadeScreen->fade_out(0,2);
+	GameManager::fade_screen->fade_out(0,2);
 }
 
 void SceneOptions::render(float camera_x, float camera_y)

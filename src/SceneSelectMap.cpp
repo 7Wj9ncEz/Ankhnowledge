@@ -19,7 +19,7 @@ SceneSelectMap::~SceneSelectMap() {
 void SceneSelectMap::Enter() {
 	cc = new SelectMapController();
 		this->addGameObject(cc);
-	GameManager::fadeScreen->fade_out(0,2);
+	GameManager::fade_screen->fade_out(0,2);
 }
 
 /**

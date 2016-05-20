@@ -156,7 +156,7 @@ void MessageBox::renderCursor(){
 	this->renderCursorAnim = true;
 }
 
-bool MessageBox::confirmPressed(){
+bool MessageBox::confirm_pressed(){
 	return this->confirmPress;
 }
 

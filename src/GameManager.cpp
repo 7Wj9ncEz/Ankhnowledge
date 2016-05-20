@@ -5,16 +5,16 @@
 #include <sstream>
 using namespace std;
 
-FadeScreen * GameManager::fadeScreen = 0;
-Scene * GameManager::currentScene = 0;
+FadeScreen * GameManager::fade_screen = 0;
+Scene * GameManager::current_scene = 0;
 string SDLBase::resourcesPath = getenv("HOME");
 
-/*
- * Construtor da Classe
- * Antes de carregar a imagem e necessario inicialiar o SDL, uma vez que o construtor
- * do Sprite faz uso do metodo SDLBase::loadImage(char * arquivo), que faz uso das
- * funcoes SDL_DisplayFormat e SDL_DisplayFormaAlpha. Funcoes estas que precisam
- */
+/**
+ * Class Constructor
+ * Before loading an image itś necessary to initialize the SDL
+ * Once the Sprite constructor uses the function SDLBase::loadImage(char *file)
+ * That uses the functions SDL_DisplayFormar and SDL_DisplayFormaAlpha
+**/
 GameManager::GameManager() {
 	SDLBase::resourcesPath = SDLBase::resourcesPath + "/../../usr/local/Ankhnowledge/resources/";
 	SDLBase::initializeSDL();
@@ -22,9 +22,9 @@ GameManager::GameManager() {
 
 }
 
-/*
- * Destrutor da Clase
- */
+/**
+ * Class Destructor
+ **/
 GameManager::~GameManager() {
 	delete splashLogo;
 	delete splashTechnology;
@@ -40,7 +40,9 @@ GameManager::~GameManager() {
 	delete splashSelectCharacter;
 }
 
-//Metodo que inicializa os objetos (recursos) do jogo
+/**
+ * Function that initializes the objects (resources) in the game
+**/
 void GameManager::initResources(){
 
 	this->splashLogo = new SceneLogo("SceneLogo");
@@ -59,7 +61,7 @@ void GameManager::initResources(){
 	this->splashSelectMap = new SceneSelectMap("SceneSelectMap");
 	this->splashSelectCharacter = new SceneSelectCharacter("SceneSelectCharacter");
 	this->box_spr = new Sprite(SDLBase::resourcesPath + "leavethegamebox.png");
-	this->mb = new MessageBox(box_spr, "yes","no",250,200);	
+	this->mb = new MessageBox(box_spr, "yes","no",250,200);
 
 	this->splashLogo->add_scenes(splashTechnology);
 	this->splashTechnology->add_scenes(splashThirdParty);
@@ -90,146 +92,216 @@ void GameManager::initResources(){
 	this->splashSelectCharacter->add_scenes(splashSelectMap);
 	this->splashSelectCharacter->add_scenes(splashMainMenu);
 
-	fadeScreen = new FadeScreen(SDLBase::getScreen()->w, SDLBase::getScreen()->h);
-	fadeScreen->fade_out(0,2);
-	currentScene = splashLogo;
-	currentScene->Enter();
+	fade_screen = new FadeScreen(SDLBase::getScreen()->w, SDLBase::getScreen()->h);
+	fade_screen->fade_out(0,2);
+	current_scene = splashLogo;
+	current_scene->Enter();
 
 	Network::init();
 	input = InputManager::getInstance();
 	audio = AudioHandler::getInstance();
 	dt = 0;
 	frame_start = 0;
-	frameEnd = 0;
+	frame_end = 0;
 	quit = false;
-	renderQuitBox = false;
-	escPressed = false;
+	render_quit_box = false;
+	esc_pressed = false;
 }
 
-
-// Metodo que realiza o game loop
-
+/**
+ * Function that makes the loop in the game
+**/
 void GameManager::processEvents(){
-	// procura um event
+	// Searches an event
 	input->Update();
-	if (input->QuitGame()){
+	if (input->QuitGame()) {
 		SDL_Event quit;
 		quit.type = SDL_QUIT;
 		SDL_PushEvent( &quit );
 	}
 
-	if (input->is_key_down(SDLK_ESCAPE) && escPressed == false){	
-		// se a tecla ESC foi pressionada, sair do programa
-		renderQuitBox = true;
-		escPressed = true;
+	else {
+		// Nothing to do
 	}
 
+	if (input->is_key_down(SDLK_ESCAPE) && esc_pressed == false) {
+		// If 'ESC' is pressed, leaved the program
+		render_quit_box = true;
+		esc_pressed = true;
+	}
+
+	else {
+		// Nothing to do
+	}
 
 	//Skip
-
-	if((input->is_key_down(SDLK_SPACE)) 
-	&& ((currentScene->get_scene_name() == "SceneLogo")
-	|| (currentScene->get_scene_name() == "SceneTechnology")
-	|| (currentScene->get_scene_name() == "SceneThirdParty")
-	|| (currentScene->get_scene_name() == "SceneLegal"))){
-	    currentScene = splashMainMenu;
-	    currentScene->Enter();
+	if((input->is_key_down(SDLK_SPACE))
+	&& ((current_scene->get_scene_name() == "SceneLogo")
+	|| (current_scene->get_scene_name() == "SceneTechnology")
+	|| (current_scene->get_scene_name() == "SceneThirdParty")
+	|| (current_scene->get_scene_name() == "SceneLegal"))) {
+	    current_scene = splashMainMenu;
+	    current_scene->Enter();
 	}
 
-	if( input->is_key_down(SDLK_UP) )
-		camera_speed_y -= SCROLL;
-	if( input->is_key_down(SDLK_DOWN) )
-		camera_speed_y += SCROLL;
-	if( input->is_key_down(SDLK_LEFT) )
-		camera_speed_x -= SCROLL;
-	if( input->is_key_down(SDLK_RIGHT) )
-		camera_speed_x += SCROLL;
+	else {
+		// Nothing to do
+	}
 
-	if( input->is_key_up(SDLK_UP) )
-		camera_speed_y += SCROLL;
-	if( input->is_key_up(SDLK_DOWN) )
+	if (input->is_key_down(SDLK_UP)) {
 		camera_speed_y -= SCROLL;
-	if( input->is_key_up(SDLK_LEFT) )
-		camera_speed_x += SCROLL;
-	if( input->is_key_up(SDLK_RIGHT) )
-		camera_speed_x -= SCROLL;
+	}
 
+	else {
+		// Nothing to do
+	}
+
+	if (input->is_key_down(SDLK_DOWN)) {
+		camera_speed_y += SCROLL;
+	}
+
+	else {
+		// Nothing to do
+	}
+
+	if (input->is_key_down(SDLK_LEFT)) {
+		camera_speed_x -= SCROLL;
+	}
+
+	else {
+		// Nothing to do
+	}
+
+	if (input->is_key_down(SDLK_RIGHT)) {
+		camera_speed_x += SCROLL;
+	}
+
+	else {
+		// Nothing to do
+	}
+
+	if (input->is_key_up(SDLK_UP)) {
+		camera_speed_y += SCROLL;
+	}
+
+	else {
+		// Nothing to do
+	}
+
+	if (input->is_key_up(SDLK_DOWN)) {
+		camera_speed_y -= SCROLL;
+	}
+
+	else {
+		// Nothing to do
+	}
+
+	if (input->is_key_up(SDLK_LEFT)) {
+		camera_speed_x += SCROLL;
+	}
+
+	else {
+		// Nothing to do
+	}
+
+	if (input->is_key_up(SDLK_RIGHT)) {
+		camera_speed_x -= SCROLL;
+	}
+
+	else {
+		// Nothing to do
+	}
 }
 
-void GameManager::update(int dt){
-	if (quit)
-	{
+void GameManager::update(int dt) {
+	if (quit) {
 		Network::finish();
 		SDL_Event quit;
  		quit.type = SDL_QUIT;
-    		SDL_PushEvent( &quit );
+    		SDL_PushEvent(&quit);
 	}
-	
-	if (renderQuitBox)
-	{
+
+	else {
+		// Nothing to do
+	}
+
+	if (render_quit_box) {
 		mb->update(dt);
-		if (mb->confirmPressed())
-		{
+		if (mb->confirm_pressed()) {
 			quit = true;
 		}
-		else if (mb->cancelPressed())
-		{
-			renderQuitBox = false;
-			escPressed = false;
+
+		else if (mb->cancelPressed()) {
+			render_quit_box = false;
+			esc_pressed = false;
 			mb->deactivateCancel();
 		}
+
+		else {
+			// Nothing to do
+		}
 	}
-	else 
-	{
-		currentScene->update(dt);
-		fadeScreen->update(dt);
+
+	else {
+		current_scene->update(dt);
+		fade_screen->update(dt);
 		audio->update();
-		cameraX1 += camera_speed_x;
-		cameraY1 += camera_speed_y;
+		camera_x1 += camera_speed_x;
+		camera_y1 += camera_speed_y;
 	}
 }
 
 void GameManager::render(float camera_x, float camera_y){
-	currentScene->render(0,0);
-	if (renderQuitBox)		
+	current_scene->render(0,0);
+
+	if (render_quit_box) {
 		mb->render(0,0);
-	fadeScreen->render(0,0);
+	}
+
+	else {
+		// Nothing to do
+	}
+	fade_screen->render(0,0);
 }
 
-void GameManager::run(){
+void GameManager::run() {
 
-	while(!SDL_QuitRequested()){
+	while(!SDL_QuitRequested()) {
 
 		frame_start = SDL_GetTicks();
-		dt = frame_start - frameEnd;
+		dt = frame_start - frame_end;
 
-		if (currentScene->should_change_scene() && fadeScreen->isFaded())
-		{
-			currentScene->Exit();
-			currentScene = currentScene->getNextScene();
-			currentScene->Enter();
+		if (current_scene->should_change_scene() && fade_screen->isFaded()) {
+			current_scene->Exit();
+			current_scene = current_scene->getNextScene();
+			current_scene->Enter();
 		}
 
+		else {
+			// Nothing to do
+		}
 
+		if (dt >= 1000/30) {
 
-		if (dt >= 1000/30){
-			/* Captura de Input*/
+			// Captures the input
 			processEvents();
 
-			/*Realizar Update*/
+			// Updates
 			update(dt);
 
-			/*Renderizar os objetos*/
-			render(cameraX1, cameraY1);
+			// Renders the objects
+			render(camera_x1, camera_y1);
 
-			/*Atualizar a tela*/
+			// Updates the screen
 			SDLBase::updateScreen();
-			frameEnd = SDL_GetTicks();
+			frame_end = SDL_GetTicks();
 
-		}else{
+		}
+
+		else {
 			SDL_Delay(1000/30 -dt);
 		}
 
-		this->currentScene->clean_destroyed_game_objects();
+		this->current_scene->clean_destroyed_game_objects();
 	}
 }

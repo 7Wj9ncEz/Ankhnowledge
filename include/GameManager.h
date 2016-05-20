@@ -1,4 +1,3 @@
-	
 #ifndef GAMEMANAGER_H_
 #define GAMEMANAGER_H_
 
@@ -40,8 +39,8 @@ public:
 	void update(int dt);
 	void render(float camera_x, float camera_y);
 	void initResources();
-	static FadeScreen * fadeScreen;
-	static Scene * currentScene;
+	static FadeScreen * fade_screen;
+	static Scene * current_scene;
 
 private:
 	Sprite* bg,*box_spr;
@@ -67,15 +66,15 @@ private:
 	Shape* shape;
 	std::vector<GameObject*> gameObjects;
 	float SCROLL;
-	float cameraX1;
+	float camera_x1;
 	float cameraX2;
-	float cameraY1;
+	float camera_y1;
 	float cameraY2;
 	float camera_speed_x;
 	float camera_speed_y;
 	float fatorParallaxScrolling;
-	int dt, frame_start, frameEnd;
-	bool quit, renderQuitBox, escPressed;
+	int dt, frame_start, frame_end;
+	bool quit, render_quit_box, esc_pressed;
 
 
 };

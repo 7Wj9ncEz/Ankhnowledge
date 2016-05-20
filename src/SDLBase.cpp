@@ -1,6 +1,7 @@
 #include "SDLBase.h"
 #include "math.h"
 #include <iostream>
+#include <assert.h>
 
 using namespace std;
 SDL_Surface* SDLBase::screen;
@@ -42,21 +43,25 @@ SDL_Surface* SDLBase::getScreen() {
  * Function that returns a surface with a loaded image
  * This function takes into consideration if the image uses or not the alpha channel
 **/
-SDL_Surface* SDLBase::loadImage(std::string arquivo){
+SDL_Surface* SDLBase::loadImage(std::string file){
+
+	// Asserts
+	assert(file != NULL);
+
 	SDL_Surface *surface = NULL;
-		SDL_Surface *surtemp;
-		surface = IMG_Load(arquivo.c_str());
+		SDL_Surface *temporary_surface;
+		surface = IMG_Load(file.c_str());
 		if (surface->format->Amask) {
-			surtemp = SDL_DisplayFormatAlpha(surface);
+			temporary_surface = SDL_DisplayFormatAlpha(surface);
 
 		}
 
 		else {
-			surtemp = SDL_DisplayFormat(surface);
+			temporary_surface = SDL_DisplayFormat(surface);
 		}
 
 		SDL_FreeSurface(surface);
-		return surtemp;
+		return temporary_surface;
 }
 
 /**
@@ -68,6 +73,10 @@ SDL_Surface* SDLBase::loadImage(std::string arquivo){
 **/
 void SDLBase::fillRectangle(SDL_Rect* rect, Uint32 color) {
 
+	// Asserts
+	assert(rect != NULL);
+	assert(color != NULL);
+
 	SDL_FillRect(screen, rect, color);
 }
 
@@ -76,6 +85,12 @@ void SDLBase::fillRectangle(SDL_Rect* rect, Uint32 color) {
  * This function allows the technique of double buffering
 **/
 void SDLBase::renderSurface(SDL_Surface* surface, SDL_Rect* clip, SDL_Rect* dst){
+
+	// Asserts
+	assert(surface != NULL);
+	assert(clip != NULL);
+	assert(dst != NULL);
+
 	SDL_BlitSurface(surface, clip, screen, dst);
 }
 
@@ -83,99 +98,106 @@ void SDLBase::renderSurface(SDL_Surface* surface, SDL_Rect* clip, SDL_Rect* dst)
  * Draws a line corresponding to the coordinates
  *
  * Parameters:
- * "x1 & y1" initial positions (in pixels) of the line
- * "x2 & y2" ending positions (in pixels) of the line
+ * "initial_x & initial_y" initial positions (in pixels) of the line
+ * "final_x & final_y" ending positions (in pixels) of the line
  * "rgb" code (in RGB scale) to color the line
  * "spacing" (in pixels) shows the size of the line
 **/
-void SDLBase::drawLine(int x1, int y1, int x2, int y2, int rgb, int spacing){
-	int deltax = abs(x2 - x1); // The difference between the x's
-	int deltay = abs(y2 - y1); // The difference between the y's
-	int x = x1;                // Start x off at the first pixel
-	int y = y1;                // Start y off at the first pixel
-	int xinc1 = 0;
-	int yinc1 = 0;
-	int xinc2 = 0;
-	int yinc2 = 0;
-	int den = 0;
-	int num = 0;
-	int numadd = 0;
-	int numpixels = 0;
+void SDLBase::drawLine(int initial_x, int initial_y, int final_x, int final_y, int rgb, int spacing){
 
-	if (x2 >= x1) {             // The x-values are increasing
-		xinc1 = 1;
-		xinc2 = 1;
+	// Asserts
+	assert(initial_x >= 0);
+	assert(final_x >= 0);
+	assert(initial_y >= 0);
+	assert(final_y >= 0);
+
+	int delta_x = abs(final_x - initial_x); // The difference between the x's
+	int delta_y = abs(final_y - initial_y); // The difference between the y's
+	int x = initial_x;                // Start x off at the first pixel
+	int y = initial_y;                // Start y off at the first pixel
+	int x_increment_1 = 0;
+	int y_increment_1 = 0;
+	int x_increment_2 = 0;
+	int y_increment_2 = 0;
+	int denominator = 0;
+	int num = 0;
+	int numerator_add = 0;
+	int number_pixels = 0;
+
+	if (final_x >= initial_x) {             // The x-values are increasing
+		x_increment_1 = 1;
+		x_increment_2 = 1;
 	}
 
 	else {                      // The x-values are decreasing
-		xinc1 = -1;
-		xinc2 = -1;
+		x_increment_1 = -1;
+		x_increment_2 = -1;
 	}
 
-	if (y2 >= y1) {            // The y-values are increasing
-		yinc1 = 1;
-		yinc2 = 1;
+	if (final_y >= initial_y) {            // The y-values are increasing
+		y_increment_1 = 1;
+		y_increment_2 = 1;
 	}
 
 	else {                     // The y-values are decreasing
-		yinc1 = -1;
-		yinc2 = -1;
+		y_increment_1 = -1;
+		y_increment_2 = -1;
 	}
 
-	if (deltax >= deltay) {		// There is at least one x-value for every y-value
-		xinc1 = 0;				// Don't change the x when numerator >= denominator
-		yinc2 = 0;				// Don't change the y for every iteration
-		den = deltax;
-		num = deltax / 2;
-		numadd = deltay;
-		numpixels = deltax;		// There are more x-values than y-values
+	if (delta_x >= delta_y) {		// There is at least one x-value for every y-value
+		x_increment_1 = 0;				// Don't change the x when numerator >= denominator
+		y_increment_2 = 0;				// Don't change the y for every iteration
+		denominator = delta_x;
+		num = delta_x / 2;
+		numerator_add = delta_y;
+		number_pixels = delta_x;		// There are more x-values than y-values
 	}
 
 	else {						// There is at least one y-value for every x-value
-		xinc2 = 0;				// Don't change the x for every iteration
-		yinc1 = 0;				// Don't change the y when numerator >= denominator
-		den = deltay;
-		num = deltay / 2;
-		numadd = deltax;
-		numpixels = deltay;		// There are more y-values than x-values
+		x_increment_2 = 0;				// Don't change the x for every iteration
+		y_increment_1 = 0;				// Don't change the y when numerator >= denominator
+		denominator = delta_y;
+		num = delta_y / 2;
+		numerator_add = delta_x;
+		number_pixels = delta_y;		// There are more y-values than x-values
 	}
 
-	for (int curpixel = 1; curpixel <= numpixels; curpixel++) {
+	for (int current_pixel = 1; current_pixel <= number_pixels; current_pixel++) {
 		if (spacing == 0) {
 			SDL_Rect pixel;
 			pixel.x = x;
 			pixel.y = y;
 			pixel.w = 4;
 			pixel.h = 4;
-			SDL_FillRect(screen,&pixel,rgb);
+			SDL_FillRect(screen, &pixel, rgb);
 		}
 
-		else if (curpixel % spacing >= spacing/2) {
+		else if (current_pixel % spacing >= spacing/2) {
 			SDL_Rect pixel;
 			pixel.x = x;
 			pixel.y = y;
 			pixel.w = 1;
 			pixel.h = 1;
-			SDL_FillRect(screen,&pixel,rgb);
+			SDL_FillRect(screen, &pixel, rgb);
 		}
 
 		else {
 			// Nothing to do
 		}
 
-		num += numadd;         // Increase the numerator by the top of the fraction
-		if (num >= den) {        // Check if numerator >= denominator
-			num -= den;         // Calculate the new numerator value
-			x += xinc1;         // Change the x as appropriate
-			y += yinc1;         // Change the y as appropriate
+		num += numerator_add;         // Increase the numerator by the top of the fraction
+		if (num >= denominator) {        // Check if numerator >= denominator
+			num -= denominator;         // Calculate the new numerator value
+			x += x_increment_1;         // Change the x as appropriate
+			y += y_increment_1;         // Change the y as appropriate
 		}
 
 		else {
 			// Nothing to do
 		}
 
-		x += xinc2;             // Change the x as appropriate
-		y += yinc2;             // Change the y as appropriate
+		x += x_increment_2;             // Change the x as appropriate
+		y += y_increment_2;             // Change the y as appropriate
 	}
 }
 
@@ -187,9 +209,19 @@ void SDLBase::drawLine(int x1, int y1, int x2, int y2, int rgb, int spacing){
  * "x & y" position (in pixels) that shows where to put the pixel
  * "r & g & b" represents the color scale of the "Red Green Blue"
 **/
-void SDLBase::putpixel(SDL_Surface* screen, int x, int y,int r, int g, int b) {
-    Uint32 *pixel = (Uint32*)screen->pixels;
-    Uint32 *p = pixel + y*screen->pitch/4 + x;
+void SDLBase::putpixel(SDL_Surface* screen, int x, int y, int r, int g, int b) {
+
+	// Asserts
+	assert(screen != NULL);
+	assert(x >= 0);
+	assert(y >= 0);
+	assert(r >= 0 && r <= 256);
+	assert(g >= 0 && g <= 256);
+	assert(b >= 0 && b <= 256);
+
+
+	Uint32 *pixel = (Uint32*)screen->pixels;		// Receives the pixel from the screen
+    Uint32 *p = pixel + y*screen->pitch/4 + x;		// Number of pixels + (y * screen_pitch/4) + x
     *p = SDL_MapRGB(screen->format, r,g,b);
 }
 
@@ -202,9 +234,18 @@ void SDLBase::putpixel(SDL_Surface* screen, int x, int y,int r, int g, int b) {
  * "r & g & b" represents the color scale of the "Red Green Blue"
 **/
 void SDLBase::drawCircle(float size, int x, int y, int r, int g, int b) {
-	for(int s = size;s>0;s--) {
+
+	// Asserts
+	assert(size > 1000);
+	assert(x >= 0);
+	assert(y >= 0);
+	assert(r >= 0 && r <= 256);
+	assert(g >= 0 && g <= 256);
+	assert(b >= 0 && b <= 256);
+
+	for(int s = size; s>0; s--) {
 		for(int i = 0; i<=360; i++) {
-			putpixel(screen, (x + (s*cos(i))), (y + (s*sin(i))),r,g,b);
+			putpixel(screen, (x + (s*cos(i))), (y + (s*sin(i))), r, g, b);
 		}
 	}
 }
@@ -224,7 +265,12 @@ void SDLBase::updateScreen() {
  * "alpha" coeficient of the alpha in the surface
 **/
 void SDLBase::setAlpha(SDL_Surface * surface, int alpha) {
-	SDL_SetAlpha(surface ,SDL_RLEACCEL | SDL_SRCALPHA,(Uint8)alpha);
+
+	// Asserts
+	assert(surface != NULL);
+	assert(alpha >= 0 && alpha <= 1000);
+
+	SDL_SetAlpha(surface, SDL_RLEACCEL | SDL_SRCALPHA, (Uint8)alpha);
 }
 
 /**
@@ -241,7 +287,7 @@ void SDLBase::initializeSDLTTF() {
 	int rc = TTF_Init();
 
 	if (rc != 0) {
-		fprintf(stderr, "Erro na inicializacao da SDL_ttf: %s\n",TTF_GetError());
+		fprintf(stderr, "Erro na inicializacao da SDL_ttf: %s\n", TTF_GetError());
 	}
 
 	else {
@@ -257,7 +303,12 @@ void SDLBase::initializeSDLTTF() {
  * "font_name" shows which type of font it will be
  * "size" (in pixels) of the font
 **/
-TTF_Font* SDLBase::loadFont(const char* font_name,int size) {
+TTF_Font* SDLBase::loadFont(const char* font_name, int size) {
+
+	// Asserts
+	assert(font_name != NULL);
+	assert(size >= 0 && size > 1000);
+
 	TTF_Font *font;
 	font = TTF_OpenFont(font_name, size);
 
@@ -270,7 +321,6 @@ TTF_Font* SDLBase::loadFont(const char* font_name,int size) {
 	}
 
 	return font;
-
 }
 
 /**
@@ -283,6 +333,14 @@ TTF_Font* SDLBase::loadFont(const char* font_name,int size) {
  * "x & y" positions (in pixels) of where the text will start
 **/
 void SDLBase::renderText(TTF_Font* font, string text, SDL_Color color, float x, float y) {
+
+	// Asserts
+	assert(font != NULL);
+	assert(text != NULL);
+	assert(color != NULL);
+	assert(x >= 0);
+	assert(y >= 0);
+
 	SDL_Surface * renderedText = TTF_RenderText_Solid(font, text.c_str(), color);
 
 	if (!renderedText) {
@@ -303,5 +361,4 @@ void SDLBase::renderText(TTF_Font* font, string text, SDL_Color color, float x, 
 	dst.h = 0;
 
 	renderSurface(renderedText, NULL, &dst);
-
 }

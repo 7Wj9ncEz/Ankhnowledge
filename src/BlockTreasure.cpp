@@ -31,9 +31,9 @@ int BlockTreasure::update(int dt)
 	if (open)
 	{
 		animation->update(dt,false,0,false);
-		if (GameManager::currentScene->change_scene("SceneSelectCharacter") == 1 && !activated && animation->get_finished_animation() == true) {
+		if (GameManager::current_scene->change_scene("SceneSelectCharacter") == 1 && !activated && animation->get_finished_animation() == true) {
 			activated = true;
-			GameManager::fadeScreen->fade_in(1,2);
+			GameManager::fade_screen->fade_in(1,2);
 		}
 		/*Adicionar pra animar o bau abrindo e parar no ultimo frame
 		 * Quando a animacao acabar mudar pra tela de ganhou

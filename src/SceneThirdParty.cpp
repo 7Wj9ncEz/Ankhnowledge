@@ -20,7 +20,7 @@ void SceneThirdParty::Enter()
 	string nextScene = "SceneLegal" ;
 	SplashScreen * splashScreen =  new SplashScreen(splashSprite,nextScene);
 	this->addGameObject(splashScreen);
-	GameManager::fadeScreen->fade_out(0,2);
+	GameManager::fade_screen->fade_out(0,2);
 }
 
 void SceneThirdParty::Exit()

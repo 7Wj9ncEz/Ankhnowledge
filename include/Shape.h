@@ -15,7 +15,7 @@ public:
 	Shape();
 	virtual ~Shape();
 	void fill_rect(int x, int y, int w, int h, int color);
-	void draw_line(int x0, int y0, int x1,int y1,int color,int spacing);
+	void draw_line(int x0, int y0, int initial_x,int initial_y,int color,int spacing);
 	void draw_circle(float size, int x,int y,int r, int g, int b);
 
 

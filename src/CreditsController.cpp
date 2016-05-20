@@ -1,15 +1,12 @@
 /*
  * CreditsController.cpp
- * 
+ *
  * Class responsible by creating Game Menu's Credit Scene.
  *
- *  Created on: Oct 29, 2013
- *      Author: al
  */
 
 #include "CreditsController.h"
 #include <iostream>
-
 
 CreditsController::CreditsController():GameObject(getX(),getY()) {
 	this->back_1 = new Sprite(SDLBase::resourcesPath + "back_1.png");
@@ -18,7 +15,7 @@ CreditsController::CreditsController():GameObject(getX(),getY()) {
 	this->back = new Button(back_1,back_2,back_3,500,500);
 	this->splashSprite = new Sprite(SDLBase::resourcesPath + "credits.png");
 	input = InputManager::getInstance();
-	
+
 }
 
 CreditsController::~CreditsController() {
@@ -43,22 +40,33 @@ void CreditsController::mouse_ouver(Button *bt){
 
 void CreditsController::mouse_pressed(Button *bt,string scene){
 
-	if (input->is_mouse_pressed(1) && bt->inside_button() == 1)
-	{
+	if (input->is_mouse_pressed(1) && bt->inside_button() == 1) {
 		bt->mouse_pressed(true);
 
-		if (bt->getChangeScene())
-		{
+		if (bt->getChangeScene()) {
 			change_scene(scene);
 		}
+
+		else {
+			// Nothing to do
+		}
 	}
-	else
-	{
+
+	else {
 		bt->mouse_pressed(false);
 	}
 }
 
+/**
+ *
+
 void CreditsController::change_scene(string nextScene){
-	if (GameManager::currentScene->change_scene(nextScene) == 1)
-		GameManager::fadeScreen->fade_in(1,0.2);
+	if (GameManager::current_scene->change_scene(nextScene) == 1) {
+		GameManager::fade_screen->fade_in(1,0.2);
+	}
+
+	else {
+		// Nothing to do
+	}
 }
+**/

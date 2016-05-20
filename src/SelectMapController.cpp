@@ -209,28 +209,28 @@ void SelectMapController::chooseMap(int index)
 {
 	if (index == 0)
 		{
-			if (GameManager::currentScene->change_scene("ScenePhaseOne") == 1)
-					GameManager::fadeScreen->fade_in(1,0.2);
+			if (GameManager::current_scene->change_scene("ScenePhaseOne") == 1)
+					GameManager::fade_screen->fade_in(1,0.2);
 		}
 		else if (index == 1)
 		{
-			if (GameManager::currentScene->change_scene("ScenePhaseTwo") == 1)
-					GameManager::fadeScreen->fade_in(1,0.2);
+			if (GameManager::current_scene->change_scene("ScenePhaseTwo") == 1)
+					GameManager::fade_screen->fade_in(1,0.2);
 		}
 		else if (index == 2)
 		{
-			if (GameManager::currentScene->change_scene("ScenePhaseThree") == 1)
-					GameManager::fadeScreen->fade_in(1,0.2);
+			if (GameManager::current_scene->change_scene("ScenePhaseThree") == 1)
+					GameManager::fade_screen->fade_in(1,0.2);
 		}
 		else if (index == 3)
 		{
-			if (GameManager::currentScene->change_scene("ScenePhaseFour") == 1)
-					GameManager::fadeScreen->fade_in(1,0.2);
+			if (GameManager::current_scene->change_scene("ScenePhaseFour") == 1)
+					GameManager::fade_screen->fade_in(1,0.2);
 		}
 		else if (index == 4)
 		{
-			if (GameManager::currentScene->change_scene("ScenePhaseFive") == 1)
-					GameManager::fadeScreen->fade_in(1,0.2);
+			if (GameManager::current_scene->change_scene("ScenePhaseFive") == 1)
+					GameManager::fade_screen->fade_in(1,0.2);
 		}
 }
 

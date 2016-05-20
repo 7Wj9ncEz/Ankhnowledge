@@ -257,8 +257,8 @@ int SelectCharacterController::update(int dt){
 			Network::player_1_selection = opponentPressed;
 			Network::player_2_selection = currentPressed;
 		}
-		if (GameManager::currentScene->change_scene("SceneSelectMap") == 1)
-							GameManager::fadeScreen->fade_in(1,2);
+		if (GameManager::current_scene->change_scene("SceneSelectMap") == 1)
+							GameManager::fade_screen->fade_in(1,2);
 	}
 
 	this->boardAnimation->update(dt, true, 0, false);
