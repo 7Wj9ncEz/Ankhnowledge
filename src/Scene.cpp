@@ -1,3 +1,9 @@
+/*
+ * File:   scene.cpp
+ *
+ * Responsible for creating/managing the scenes in the game
+ */
+
 #include "Scene.h"
 #include <iostream>
 #include <stdio.h>
@@ -12,103 +18,144 @@ Scene::~Scene() {
 	gameObjects.clear();
 }
 
-void Scene::add_scenes(Scene *scene)
-{
+/**
+ * Receives a scene object and add it into the scenes queue
+ *
+ * Parameters:
+ * "*scene" is a Scene object (pointer) that will be added by the function in
+ * the Scene's queue
+**/
+void Scene::add_scenes(Scene *scene) {
 	this->scenes.push_back(scene);
 }
 
-int Scene::change_scene(string scene_name)
-{
+/**
+ * Responsible for changing the scene for another that is in the Scene queue
+ *
+ * Parameters:
+ * "scene_name" is a string with the name of the Scene that will be changed
+**/
+int Scene::change_scene(string scene_name) {
 
-	for (list<Scene *>::iterator it = scenes.begin(); it != scenes.end(); it++)
-	{
-		if((*(*it)->getName()) == scene_name)
-		{
+	for (list<Scene *>::iterator it = scenes.begin(); it != scenes.end(); it++) {
+		if ((*(*it)->getName()) == scene_name) {
 			nextScene = (*it);
 			this->sChangeScene = true;
 			return SUCCESS;
+		}
+
+		else {
+			// Nothing to do
 		}
 	}
 	return SCENE_DOESNT_EXIST;
 }
 
-string * Scene::getName()
-{
+/**
+ * Regular getter that returns a scene's name
+**/
+string * Scene::getName() {
 	return &(this->scene_name);
 }
 
-bool Scene::should_change_scene()
-{
+/**
+ * Regular getter that shows a boolean value if it's time to change the scene
+**/
+bool Scene::should_change_scene() {
 	return this->sChangeScene;
 }
 
-list<GameObject *> Scene::getAllGameObject()
-{
+/**
+ * regular getter that returns all Scene's gameObjects.
+**/
+list<GameObject *> Scene::getAllGameObject() {
 	return (this->gameObjects);
 }
 
-void Scene::addGameObject(GameObject * gameObject)
-{
+/**
+ * Adds a gameObject into the scene
+ *
+ * Parameters:
+ * "gameObject" is an object type GameObject that will be added into the scene
+**/
+void Scene::addGameObject(GameObject * gameObject) {
 	this->gameObjects.push_back(gameObject);
 }
 
-void Scene::clean_game_objects()
-{
-	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
-	{
+/**
+ * Clean all gameObject's that are in the Scene
+**/
+void Scene::clean_game_objects() {
+	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++) {
 		delete (*it);
 	}
 	gameObjects.clear();
 	sChangeScene = false;
 }
 
-int Scene::update(int dt)
-{
-	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
-	{
+/**
+ * For every change into the Scene this function must be called to update it
+**/
+int Scene::update(int dt) {
+	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++) {
 		(*it)->update(dt);
 	}
 	return 0;
 }
 
-void Scene::render(float camera_x, float camera_y)
-{
-	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
-	{
+/**
+ * Renders the scene according to the position x,y given
+ *
+ * Parameters:
+ * "camera_x & camera_y" positions of each axis of the camera to render the Scene
+**/
+void Scene::render(float camera_x, float camera_y) {
+	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++) {
 		(*it)->render(camera_x, camera_y);
 	}
 }
 
-Scene * Scene::getNextScene()
-{
+/**
+ * Regular getter that returns which will be the next scene
+**/
+Scene * Scene::getNextScene() {
 	return this->nextScene;
 }
 
-string Scene::get_scene_name(){
+/**
+ * Regular getter that also shows the scene's name
+**/
+string Scene::get_scene_name() {
 	return this->scene_name;
 }
 
-void Scene::destroy_game_object(GameObject * gameObject)
-{
+/**
+ * Cleans a specific GameObject throwing it into the garbage queue
+ *
+ * Parameters:
+ * "gameObject" an object of GameObject that will be "thrown" in the garbage
+**/
+void Scene::destroy_game_object(GameObject * gameObject) {
 	this->garbage.push_back(gameObject);
 
 	//delete gameObject;
 }
 
-void Scene::clean_destroyed_game_objects()
-{
-	if(!this->garbage.empty())
-	{
+/**
+ * Clean the garbage collector filled with gameObjects
+**/
+void Scene::clean_destroyed_game_objects() {
+	if (!this->garbage.empty()) {
+		for(unsigned int i = 0; i < this->garbage.size(); i++)
+		{
+			gameObjects.remove(this->garbage.at(i));
+			delete garbage.at(i);
+		}
 
-	for(unsigned int i = 0; i < this->garbage.size(); i++)
-	{
-		gameObjects.remove(this->garbage.at(i));
-		delete garbage.at(i);
+		this->garbage.clear();
 	}
 
-	this->garbage.clear();
+	else {
+		// Nothing to do
 	}
 }
-
-
-
