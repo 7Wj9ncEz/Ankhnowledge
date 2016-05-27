@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include <iostream>
 #include <stdio.h>
+#include <assert.h>
 
 Scene::Scene(string scene_name) {
 	this->scene_name = scene_name;
@@ -26,6 +27,10 @@ Scene::~Scene() {
  * the Scene's queue
 **/
 void Scene::add_scenes(Scene *scene) {
+
+	// Asserts
+    assert(scene != NULL);
+
 	this->scenes.push_back(scene);
 }
 
@@ -48,6 +53,7 @@ int Scene::change_scene(string scene_name) {
 			// Nothing to do
 		}
 	}
+
 	return SCENE_DOESNT_EXIST;
 }
 
@@ -79,6 +85,10 @@ list<GameObject *> Scene::getAllGameObject() {
  * "gameObject" is an object type GameObject that will be added into the scene
 **/
 void Scene::addGameObject(GameObject * gameObject) {
+
+	// Asserts
+    assert(gameObject != NULL);
+
 	this->gameObjects.push_back(gameObject);
 }
 
@@ -110,6 +120,11 @@ int Scene::update(int dt) {
  * "camera_x & camera_y" positions of each axis of the camera to render the Scene
 **/
 void Scene::render(float camera_x, float camera_y) {
+
+	// Asserts
+    assert(camera_x >= 0);
+    assert(camera_y >= 0);
+
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++) {
 		(*it)->render(camera_x, camera_y);
 	}
@@ -136,6 +151,10 @@ string Scene::get_scene_name() {
  * "gameObject" an object of GameObject that will be "thrown" in the garbage
 **/
 void Scene::destroy_game_object(GameObject * gameObject) {
+
+	// Asserts
+    assert(gameObject != NULL);
+
 	this->garbage.push_back(gameObject);
 
 	//delete gameObject;
