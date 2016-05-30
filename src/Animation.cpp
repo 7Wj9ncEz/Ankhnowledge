@@ -1,7 +1,7 @@
 /*
  * Animation.cpp
  *
- *  Class handles the rendering of all animations used.
+ *  Class handles the rendering of all animations used
  *
  */
 

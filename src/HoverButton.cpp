@@ -2,7 +2,8 @@
  * HoverButton.cpp
  *
  * Class that shows if the mouse if hovering the button
-  */
+ *
+ */
 
 #include "HoverButton.h"
 #include <assert.h>

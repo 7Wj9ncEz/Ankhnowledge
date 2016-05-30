@@ -1,8 +1,15 @@
+/*
+ * GameManager.cpp
+ *
+ *  Class manages the game overall be it scenes, technology, splash and others
+ *
+ */
 
 #include "GameManager.h"
 
 #include <iostream>
 #include <sstream>
+#include <assert.h>
 using namespace std;
 
 FadeScreen * GameManager::fade_screen = 0;
@@ -43,7 +50,7 @@ GameManager::~GameManager() {
 /**
  * Function that initializes the objects (resources) in the game
 **/
-void GameManager::initResources(){
+void GameManager::initResources() {
 
 	this->splashLogo = new SceneLogo("SceneLogo");
 	this->splashTechnology = new SceneTechnology("SceneTechnology");
@@ -111,7 +118,7 @@ void GameManager::initResources(){
 /**
  * Function that makes the loop in the game
 **/
-void GameManager::processEvents(){
+void GameManager::processEvents() {
 	// Searches an event
 	input->Update();
 	if (input->QuitGame()) {
@@ -214,6 +221,10 @@ void GameManager::processEvents(){
 }
 
 void GameManager::update(int dt) {
+
+	// Asserts
+	assert(dt >= 0);
+
 	if (quit) {
 		Network::finish();
 		SDL_Event quit;
@@ -252,6 +263,11 @@ void GameManager::update(int dt) {
 }
 
 void GameManager::render(float camera_x, float camera_y){
+
+	// Asserts
+	assert(camera_x >= 0);
+	assert(camera_y >= 0);
+
 	current_scene->render(0,0);
 
 	if (render_quit_box) {
@@ -264,6 +280,9 @@ void GameManager::render(float camera_x, float camera_y){
 	fade_screen->render(0,0);
 }
 
+/**
+ * Responsible for running the GameManager
+**/
 void GameManager::run() {
 
 	while(!SDL_QuitRequested()) {
