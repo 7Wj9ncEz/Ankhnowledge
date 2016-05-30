@@ -3,12 +3,18 @@
  *
  *  Class handles all the objects made in the game
  *
- */
+*/
 
 
 #include "GameObject.h"
 #include <assert.h>
 
+/**
+ * Regular constructor for GameObject that receives x and y (axis positions)
+ *
+ * Parameters:
+ * "x & y" are the positions (in cm) used to verify the objects
+**/
 GameObject::GameObject(float x, float y) {
 
 	// Asserts
@@ -24,14 +30,28 @@ GameObject::~GameObject() {
 
 }
 
+/**
+ * Regular getter to receive the X position (in cm)
+**/
 float GameObject::getX() {
 	return this->x;
 }
 
+/**
+ * Regular getter to receive the Y position (in cm)
+**/
 float GameObject::getY() {
 	return this->y;
 }
 
+/**
+ * Responsible for interpolating and making the lerps in the Game
+ *
+ * Parameters:
+ * "begin_x & begin_y" initial positions (in cm)
+ * "end_x & end_y" final positions (in cm)
+ * "time" responsible for handling the lerp
+**/
 bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, float time, float  dt) {
 
 	// Asserts
@@ -43,43 +63,43 @@ bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, fl
 	assert(time < 10000);
 	assert(dt >= 0);
 
-	float xPercentage = 0;
-	float yPercentage = 0;
-	float totalX = end_x - begin_x;
-	float totalY = end_y - begin_y;
-	bool positiveX;
-	bool positiveY;
+	float x_percentage = 0;
+	float y_percentage = 0;
+	float total_x = end_x - begin_x;
+	float total_y = end_y - begin_y;
+	bool positive_x;
+	bool positive_y;
 
-	bool stillInterpolating = false;
+	bool still_interpolating = false;
 
 	if (begin_x > end_x) {
-		positiveX = false;
-		xPercentage = (begin_x - getX())/ totalX;
+		positive_x = false;
+		x_percentage = (begin_x - getX())/ total_x;
 	}
 
 	else {
-		positiveX = true;
-		xPercentage = (getX() - begin_x)/ totalX;
+		positive_x = true;
+		x_percentage = (getX() - begin_x)/ total_x;
 	}
 
 	if (begin_y > end_y) {
-		positiveY = false;
-		yPercentage =  (begin_y - getY())/ totalY;
+		positive_y = false;
+		y_percentage =  (begin_y - getY())/ total_y;
 	}
 
 	else {
-		positiveY = true;
-		yPercentage = (getY() - begin_y)/ totalY;
+		positive_y = true;
+		y_percentage = (getY() - begin_y)/ total_y;
 	}
 
-	if (xPercentage < 1 && xPercentage > -1 && this->x != end_x) {
-		stillInterpolating = true;
-		if (positiveX) {
-			this->x = this->x + totalX*(totalX/time * dt/1000);
+	if (x_percentage < 1 && x_percentage > -1 && this->x != end_x) {
+		still_interpolating = true;
+		if (positive_x) {
+			this->x = this->x + total_x*(total_x/time * dt/1000);
 		}
 
 		else {
-			this->x = this->x - totalX*(totalX/time * dt/1000);
+			this->x = this->x - total_x*(total_x/time * dt/1000);
 		}
 	}
 
@@ -87,14 +107,14 @@ bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, fl
 		this->x = end_x;
 	}
 
-	if (yPercentage < 1 && yPercentage > -1 && this->y != end_y) {
-		stillInterpolating = true;
-		if (positiveY) {
-			this->y = this->y + totalY*(totalY/time * dt/1000);
+	if (y_percentage < 1 && y_percentage > -1 && this->y != end_y) {
+		still_interpolating = true;
+		if (positive_y) {
+			this->y = this->y + total_y*(total_y/time * dt/1000);
 		}
 
 		else {
-			this->y = this->y - totalY*(totalY/time * dt/1000);
+			this->y = this->y - total_y*(total_y/time * dt/1000);
 		}
 	}
 
@@ -102,9 +122,15 @@ bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, fl
 		this->y = end_y;
 	}
 
-	return stillInterpolating;
+	return still_interpolating;
 }
 
+/**
+ * Sets the position of a game object
+ *
+ * Parameters:
+ * "x & y" are the positions of the axis (in cm)
+**/
 void GameObject::setPosition(float x, float y) {
 
 	// Asserts

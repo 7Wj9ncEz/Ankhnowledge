@@ -10,6 +10,12 @@
 #include <assert.h>
 using namespace std;
 
+/**
+ * Creates a FadeHandler to handle the fade of a specific sprite
+ *
+ * Parameters:
+ * "sprite" references to a Sprite object that will have it's fade handled
+**/
 FadeHandler::FadeHandler(Sprite * sprite) {
 
 	// Asserts
@@ -22,10 +28,20 @@ FadeHandler::FadeHandler(Sprite * sprite) {
 
 }
 
+/**
+ * Regular constructor without sprite
+**/
 FadeHandler::~FadeHandler() {
 	this->sprite = 0;
 }
 
+/**
+ * Responsible for providing the fade
+ *
+ * Parameters:
+ * "percentage" represents the amount of fade to be done (from 0 to 100)
+ * "time" represents the time to fade in (in seconds)
+**/
 void FadeHandler::fade_in(float percentage, float time) {
 
 	// Asserts
@@ -41,6 +57,13 @@ void FadeHandler::fade_in(float percentage, float time) {
 	this->rate = (this->percentage_of_stop - this->current_percentage)/time;
 }
 
+/**
+ * Responsible for removing the fade
+ *
+ * Parameters:
+ * "percentage" represents the amount of fade still left (from 100 to 0)
+ * "time" represents the time to fade out (in seconds)
+**/
 void FadeHandler::fade_out(float percentage, float time) {
 
 	// Asserts
@@ -57,6 +80,9 @@ void FadeHandler::fade_out(float percentage, float time) {
 
 }
 
+/**
+ * Responsible for updating the fade in the game
+**/
 void FadeHandler::update(float dt) {
 
 	// Asserts
@@ -106,6 +132,10 @@ void FadeHandler::update(float dt) {
 
 }
 
+/**
+ * Regular getter that returns a float value for the "current_percentage"
+ * The percentage is related to the fade
+**/
 float FadeHandler::get_current_percentage() {
 	return this->current_percentage;
 }

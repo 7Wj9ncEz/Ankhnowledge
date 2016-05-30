@@ -220,6 +220,9 @@ void GameManager::processEvents() {
 	}
 }
 
+/**
+ * Responsible for updating the GameManager
+**/
 void GameManager::update(int dt) {
 
 	// Asserts
@@ -262,6 +265,12 @@ void GameManager::update(int dt) {
 	}
 }
 
+/**
+ * Responsible for rendering the GameManager around a specific area in the camera_y1
+ *
+ * Parameters:
+ * "camera_x & camera_y" are the camera axis that will be rendered
+**/
 void GameManager::render(float camera_x, float camera_y){
 
 	// Asserts
