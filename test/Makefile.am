@@ -1,7 +1,5 @@
 # Targets specification
-#
-# Author: Edson Alves - edsonalves@unb.br
-# Date: 26/11/2010
+
 
 # Programs excluded from instalation
 noinst_PROGRAMS       =	test
