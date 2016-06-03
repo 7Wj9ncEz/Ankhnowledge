@@ -51,7 +51,7 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
 }
 
 Animation::~Animation() {
-	// TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 
     // Init-Function Logs
     log("Animation destructor called", Animation);
@@ -86,11 +86,11 @@ void Animation::render(int index, float pos_x, float pos_y) {
     log("render -> pos_x" + pos_x, Animation);
     log("render -> pos_y" + pos_y, Animation);
 
-	int x = index % columns;
-	int y = index / columns;
+    int x = index % columns;
+    int y = index / columns;
 
-	int clip_x = x * sprite_width;
-	int clip_y = y * sprite_height;
+    int clip_x = x * sprite_width;
+    int clip_y = y * sprite_height;
 
     // Tests
     TEST_CASE("Testing render (Animation)", "[render]") {
@@ -106,8 +106,8 @@ void Animation::render(int index, float pos_x, float pos_y) {
     log("render -> clip_x" + clip_x, Animation);
     log("render -> clip_y" + clip_y, Animation);
 
-	animation->clip(clip_x, clip_y, sprite_width, sprite_height);
-	animation->render(pos_x, pos_y);
+    animation->clip(clip_x, clip_y, sprite_width, sprite_height);
+    animation->render(pos_x, pos_y);
 
     // Post-Function Logs
     log("render called clip()", Animation);
@@ -170,8 +170,8 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
     log("update -> direction" + direction, Animation);
     log("update -> single_frame" + single_frame, Animation);
 
-	this->dt = this->dt + dt;
-	int last_frame = columns;
+    this->dt = this->dt + dt;
+    int last_frame = columns;
 
     // Tests
     TEST_CASE("Testing update (Animation)", "[update]") {
@@ -183,11 +183,11 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
     log("update -> last_frame" + last_frame, Animation);
 
 
-	if (previous_direction != direction) {
-		this->start_frame = direction * columns;
-		this->current_frame = start_frame;
-		this->previous_direction = direction;
-		this->finished_animation = false;
+    if (previous_direction != direction) {
+        this->start_frame = direction * columns;
+        this->current_frame = start_frame;
+        this->previous_direction = direction;
+        this->finished_animation = false;
 
         // Mid-Function Logs
         log("update -> start_frame" + start_frame, Animation);
@@ -200,28 +200,28 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
         // Nothing to do
     }
 
-	if (single_frame) {
-		last_frame = 1;
-		this->finished_animation = false;
+    if (single_frame) {
+        last_frame = 1;
+        this->finished_animation = false;
 
         // Mid-Function Logs
         log("update -> last_frame" + last_frame, Animation);
         log("update -> finished_animation" + finished_animation, Animation);
-	}
+    }
 
     else {
         // Nothing to do
     }
 
-	if ((this->dt > frame_rate)) {
-        if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
-    			reset_start_frame();
-    			finished_animation = false;
+    if ((this->dt > frame_rate)) {
+    	if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
+    	    reset_start_frame();
+    	    finished_animation = false;
 
-                // Mid-Function Logs
-                log("update called reset_start_frame()", Animation);
-                log("update -> finished_animation" + finished_animation, Animation);
-		}
+            // Mid-Function Logs
+            log("update called reset_start_frame()", Animation);
+            log("update -> finished_animation" + finished_animation, Animation);
+    	}
 
         else if ((current_frame == start_frame + last_frame -1) && (on_loop == false)) {
     			this->finished_animation = true;
@@ -238,7 +238,7 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
             log("update -> current_frame" + current_frame, Animation);
             log("update -> dt" + dt, Animation);
         }
-	}
+    }
 
     else {
         // Nothing to do
@@ -256,7 +256,7 @@ void Animation::reset_start_frame() {
     // Init-Function Logs
     log("Reset Start Frame called", Animation);
 
-	this->current_frame = start_frame;
+    this->current_frame = start_frame;
 
     // Tests
     TEST_CASE("Testing reset_start_frame (Animation)", "[reset_start_frame]") {
