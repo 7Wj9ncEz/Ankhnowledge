@@ -2,7 +2,7 @@ Universidade de Brasília – Faculdade UnB Gama
 Disciplina: Técnicas de Programação  
 Professor: Maurício Serrano  
 Período: 1º/2016  
-Data de entrega: 30 de Março de 2016
+Data de entrega: 30 de Março de 2016  
 Estudantes:  
 
 **11/0025229** - *Átilla Gallio*
@@ -313,6 +313,62 @@ void Animation::render(int index, float pos_x, float pos_y) {
 }
 ```
 
-##12. Coding language
+##12. Tests
+
+######a) If it's inside a Function there must be a comment `// Tests` on the line above it.
+
+######b) Tests must have their parentheses right after the word, unlike the Control Structures and more like a Function.
+
+######c) Because of the library `catch.hpp` all tests will be inside the functions it tests.
+
+######c) It's structure is `TEST_CASE("Testing XXX", [Class]);`.
+
+```C++
+// Tests
+TEST_CASE("Testing Animation Constructor", "[Animation]") {
+	REQUIRE(this->animation == sprite);
+	REQUIRE(this->sprite_width = sprite_width);
+	REQUIRE(this->sprite_height = sprite_height);
+	REQUIRE(this->columns =  animation->getWidth() / sprite_width);
+	REQUIRE(this->dt = 0);
+	REQUIRE(this->start_frame = direction * columns);
+	REQUIRE(this->previous_direction = direction);
+	REQUIRE(this->current_frame = start_frame);
+	REQUIRE(this->animate_sprite = true);
+	REQUIRE(this->finished_animation = false);
+}
+```
+##13. Logs
+
+######a) If it's inside a Function right at the beginning there must be a comment `// Init-Function Logs` on the line above it.
+
+######b) If it's inside a Function, but in the middle there must be a comment `// Mid-Function Logs` on the line above it.
+
+######c) If it's inside a Function, but at the end there must be a comment `// Post-Function Logs` on the line above it.
+
+######d) It's structure is `log("log message", Class);`
+
+######e) The library used is `#include "log.h"`.
+
+```C++
+// Init-Function Logs
+log("Animation rendered", Animation);
+log("render -> index" + index, Animation);
+log("render -> pos_x" + pos_x, Animation);
+log("render -> pos_y" + pos_y, Animation);
+
+// Mid-Function Logs
+log("render -> x" + x, Animation);
+log("render -> y" + y, Animation);
+log("render -> clip_x" + clip_x, Animation);
+log("render -> clip_y" + clip_y, Animation);
+
+// Post-Function Logs
+log("render called clip()", Animation);
+log("animate called render()", Animation);
+log("render has ended", Animation);
+```
+
+##14. Coding language
 
 ###The program code must be made in English in its entirety.

@@ -8,6 +8,7 @@
 #include "Animation.h"
 #include <assert.h>
 #include "log.h"
+#include "catch.hpp"
 
 Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int direction) {
 
@@ -15,6 +16,8 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
     assert(sprite != NULL);
     assert(sprite_width >= 0);
     assert(sprite_height >= 0);
+    assert(sprite_width <= 1920);
+    assert(sprite_height <= 1080);
 
     // Makes a new sprite instance
     this->animation = sprite;
@@ -28,6 +31,20 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
     this->animate_sprite = true;
     this->finished_animation = false;
 
+    // Tests
+    TEST_CASE("Testing Animation Constructor", "[Animation]") {
+        REQUIRE(this->animation == sprite);
+        REQUIRE(this->sprite_width = sprite_width);
+        REQUIRE(this->sprite_height = sprite_height);
+        REQUIRE(this->columns =  animation->getWidth() / sprite_width);
+        REQUIRE(this->dt = 0);
+        REQUIRE(this->start_frame = direction * columns);
+        REQUIRE(this->previous_direction = direction);
+        REQUIRE(this->current_frame = start_frame);
+        REQUIRE(this->animate_sprite = true);
+        REQUIRE(this->finished_animation = false);
+    }
+
     // Logs
     log("Animation has been initialized", Animation);
 
@@ -36,8 +53,11 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
 Animation::~Animation() {
 	// TODO Auto-generated destructor stub
 
-    // Logs
-    log("Animation destructor called");
+    // Init-Function Logs
+    log("Animation destructor called", Animation);
+
+    // Post-Function Logs
+    log("Animation destructor has ended", Animation);
 }
 
 /**
@@ -54,8 +74,11 @@ void Animation::render(int index, float pos_x, float pos_y) {
 
     // Asserts
     assert(index >= 0);
+    assert(index <= 100);
     assert(pos_x >= 0);
     assert(pos_y >= 0);
+    assert(pos_x <= 1920);
+    assert(pos_y <= 1080);
 
     // Init-Function Logs
     log("Animation rendered", Animation);
@@ -69,6 +92,14 @@ void Animation::render(int index, float pos_x, float pos_y) {
 	int clip_x = x * sprite_width;
 	int clip_y = y * sprite_height;
 
+    // Tests
+    TEST_CASE("Testing render (Animation)", "[render]") {
+        REQUIRE(x = index % columns);
+        REQUIRE(y = index / columns);
+        REQUIRE(clip_x = x * sprite_width);
+        REQUIRE(clip_y = y * sprite_height);
+    }
+
     // Mid-Function Logs
     log("render -> x" + x, Animation);
     log("render -> y" + y, Animation);
@@ -79,16 +110,20 @@ void Animation::render(int index, float pos_x, float pos_y) {
 	animation->render(pos_x, pos_y);
 
     // Post-Function Logs
-    log("render called clip()");
-    log("animate called render()");
+    log("render called clip()", Animation);
+    log("animate called render()", Animation);
+    log("render has ended", Animation);
 }
 
 void Animation::animate(int frame_rate, float pos_x, float pos_y) {
 
     // Asserts
     assert(frame_rate >= 0);
+    assert(frame_rate <= 1000);
     assert(pos_x >= 0);
     assert(pos_y >= 0);
+    assert(pos_x <= 1920);
+    assert(pos_y <= 1080);
 
     // Init-Function Logs
     log("Animate function has been called", Animate);
@@ -97,10 +132,18 @@ void Animation::animate(int frame_rate, float pos_x, float pos_y) {
     log("animate -> pos_y" + pos_y, Animation);
 
     this->frame_rate = frame_rate;
+
+    // Tests
+    TEST_CASE("Testing animate (Animation)", "[animate]") {
+        REQUIRE(this->frame_rate = frame_rate);
+    }
+
+    // Mid-Function Logs
+    log("animate -> frame_rate" + frame_rate, Animation);
+
     render(current_frame, pos_x, pos_y);
 
     // Post-Function Logs
-    log("animate -> frame_rate" + frame_rate, Animation);
     log("animate called render()", Animation);
     log("animate has ended", Animation);
 }
@@ -118,6 +161,7 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
 
     // Asserts
     assert(dt >= 0);
+    assert(dt <= 1000);
 
     // Init-Function Logs
     log("Update Animation has been called");
@@ -128,6 +172,11 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
 
 	this->dt = this->dt + dt;
 	int last_frame = columns;
+
+    // Tests
+    TEST_CASE("Testing update (Animation)", "[update]") {
+        REQUIRE(int last_frame = columns);
+    }
 
     // Mid-Function Logs
     log("update -> dt" + dt, Animation);
@@ -208,6 +257,11 @@ void Animation::reset_start_frame() {
     log("Reset Start Frame called", Animation);
 
 	this->current_frame = start_frame;
+
+    // Tests
+    TEST_CASE("Testing reset_start_frame (Animation)", "[reset_start_frame]") {
+        REQUIRE(this->current_frame = start_frame);
+    }
 
     // Post-Function Logs
     log("reset_start_frame -> current_frame" + current_frame, Animation);
