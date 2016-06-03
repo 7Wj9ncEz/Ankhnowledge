@@ -7,6 +7,7 @@
 
 #include "Animation.h"
 #include <assert.h>
+#include "log.h"
 
 Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int direction) {
 
@@ -26,10 +27,17 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
     this->current_frame = start_frame;
     this->animate_sprite = true;
     this->finished_animation = false;
+
+    // Logs
+    log("Animation has been initialized", Animation);
+
 }
 
 Animation::~Animation() {
 	// TODO Auto-generated destructor stub
+
+    // Logs
+    log("Animation destructor called");
 }
 
 /**
@@ -49,14 +57,30 @@ void Animation::render(int index, float pos_x, float pos_y) {
     assert(pos_x >= 0);
     assert(pos_y >= 0);
 
+    // Init-Function Logs
+    log("Animation rendered", Animation);
+    log("render -> index" + index, Animation);
+    log("render -> pos_x" + pos_x, Animation);
+    log("render -> pos_y" + pos_y, Animation);
+
 	int x = index % columns;
 	int y = index / columns;
 
 	int clip_x = x * sprite_width;
 	int clip_y = y * sprite_height;
 
+    // Mid-Function Logs
+    log("render -> x" + x, Animation);
+    log("render -> y" + y, Animation);
+    log("render -> clip_x" + clip_x, Animation);
+    log("render -> clip_y" + clip_y, Animation);
+
 	animation->clip(clip_x, clip_y, sprite_width, sprite_height);
 	animation->render(pos_x, pos_y);
+
+    // Post-Function Logs
+    log("render called clip()");
+    log("animate called render()");
 }
 
 void Animation::animate(int frame_rate, float pos_x, float pos_y) {
@@ -66,8 +90,19 @@ void Animation::animate(int frame_rate, float pos_x, float pos_y) {
     assert(pos_x >= 0);
     assert(pos_y >= 0);
 
+    // Init-Function Logs
+    log("Animate function has been called", Animate);
+    log("animate -> frame_rate" + frame_rate, Animation);
+    log("animate -> pos_x" + pos_x, Animation);
+    log("animate -> pos_y" + pos_y, Animation);
+
     this->frame_rate = frame_rate;
     render(current_frame, pos_x, pos_y);
+
+    // Post-Function Logs
+    log("animate -> frame_rate" + frame_rate, Animation);
+    log("animate called render()", Animation);
+    log("animate has ended", Animation);
 }
 
 /**
@@ -84,14 +119,32 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
     // Asserts
     assert(dt >= 0);
 
+    // Init-Function Logs
+    log("Update Animation has been called");
+    log("update -> dt" + dt, Animation);
+    log("update -> on_loop" + on_loop, Animation);
+    log("update -> direction" + direction, Animation);
+    log("update -> single_frame" + single_frame, Animation);
+
 	this->dt = this->dt + dt;
 	int last_frame = columns;
+
+    // Mid-Function Logs
+    log("update -> dt" + dt, Animation);
+    log("update -> last_frame" + last_frame, Animation);
+
 
 	if (previous_direction != direction) {
 		this->start_frame = direction * columns;
 		this->current_frame = start_frame;
 		this->previous_direction = direction;
 		this->finished_animation = false;
+
+        // Mid-Function Logs
+        log("update -> start_frame" + start_frame, Animation);
+        log("update -> current_frame" + current_frame, Animation);
+        log("update -> previous_direction" + previous_direction, Animation);
+        log("update -> finished_animation" + finished_animation, Animation);
 	}
 
     else {
@@ -101,6 +154,10 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
 	if (single_frame) {
 		last_frame = 1;
 		this->finished_animation = false;
+
+        // Mid-Function Logs
+        log("update -> last_frame" + last_frame, Animation);
+        log("update -> finished_animation" + finished_animation, Animation);
 	}
 
     else {
@@ -111,33 +168,62 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
         if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
     			reset_start_frame();
     			finished_animation = false;
+
+                // Mid-Function Logs
+                log("update called reset_start_frame()", Animation);
+                log("update -> finished_animation" + finished_animation, Animation);
 		}
 
         else if ((current_frame == start_frame + last_frame -1) && (on_loop == false)) {
     			this->finished_animation = true;
+
+                // Mid-Function Logs
+                log("update -> finished_animation" + finished_animation, Animation);
 		}
 
 		else {
 			current_frame++;
 			this->dt = 0;
+
+            // Mid-Function Logs
+            log("update -> current_frame" + current_frame, Animation);
+            log("update -> dt" + dt, Animation);
         }
 	}
 
     else {
         // Nothing to do
     }
+
+    // Post-Function Logs
+    log("update has ended", Animation);
 }
 
 /**
  * Makes the "current_frame" variable receive the same value as the "start_frame"
  **/
 void Animation::reset_start_frame() {
+
+    // Init-Function Logs
+    log("Reset Start Frame called", Animation);
+
 	this->current_frame = start_frame;
+
+    // Post-Function Logs
+    log("reset_start_frame -> current_frame" + current_frame, Animation);
+    log("reset_start_frame has ended", Animation);
 }
 
 /**
  * Regular getter for the variable "finished_animation"
 **/
 bool Animation::get_finished_animation() {
-	return this->finished_animation;
+
+    // Init-Function Logs
+    log("Get Finished Animation called", Animation);
+
+    return this->finished_animation;
+
+    // Post-Function Logs
+    log("get_finished_animation has ended", Animation);
 }
