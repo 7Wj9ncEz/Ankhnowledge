@@ -34,15 +34,15 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
     // Tests
     TEST_CASE("Testing Animation Constructor", "[Animation]") {
         REQUIRE(this->animation == sprite);
-        REQUIRE(this->sprite_width = sprite_width);
-        REQUIRE(this->sprite_height = sprite_height);
-        REQUIRE(this->columns =  animation->getWidth() / sprite_width);
-        REQUIRE(this->dt = 0);
-        REQUIRE(this->start_frame = direction * columns);
-        REQUIRE(this->previous_direction = direction);
-        REQUIRE(this->current_frame = start_frame);
-        REQUIRE(this->animate_sprite = true);
-        REQUIRE(this->finished_animation = false);
+        REQUIRE(this->sprite_width == sprite_width);
+        REQUIRE(this->sprite_height == sprite_height);
+        REQUIRE(this->columns ==  animation->getWidth() / sprite_width);
+        REQUIRE(this->dt == 0);
+        REQUIRE(this->start_frame == direction * columns);
+        REQUIRE(this->previous_direction == direction);
+        REQUIRE(this->current_frame == start_frame);
+        REQUIRE(this->animate_sprite == true);
+        REQUIRE(this->finished_animation == false);
     }
 
     // Logs
@@ -94,10 +94,10 @@ void Animation::render(int index, float pos_x, float pos_y) {
 
     // Tests
     TEST_CASE("Testing render (Animation)", "[render]") {
-        REQUIRE(x = index % columns);
-        REQUIRE(y = index / columns);
-        REQUIRE(clip_x = x * sprite_width);
-        REQUIRE(clip_y = y * sprite_height);
+        REQUIRE(x == index % columns);
+        REQUIRE(y == index / columns);
+        REQUIRE(clip_x == x * sprite_width);
+        REQUIRE(clip_y == y * sprite_height);
     }
 
     // Mid-Function Logs
@@ -135,7 +135,7 @@ void Animation::animate(int frame_rate, float pos_x, float pos_y) {
 
     // Tests
     TEST_CASE("Testing animate (Animation)", "[animate]") {
-        REQUIRE(this->frame_rate = frame_rate);
+        REQUIRE(this->frame_rate == frame_rate);
     }
 
     // Mid-Function Logs
@@ -175,7 +175,7 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
 
     // Tests
     TEST_CASE("Testing update (Animation)", "[update]") {
-        REQUIRE(int last_frame = columns);
+        REQUIRE(int last_frame == columns);
     }
 
     // Mid-Function Logs
@@ -224,16 +224,16 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
     	}
 
         else if ((current_frame == start_frame + last_frame -1) && (on_loop == false)) {
-    			this->finished_animation = true;
+    	    this->finished_animation = true;
 
-                // Mid-Function Logs
-                log("update -> finished_animation" + finished_animation, Animation);
-		}
-
-		else {
-			current_frame++;
-			this->dt = 0;
-
+            // Mid-Function Logs
+            log("update -> finished_animation" + finished_animation, Animation);
+        }
+    
+    	else {
+    	    current_frame++;
+    		this->dt = 0;
+    
             // Mid-Function Logs
             log("update -> current_frame" + current_frame, Animation);
             log("update -> dt" + dt, Animation);
@@ -260,7 +260,7 @@ void Animation::reset_start_frame() {
 
     // Tests
     TEST_CASE("Testing reset_start_frame (Animation)", "[reset_start_frame]") {
-        REQUIRE(this->current_frame = start_frame);
+        REQUIRE(this->current_frame == start_frame);
     }
 
     // Post-Function Logs
