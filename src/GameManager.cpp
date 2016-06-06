@@ -249,6 +249,8 @@ void GameManager::processEvents() {
 	if (input->is_key_down(SDLK_LEFT)) {
 		camera_speed_x -= SCROLL;
 		
+		// Mid-Function Logs
+        log("processEvents -> camera_speed_x" + camera_speed_x, GameManager);
 	}
 
 	else {
@@ -257,6 +259,9 @@ void GameManager::processEvents() {
 
 	if (input->is_key_down(SDLK_RIGHT)) {
 		camera_speed_x += SCROLL;
+		
+		// Mid-Function Logs
+        log("processEvents -> camera_speed_x" + camera_speed_x, GameManager);
 	}
 
 	else {
@@ -265,6 +270,9 @@ void GameManager::processEvents() {
 
 	if (input->is_key_up(SDLK_UP)) {
 		camera_speed_y += SCROLL;
+		
+		// Mid-Function Logs
+        log("processEvents -> camera_speed_y" + camera_speed_y, GameManager);
 	}
 
 	else {
@@ -273,6 +281,9 @@ void GameManager::processEvents() {
 
 	if (input->is_key_up(SDLK_DOWN)) {
 		camera_speed_y -= SCROLL;
+		
+		// Mid-Function Logs
+        log("processEvents -> camera_speed_y" + camera_speed_y, GameManager);
 	}
 
 	else {
@@ -281,6 +292,9 @@ void GameManager::processEvents() {
 
 	if (input->is_key_up(SDLK_LEFT)) {
 		camera_speed_x += SCROLL;
+		
+		// Mid-Function Logs
+        log("processEvents -> camera_speed_x" + camera_speed_x, GameManager);
 	}
 
 	else {
@@ -289,6 +303,9 @@ void GameManager::processEvents() {
 
 	if (input->is_key_up(SDLK_RIGHT)) {
 		camera_speed_x -= SCROLL;
+		
+		// Mid-Function Logs
+        log("processEvents -> camera_speed_x" + camera_speed_x, GameManager);
 	}
 
 	else {
