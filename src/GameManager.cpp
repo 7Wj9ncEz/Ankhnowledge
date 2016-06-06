@@ -23,9 +23,25 @@ string SDLBase::resourcesPath = getenv("HOME");
  * That uses the functions SDL_DisplayFormar and SDL_DisplayFormaAlpha
 **/
 GameManager::GameManager() {
+	
+	// Init-Function Logs
+    log("Animation destructor called", GameManager);
+	
+	// Gets the needed resource's path
 	SDLBase::resourcesPath = SDLBase::resourcesPath + "/../../usr/local/Ankhnowledge/resources/";
+	
+	// Tests
+    TEST_CASE("Testing GameManager Constructor", "[GameManager]") {
+        REQUIRE(SDLBase::resourcesPath == SDLBase::resourcesPath + "/../../usr/local/Ankhnowledge/resources/");
+    }
+	
 	SDLBase::initializeSDL();
 	initResources();
+	
+	// Post-Function Logs
+    log("GameManager called initializeSDL()", GameManager);
+    log("GameManager called initResources()", GameManager);
+    log("GameManager has ended", GameManager);
 
 }
 
@@ -33,6 +49,11 @@ GameManager::GameManager() {
  * Class Destructor
  **/
 GameManager::~GameManager() {
+    
+    // Init-Function Logs
+    log("GameManager Destructor called", GameManager);
+    
+    // Deleting all splashes
 	delete splashLogo;
 	delete splashTechnology;
 	delete splashThirdParty;
@@ -45,13 +66,20 @@ GameManager::~GameManager() {
 	delete splashPhaseFive;
 	delete splashSelectMap;
 	delete splashSelectCharacter;
+	
+	// Post-Function Logs
+    log("GameManager Destructor has ended", GameManager);
 }
 
 /**
  * Function that initializes the objects (resources) in the game
 **/
 void GameManager::initResources() {
+    
+    // Init-Function Logs
+    log("Init Resources (GameManager) called", GameManager);
 
+    // Creating all new splashes and message boxes
 	this->splashLogo = new SceneLogo("SceneLogo");
 	this->splashTechnology = new SceneTechnology("SceneTechnology");
 	this->splashThirdParty = new SceneThirdParty("SceneThirdParty");
@@ -103,28 +131,62 @@ void GameManager::initResources() {
 	fade_screen->fade_out(0,2);
 	current_scene = splashLogo;
 	current_scene->Enter();
+	
+	// Mid-Function Logs
+    log("fade_screen initialized", GameManager);
+    log("initResources -> fade_screen" + fade_screen, GameManager);
+    log("initResources -> current_scene" + current_scene , GameManager);
+    log("initResources -> current_scene called Enter()", GameManager);
 
+    // Initializing network connection also input and audio managers
 	Network::init();
 	input = InputManager::getInstance();
 	audio = AudioHandler::getInstance();
+	
+	// Mid-Function Logs
+    log("initResources called Network::init()", GameManager);
+    log("initResources -> input" + InputManager::getInstance(), GameManager);
+    log("initResources -> audio" + AudioHandler::getInstance(), GameManager);
+	
+	// Default values
 	dt = 0;
 	frame_start = 0;
 	frame_end = 0;
 	quit = false;
 	render_quit_box = false;
 	esc_pressed = false;
+	
+	// Mid-Function Logs
+    log("initResources -> dt" + dt, GameManager);
+    log("initResources -> frame_start" + frame_start, GameManager);
+    log("initResources -> frame_end" + frame_end, GameManager);
+    log("initResources -> quit" + quit, GameManager);
+    log("initResources -> render_quit_box" + render_quit_box, GameManager);
+    log("initResources -> esc_pressed" + esc_pressed, GameManager);
+	
+	// Post-Function Logs
+    log("initResouces() has ended", GameManager);
 }
 
 /**
  * Function that makes the loop in the game
 **/
 void GameManager::processEvents() {
+    
+    // Init-Function Logs
+    log("Process Events (GameManager) called", GameManager);
+
 	// Searches an event
 	input->Update();
 	if (input->QuitGame()) {
 		SDL_Event quit;
 		quit.type = SDL_QUIT;
 		SDL_PushEvent( &quit );
+		
+	    // Mid-Function Logs
+        log("quit SDL_Event", GameManager);
+        log("processEvents -> quit.type" + quit.type, GameManager);
+        log("processEvents has called SDL_PushEvent ( &quit )", GameManager);
 	}
 
 	else {
@@ -135,6 +197,10 @@ void GameManager::processEvents() {
 		// If 'ESC' is pressed, leaved the program
 		render_quit_box = true;
 		esc_pressed = true;
+		
+		// Mid-Function Logs
+        log("processEvents -> render_quit_box" + render_quit_box, GameManager);
+        log("processEvents -> esc_pressed" + esc_pressed, GameManager);
 	}
 
 	else {
@@ -149,6 +215,10 @@ void GameManager::processEvents() {
 	|| (current_scene->get_scene_name() == "SceneLegal"))) {
 	    current_scene = splashMainMenu;
 	    current_scene->Enter();
+	    
+	    // Mid-Function Logs
+        log("processEvents -> current_scene" + current_scene, GameManager);
+        log("processEvents -> current_scene has called Enter()", GameManager);
 	}
 
 	else {
@@ -157,6 +227,7 @@ void GameManager::processEvents() {
 
 	if (input->is_key_down(SDLK_UP)) {
 		camera_speed_y -= SCROLL;
+		
 	}
 
 	else {
@@ -218,6 +289,9 @@ void GameManager::processEvents() {
 	else {
 		// Nothing to do
 	}
+	
+	// Post-Function Logs
+    log("processEvents() has ended", GameManager);
 }
 
 /**
