@@ -6,7 +6,6 @@
  */
 
 #include "GameManager.h"
-
 #include <iostream>
 #include <sstream>
 #include <assert.h>
@@ -228,6 +227,8 @@ void GameManager::processEvents() {
 	if (input->is_key_down(SDLK_UP)) {
 		camera_speed_y -= SCROLL;
 		
+		// Mid-Function Logs
+        log("processEvents -> camera_speed_y" + camera_speed_y, GameManager);
 	}
 
 	else {
@@ -236,6 +237,9 @@ void GameManager::processEvents() {
 
 	if (input->is_key_down(SDLK_DOWN)) {
 		camera_speed_y += SCROLL;
+		
+		// Mid-Function Logs
+        log("processEvents -> camera_speed_y" + camera_speed_y, GameManager);
 	}
 
 	else {
@@ -244,6 +248,7 @@ void GameManager::processEvents() {
 
 	if (input->is_key_down(SDLK_LEFT)) {
 		camera_speed_x -= SCROLL;
+		
 	}
 
 	else {
