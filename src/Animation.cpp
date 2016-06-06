@@ -19,6 +19,9 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
     assert(sprite_width <= 1920);
     assert(sprite_height <= 1080);
 
+    // Init-Function Logs
+    log("Animation has been initialized", Animation);
+
     // Makes a new sprite instance
     this->animation = sprite;
     this->sprite_width = sprite_width;
@@ -45,8 +48,8 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
         REQUIRE(this->finished_animation == false);
     }
 
-    // Logs
-    log("Animation has been initialized", Animation);
+    // Post-Function Logs
+    log("Animation has ended", Animation);
 
 }
 
@@ -164,7 +167,7 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
     assert(dt <= 1000);
 
     // Init-Function Logs
-    log("Update Animation has been called");
+    log("Update Animation has been called", Animation);
     log("update -> dt" + dt, Animation);
     log("update -> on_loop" + on_loop, Animation);
     log("update -> direction" + direction, Animation);
@@ -229,11 +232,11 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
             // Mid-Function Logs
             log("update -> finished_animation" + finished_animation, Animation);
         }
-    
+
     	else {
     	    current_frame++;
     		this->dt = 0;
-    
+
             // Mid-Function Logs
             log("update -> current_frame" + current_frame, Animation);
             log("update -> dt" + dt, Animation);

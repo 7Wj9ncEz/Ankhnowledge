@@ -60,7 +60,7 @@ private:
 	Scene * splashConnect;
 	Scene * splashSelectMap;
 	Scene * splashSelectCharacter;
-	MessageBox * mb;
+	MessageBox * message_box;
 	InputManager * input;
 	AudioHandler * audio;
 	Shape* shape;

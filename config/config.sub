@@ -267,7 +267,7 @@ case $basic_machine in
 	| le32 | le64 \
 	| lm32 \
 	| m32c | m32r | m32rle | m68000 | m68k | m88k \
-	| maxq | mb | microblaze | mcore | mep | metag \
+	| maxq | message_box | microblaze | mcore | mep | metag \
 	| mips | mipsbe | mipseb | mipsel | mipsle \
 	| mips16 \
 	| mips64 | mips64el \
