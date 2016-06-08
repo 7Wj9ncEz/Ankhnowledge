@@ -8,6 +8,8 @@
 
 #include "GameObject.h"
 #include <assert.h>
+#include "log.h"
+#include "catch.hpp"
 
 /**
  * Regular constructor for GameObject that receives x and y (axis positions)
@@ -17,16 +19,28 @@
 **/
 GameObject::GameObject(float x, float y) {
 
-	// Asserts
-	assert(x >= 0);
-	assert(y >= 0);
+    // Asserts
+    assert(x >= 0);
+    assert(y >= 0);
 
-	this->x = x;
-	this->y = y;
+    // Init-Function Logs
+    log("GameObject constructor called", GameObject);
 
-}
+    this->x = x;
+    this->y = y;
 
-GameObject::~GameObject() {
+	// Tests
+    TEST_CASE("Testing GameObject Constructor", "[GameObject]") {
+		REQUIRE(this->splashLogo != NULL);
+		REQUIRE(this->splashTechnology != NULL);
+    }
+
+	// Mid-Function Logs
+	log("lerp -> x = " + this->x, GameObject);
+	log("lerp -> y = " + this->y, GameObject);
+
+	// Post-Function Logs
+	log("GameObject has ended", GameObject);
 
 }
 
@@ -34,14 +48,28 @@ GameObject::~GameObject() {
  * Regular getter to receive the X position (in cm)
 **/
 float GameObject::getX() {
-	return this->x;
+
+    // Init-Function Logs
+    log("Get X called", GameObject);
+
+    return this->x;
+
+	// Post-Function Logs
+	log("getX has ended", GameObject);
 }
 
 /**
  * Regular getter to receive the Y position (in cm)
 **/
 float GameObject::getY() {
-	return this->y;
+
+    // Init-Function Logs
+    log("Get Y called", GameObject);
+
+    return this->y;
+
+	// Post-Function Logs
+	log("getY has ended", GameObject);
 }
 
 /**
@@ -54,75 +82,133 @@ float GameObject::getY() {
 **/
 bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, float time, float  dt) {
 
-	// Asserts
-	assert(begin_x >= 0);
-	assert(begin_y >= 0);
-	assert(end_x >= 0);
-	assert(end_y >= 0);
-	assert(time >= 0);
-	assert(time < 10000);
-	assert(dt >= 0);
+    // Asserts
+    assert(begin_x >= 0);
+    assert(begin_y >= 0);
+    assert(end_x >= 0);
+    assert(end_y >= 0);
+    assert(time >= 0);
+    assert(time < 10000);
+    assert(dt >= 0);
 
-	float x_percentage = 0;
-	float y_percentage = 0;
-	float total_x = end_x - begin_x;
-	float total_y = end_y - begin_y;
-	bool positive_x;
-	bool positive_y;
+    // Init-Function Logs
+    log("Lerp called", GameObject);
 
-	bool still_interpolating = false;
+    float x_percentage = 0;
+    float y_percentage = 0;
+    float total_x = end_x - begin_x;
+    float total_y = end_y - begin_y;
+    bool positive_x = false;
+    bool positive_y = false;
+    bool still_interpolating = false;
 
-	if (begin_x > end_x) {
-		positive_x = false;
-		x_percentage = (begin_x - getX())/ total_x;
-	}
+	// Tests
+    TEST_CASE("Testing lerp (GameObject)", "[GameObject]") {
+		REQUIRE(x_percentage == 0);
+		REQUIRE(y_percentage == 0);
+		REQUIRE(total_x == end_x - begin_x);
+		REQUIRE(total_y == end_y - begin_y);
+		REQUIRE(positive_x == false);
+		REQUIRE(positive_y == false);
+		REQUIRE(still_interpolating == false);
+    }
 
-	else {
-		positive_x = true;
-		x_percentage = (getX() - begin_x)/ total_x;
-	}
+	// Mid-Function Logs
+    log("lerp -> x_percentage = " + x_percentage, GameObject);
+	log("lerp -> y_percentage = " + y_percentage, GameObject);
+	log("lerp -> total_x = " + total_x, GameObject);
+	log("lerp -> total_y = " + total_y, GameObject);
+	log("lerp -> positive_x = " + positive_x, GameObject);
+	log("lerp -> positive_y = " + positive_y, GameObject);
+	log("lerp -> still_interpolating = " + still_interpolating, GameObject);
 
-	if (begin_y > end_y) {
-		positive_y = false;
-		y_percentage =  (begin_y - getY())/ total_y;
-	}
+    if (begin_x > end_x) {
+        positive_x = false;
+        x_percentage = (begin_x - getX())/ total_x;
 
-	else {
-		positive_y = true;
-		y_percentage = (getY() - begin_y)/ total_y;
-	}
+		// Mid-Function Logs
+	    log("lerp -> positive_x = " + positive_x, GameObject);
+		log("lerp -> x_percentage = " + x_percentage, GameObject);
+    }
 
-	if (x_percentage < 1 && x_percentage > -1 && this->x != end_x) {
-		still_interpolating = true;
-		if (positive_x) {
-			this->x = this->x + total_x*(total_x/time * dt/1000);
-		}
+    else {
+        positive_x = true;
+        x_percentage = (getX() - begin_x)/ total_x;
 
-		else {
-			this->x = this->x - total_x*(total_x/time * dt/1000);
-		}
-	}
+		// Mid-Function Logs
+	    log("lerp -> positive_x = " + positive_x, GameObject);
+		log("lerp -> x_percentage = " + x_percentage, GameObject);
+    }
 
-	else {
-		this->x = end_x;
-	}
+    if (begin_y > end_y) {
+        positive_y = false;
+        y_percentage =  (begin_y - getY())/ total_y;
 
-	if (y_percentage < 1 && y_percentage > -1 && this->y != end_y) {
-		still_interpolating = true;
-		if (positive_y) {
-			this->y = this->y + total_y*(total_y/time * dt/1000);
-		}
+		// Mid-Function Logs
+	    log("lerp -> positive_y = " + positive_y, GameObject);
+		log("lerp -> y_percentage = " + y_percentage, GameObject);
+    }
 
-		else {
-			this->y = this->y - total_y*(total_y/time * dt/1000);
-		}
-	}
+    else {
+        positive_y = true;
+        y_percentage = (getY() - begin_y)/ total_y;
 
-	else {
-		this->y = end_y;
-	}
+		// Mid-Function Logs
+	    log("lerp -> positive_y = " + positive_y, GameObject);
+		log("lerp -> y_percentage = " + y_percentage, GameObject);
+    }
 
-	return still_interpolating;
+    if (x_percentage < 1 && x_percentage > -1 && this->x != end_x) {
+        still_interpolating = true;
+        if (positive_x) {
+            this->x = this->x + total_x*(total_x/time * dt/1000);
+
+			// Mid-Function Logs
+		    log("lerp -> x = " + this->x, GameObject);
+        }
+
+        else {
+            this->x = this->x - total_x*(total_x/time * dt/1000);
+
+			// Mid-Function Logs
+		    log("lerp -> x = " + this->x, GameObject);        }
+    }
+
+    else {
+        this->x = end_x;
+
+		// Mid-Function Logs
+		log("lerp -> x = " + this->x, GameObject);
+    }
+
+    if (y_percentage < 1 && y_percentage > -1 && this->y != end_y) {
+        still_interpolating = true;
+        if (positive_y) {
+            this->y = this->y + total_y*(total_y/time * dt/1000);
+
+			// Mid-Function Logs
+		    log("lerp -> y = " + this->y, GameObject);
+        }
+
+        else {
+            this->y = this->y - total_y*(total_y/time * dt/1000);
+
+			// Mid-Function Logs
+		    log("lerp -> y = " + this->y, GameObject);
+        }
+    }
+
+    else {
+        this->y = end_y;
+
+		// Mid-Function Logs
+		log("lerp -> y = " + this->y, GameObject);
+    }
+
+    return still_interpolating;
+
+	// Post-Function Logs
+	log("lerp has ended", GameObject);
 }
 
 /**
@@ -133,10 +219,20 @@ bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, fl
 **/
 void GameObject::setPosition(float x, float y) {
 
-	// Asserts
-	assert(x >= 0);
-	assert(y >= 0);
+    // Asserts
+    assert(x >= 0);
+    assert(y >= 0);
 
-	this->x = x;
-	this->y = y;
+	// Init-Function Logs
+    log("Set Position called", GameObject);
+
+    this->x = x;
+    this->y = y;
+
+	// Mid-Function Logs
+	log("lerp -> x = " + this->x, GameObject);
+	log("lerp -> y = " + this->y, GameObject);
+
+	// Post-Function Logs
+	log("setPosition has ended", GameObject);
 }
