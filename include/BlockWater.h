@@ -8,7 +8,7 @@
 class BlockWater: public Block {
 	public:
 		BlockWater(Sprite * block, float x, float y);
-		int update(int dt);
+		int update(int detective);
 		void render(float camerax, float cameray);
 		virtual void reaction(Character * character);
 		virtual ~BlockWater();

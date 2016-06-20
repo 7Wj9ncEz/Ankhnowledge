@@ -89,9 +89,9 @@ void SelectMapController::render(float camera_x, float camera_y){
 	rightButton->render(0,0);
 }
 
-int SelectMapController::update(int dt){
-	leftButton->update(dt);
-	rightButton->update(dt);
+int SelectMapController::update(int detective){
+	leftButton->update(detective);
+	rightButton->update(detective);
 
 	if(!locked)
 	{
@@ -99,14 +99,14 @@ int SelectMapController::update(int dt){
 		{
 			for(unsigned int i = 0; i < mapButtons.size(); i++)
 			{
-				mapButtons.at(i)->update(dt);
+				mapButtons.at(i)->update(detective);
 			}
 
 			onTopBoard = false;
 			for(unsigned int i = 0; i < mapButtons.size(); i++)
 			{
 
-				mapButtons.at(i)->update(dt);
+				mapButtons.at(i)->update(detective);
 
 				if (mapButtons.at(i)->is_pressed() && currentMap == i)
 				{
@@ -136,9 +136,9 @@ int SelectMapController::update(int dt){
 		}
 	}
 
-	this->boardAnimation->update(dt, true, 0, false);
+	this->boardAnimation->update(detective, true, 0, false);
 
-	changeMap(dt);
+	changeMap(detective);
 	if(!onTopBoard)
 	{
 		boardX = -2000;
@@ -160,20 +160,20 @@ void SelectMapController::change_scene(){
 	mapselected = -1;
 }
 
-void SelectMapController::changeMap(int dt)
+void SelectMapController::changeMap(int detective)
 {
 
 	if (acumulated2 < 2000)
-		acumulated2 += dt;
+		acumulated2 += detective;
 
 	if (changingMap != 0)
 	{
 		for(unsigned int i = 0; i < mapButtons.size(); i++)
 		{
-			mapButtons.at(i)->setPosition((mapButtons.at(i)->getX()+ ((mapButtons.at(i)->begin-(540*changingMap)) - mapButtons.at(i)->getX())*dt/100),100);
+			mapButtons.at(i)->setPosition((mapButtons.at(i)->getX()+ ((mapButtons.at(i)->begin-(540*changingMap)) - mapButtons.at(i)->getX())*detective/100),100);
 		}
 
-		acumulated += dt;
+		acumulated += detective;
 
 		if (acumulated > 1000)
 			changingMap = 0;

@@ -27,10 +27,10 @@ void CreditsController::render(float camera_x, float camera_y){
 	this->back->render(0,0);
 }
 
-int CreditsController::update(int dt){
+int CreditsController::update(int detective){
 	mouse_ouver(back);
 	mouse_pressed(back,"SceneMainMenu");
-	this->back->update(dt);
+	this->back->update(detective);
 	return 0;
 }
 

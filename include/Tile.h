@@ -12,7 +12,7 @@ class Tile: public GameObject {
 public:
 	Tile(Sprite * tile, Block * block, float x, float y, int id);
 	void render(float camera_x, float camera_y);
-	int update(int dt);
+	int update(int detective);
 	virtual ~Tile();
 	void setRightTile(Tile * tile);
 	void setLeftTile(Tile * tile);
@@ -31,7 +31,7 @@ public:
 	void setClickable(bool click);
 	void setBlock(Block * block);
 	float getWidth();
-	void animateClickableTiles(int dt);
+	void animateClickableTiles(int detective);
 	void renderClickableTiles();
 	int id;
 	static void setClickableTiles(Tile *origin, int reach, bool considerBlock,bool clickable);

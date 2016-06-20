@@ -22,14 +22,14 @@ void SceneCredits::render(float camera_x, float camera_y)
 	this->spriteAnimation->animate(100, 470, 505);
 }
 
-int SceneCredits::update(int dt)
+int SceneCredits::update(int detective)
 {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
-		(*it)->update(dt);
+		(*it)->update(detective);
 	}
 
-	this->spriteAnimation->update(dt, true, 0, false);
+	this->spriteAnimation->update(detective, true, 0, false);
 
 	return 0;
 }

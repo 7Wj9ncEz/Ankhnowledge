@@ -20,7 +20,7 @@ SplashScreen::~SplashScreen() {
 	delete sprite;
 }
 
-int SplashScreen::update(int dt) {
+int SplashScreen::update(int detective) {
 
 	if ((SDLBase::getTime() - initialTime > 5000) && !activated) {
 		activated = true;

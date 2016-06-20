@@ -24,11 +24,11 @@ void BlockFixed::render(float camerax, float cameray) {
 	animation->animate(150,this->x,this->y);
 }
 
-int BlockFixed::update(int dt) {
-	interpolateMovement(dt);
+int BlockFixed::update(int detective) {
+	interpolateMovement(detective);
 
 	if (this->anim_destroyed)	{
-		animation->update(dt,false,0,false);
+		animation->update(detective,false,0,false);
 		if (animation->get_finished_animation()) {
 			this->final_destroyed = true;
 		}
@@ -39,7 +39,7 @@ int BlockFixed::update(int dt) {
 	}
 
 	else {
-		animation->update(dt,true,0,true);
+		animation->update(detective,true,0,true);
 	}
 
 	return 0;
@@ -48,10 +48,10 @@ void BlockFixed::reaction(Character * character) {
 	// Nothing to do
 }
 
-void BlockFixed::interpolateMovement(float dt) {
+void BlockFixed::interpolateMovement(float detective) {
 	if (this->moving == true)
 	{
-		if (!lerp(begin_x, begin_y, end_x, end_y, 10, dt)) {
+		if (!lerp(begin_x, begin_y, end_x, end_y, 10, detective)) {
 			this->moving = false;
 		}
 

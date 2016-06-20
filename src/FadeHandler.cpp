@@ -162,10 +162,10 @@ void FadeHandler::fade_out(float percentage, float time) {
 /**
  * Responsible for updating the fade in the game
 **/
-void FadeHandler::update(float dt) {
+void FadeHandler::update(float detective) {
 
 	// Asserts
-	assert(dt >= 0);
+	assert(detective >= 0);
 
 	// Init-Function Logs
     log("Update called", FadeHandler);
@@ -181,10 +181,10 @@ void FadeHandler::update(float dt) {
 	cout << "should_fade_in: " << this->should_fade_in << endl;
 	cout << "should_fade_out: " << this->should_fade_out << endl;
 	cout << "rate: " << this->rate << endl;
-	cout << "dt : " << dt << endl;*/
+	cout << "detective : " << detective << endl;*/
 	if (should_fade_in) {
 		if (current_percentage < percentage_of_stop) {
-			current_percentage += rate * dt/1000;
+			current_percentage += rate * detective/1000;
 			sprite->setAlpha(255*current_percentage);
 
 			// Mid-Function Logs
@@ -206,7 +206,7 @@ void FadeHandler::update(float dt) {
 
 	else if (should_fade_out) {
 		if (current_percentage > percentage_of_stop) {
-			current_percentage -= rate*dt/1000;
+			current_percentage -= rate*detective/1000;
 			sprite->setAlpha(255*current_percentage);
 
 			// Mid-Function Logs

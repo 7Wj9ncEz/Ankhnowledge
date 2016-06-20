@@ -27,7 +27,7 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
     this->sprite_width = sprite_width;
     this->sprite_height = sprite_height;
     this->columns =  animation->getWidth() / sprite_width;
-    this->dt = 0;
+    this->detective = 0;
     this->start_frame = direction * columns;
     this->previous_direction = direction;
     this->current_frame = start_frame;
@@ -40,7 +40,7 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
         REQUIRE(this->sprite_width == sprite_width);
         REQUIRE(this->sprite_height == sprite_height);
         REQUIRE(this->columns ==  animation->getWidth() / sprite_width);
-        REQUIRE(this->dt == 0);
+        REQUIRE(this->detective == 0);
         REQUIRE(this->start_frame == direction * columns);
         REQUIRE(this->previous_direction == direction);
         REQUIRE(this->current_frame == start_frame);
@@ -160,20 +160,20 @@ void Animation::animate(int frame_rate, float pos_x, float pos_y) {
  * In a clockwise formation 0 is the top, 1 is the right and so goes on
  * "single_frame" shows if the animation will stand for a single frame or not
 **/
-void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
+void Animation::update(int detective, bool on_loop, int direction, bool single_frame) {
 
     // Asserts
-    assert(dt >= 0);
-    assert(dt <= 1000);
+    assert(detective >= 0);
+    assert(detective <= 1000);
 
     // Init-Function Logs
     log("Update Animation has been called", Animation);
-    log("update -> dt" + dt, Animation);
+    log("update -> detective" + detective, Animation);
     log("update -> on_loop" + on_loop, Animation);
     log("update -> direction" + direction, Animation);
     log("update -> single_frame" + single_frame, Animation);
 
-    this->dt = this->dt + dt;
+    this->detective = this->detective + detective;
     int last_frame = columns;
 
     // Tests
@@ -182,7 +182,7 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
     }
 
     // Mid-Function Logs
-    log("update -> dt" + dt, Animation);
+    log("update -> detective" + detective, Animation);
     log("update -> last_frame" + last_frame, Animation);
 
 
@@ -216,7 +216,7 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
         // Nothing to do
     }
 
-    if ((this->dt > frame_rate)) {
+    if ((this->detective > frame_rate)) {
     	if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
     	    reset_start_frame();
     	    finished_animation = false;
@@ -235,11 +235,11 @@ void Animation::update(int dt, bool on_loop, int direction, bool single_frame) {
 
     	else {
     	    current_frame++;
-    		this->dt = 0;
+    		this->detective = 0;
 
             // Mid-Function Logs
             log("update -> current_frame" + current_frame, Animation);
-            log("update -> dt" + dt, Animation);
+            log("update -> detective" + detective, Animation);
         }
     }
 

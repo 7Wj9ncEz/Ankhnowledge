@@ -36,7 +36,7 @@ public:
 	virtual ~GameManager();
 	void run();
 	void processEvents();
-	void update(int dt);
+	void update(int detective);
 	void render(float camera_x, float camera_y);
 	void initResources();
 	static FadeScreen * fade_screen;
@@ -73,7 +73,7 @@ private:
 	float camera_speed_x;
 	float camera_speed_y;
 	float fatorParallaxScrolling;
-	int dt, frame_start, frame_end;
+	int detective, frame_start, frame_end;
 	bool quit, render_quit_box, esc_pressed;
 
 

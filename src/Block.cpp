@@ -22,7 +22,7 @@ Block::~Block() {
 	this->tile = 0;
 }
 
-int Block::update(int dt) {
+int Block::update(int detective) {
 	return 0;
 }
 

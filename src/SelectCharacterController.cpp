@@ -165,16 +165,16 @@ void SelectCharacterController::render(float camera_x, float camera_y){
 
 }
 
-int SelectCharacterController::update(int dt){
-	alan->update(dt);
-	suti->update(dt);
+int SelectCharacterController::update(int detective){
+	alan->update(detective);
+	suti->update(detective);
 
 	if(!locked)
 	{
 		if (currentPressed == -1 ||opponentPressed == -1)
 		{
 		if (timer > 0)
-			timer -= dt;
+			timer -= detective;
 		else
 			timer = 0;
 		}
@@ -261,8 +261,8 @@ int SelectCharacterController::update(int dt){
 							GameManager::fade_screen->fade_in(1,2);
 	}
 
-	this->boardAnimation->update(dt, true, 0, false);
-	this->vsAnimation->update(dt, true, 0, false);
+	this->boardAnimation->update(detective, true, 0, false);
+	this->vsAnimation->update(detective, true, 0, false);
 
 	receive_message();
 	return 0;

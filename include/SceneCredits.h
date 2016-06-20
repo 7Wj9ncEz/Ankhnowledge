@@ -21,7 +21,7 @@ public:
 	SceneCredits(string scene_name);
 	virtual ~SceneCredits();
 	virtual void render(float camera_x, float camera_y);
-	virtual int update(int dt);
+	virtual int update(int detective);
 	void Enter();
 	void Exit();
 

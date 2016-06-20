@@ -36,7 +36,7 @@ void Slider::render(float camera_x, float camera_y) {
 	}
 }
 
-int Slider::update(int dt) {
+int Slider::update(int detective) {
 
 	if (input->is_mouse_pressed(1) && onButton() == 1) {
 		slideButton = true;

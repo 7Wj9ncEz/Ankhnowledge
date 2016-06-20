@@ -16,14 +16,14 @@ class BlockMovable: public Block
 {
 public:
 	BlockMovable(Sprite * block, float x, float y);
-	int update(int dt);
+	int update(int detective);
 	void render(float camerax, float cameray);
 	void reaction(Character * character);
 	virtual ~BlockMovable();
 	bool checkNextTile(Character * character, BlockMovable * lastBlock);
 	enum Direction { up, down, right, left, none };
 	void move(Direction dir);
-	void interpolateMovement(float dt);
+	void interpolateMovement(float detective);
 
 
 private:

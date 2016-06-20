@@ -21,7 +21,7 @@ h2. b) Functions
 |/3. animate|int frame_rate|/3. no return|/3. Function that's responsible for animating the game through the frame rate|
 |float pos_x|
 |float pos_y|
-|/4. update|int dt|/4. no return|/4. Function that's responsible for updating the game each frame|
+|/4. update|int detective|/4. no return|/4. Function that's responsible for updating the game each frame|
 |bool on_loop|
 |int direction|
 |bool single_frame|

@@ -9,7 +9,7 @@ h2. a) Variables
 h2. b) Functions
 
 |_.Name|_.Parameters|_.Return Type|_.Description|
-|update|int dt|int|Updates the animation, then it returns 0|
+|update|int detective|int|Updates the animation, then it returns 0|
 |/2. render|float camera_x|/2. no return|/2. Will render a Sand Block through the camera dimensions|
 |float camera_y|
 |reaction|Character* character|no return|Turns whenever there's a reaction set the tile->block and the tile to 0|

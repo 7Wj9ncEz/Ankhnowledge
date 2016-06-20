@@ -39,14 +39,14 @@ void SceneOptions::render(float camera_x, float camera_y)
 	soundAnimation->animate(150,100,100);
 }
 
-int SceneOptions::update(int dt)
+int SceneOptions::update(int detective)
 {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
-		(*it)->update(dt);
+		(*it)->update(detective);
 	}
 
-	soundAnimation->update(dt, true, 0, false);
+	soundAnimation->update(detective, true, 0, false);
 
 	return 0;
 }

@@ -125,7 +125,7 @@ void Button::render(float camera_x, float camera_y) {
 /**
  * Responsible for updating the GameManager
 **/
-int Button::update(int dt) {
+int Button::update(int detective) {
 
 	// Init-Function Logs
     log("Update has been called", Button);

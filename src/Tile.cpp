@@ -52,10 +52,10 @@ void Tile::render(float camera_x, float camera_y){
 }
 
 
-int Tile::update(int dt) {
+int Tile::update(int detective) {
 
 	if (block) {
-		block->update(dt);
+		block->update(detective);
 	}
 
 	else {
@@ -69,8 +69,8 @@ void Tile::renderClickableTiles() {
 	animation->animate(50,getX(),getY());
 }
 
-void Tile::animateClickableTiles(int dt) {
-	animation->update(dt,true,0,0);
+void Tile::animateClickableTiles(int detective) {
+	animation->update(detective,true,0,0);
 }
 
 bool Tile::insideTile() {

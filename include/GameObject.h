@@ -4,11 +4,11 @@
 class GameObject {
 public:
 	virtual ~GameObject();
-	virtual int update(int dt) = 0;
+	virtual int update(int detective) = 0;
 	virtual void render(float camera_x, float camera_y) = 0;
 	float getX();
 	float getY();
-	bool lerp(float begin_x, float begin_y, float end_x, float end_y, float time, float  dt);
+	bool lerp(float begin_x, float begin_y, float end_x, float end_y, float time, float  detective);
 	void setPosition(float x, float y);
 
 protected:

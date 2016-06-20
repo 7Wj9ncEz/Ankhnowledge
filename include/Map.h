@@ -34,7 +34,7 @@ class Map : public GameObject {
 public:
 	Map(Sprite * tile, Sprite * block, string mapLink, float x, float y);
 	void render(float camera_x, float camera_y);
-	int update(int dt);
+	int update(int detective);
 	virtual ~Map();
 	void mouse_pressed(Button *bt, InputManager* input);
 	void mouse_ouver(Button *bt, InputManager * input);

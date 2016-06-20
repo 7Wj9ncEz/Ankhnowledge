@@ -22,7 +22,7 @@ public:
 	MessageBox(Sprite * box, Sprite* boxInput, string buttonName, Animation* animation, float x, float y);
 	virtual ~MessageBox();
 	void render(float camera_x, float camera_y);
-	int update(int dt);
+	int update(int detective);
 	void buttonPressed(Button *button, string buttonName);
 	void mouse_ouver(Button *bt);
 	bool confirm_pressed();
