@@ -32,7 +32,7 @@ FadeHandler::FadeHandler(Sprite * sprite) {
 	this->current_percentage = ((float)sprite->getAlpha()/255);
 
 	// Tests
-    TEST_CASE("Testing FadeHandler Constructor", "[GameObject]") {
+    TEST_CASE("Testing FadeHandler Constructor", "[FadeHandler]") {
 		REQUIRE(this->sprite == sprite);
 		REQUIRE(this->should_fade_in == false);
 		REQUIRE(this->should_fade_out == false);
@@ -60,7 +60,7 @@ FadeHandler::~FadeHandler() {
 	this->sprite = 0;
 
 	// Tests
-    TEST_CASE("Testing FadeHandler Destructor", "[GameObject]") {
+    TEST_CASE("Testing FadeHandler Destructor", "[FadeHandler]") {
 		REQUIRE(this->sprite == 0);
     }
 
@@ -96,7 +96,7 @@ void FadeHandler::fade_in(float percentage, float time) {
 	this->rate = (this->percentage_of_stop - this->current_percentage)/time;
 
 	// Tests
-    TEST_CASE("Testing fade_in (FadeHandler)", "[GameObject]") {
+    TEST_CASE("Testing fade_in (FadeHandler)", "[FadeHandler]") {
 		REQUIRE(this->should_fade_in == true);
 		REQUIRE(this->should_fade_out == false);
 		REQUIRE(this->percentage_of_stop == percentage);
@@ -140,7 +140,7 @@ void FadeHandler::fade_out(float percentage, float time) {
 	this->rate = (this->current_percentage - this->percentage_of_stop)/time;
 
 	// Tests
-    TEST_CASE("Testing fade_out (FadeHandler)", "[GameObject]") {
+    TEST_CASE("Testing fade_out (FadeHandler)", "[FadeHandler]") {
 		REQUIRE(this->should_fade_in == false);
 		REQUIRE(this->should_fade_out == true);
 		REQUIRE(this->percentage_of_stop == percentage);
