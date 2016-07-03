@@ -124,8 +124,11 @@ void Button::render(float camera_x, float camera_y) {
 
 /**
  * Responsible for updating the GameManager
+ *
+ * Parameters:
+ * "user_input_checker" responsible for user verifying new user inputs in the game
 **/
-int Button::update(int detective) {
+int Button::update(int user_input_checker) {
 
 	// Init-Function Logs
     log("Update has been called", Button);

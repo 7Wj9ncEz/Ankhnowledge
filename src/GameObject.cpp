@@ -79,8 +79,9 @@ float GameObject::getY() {
  * "begin_x & begin_y" initial positions (in cm)
  * "end_x & end_y" final positions (in cm)
  * "time" responsible for handling the lerp
+ * "user_input_checker" responsible for user verifying new user inputs in the game
 **/
-bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, float time, float  detective) {
+bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, float time, float  user_input_checker) {
 
     // Asserts
     assert(begin_x >= 0);
@@ -89,7 +90,7 @@ bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, fl
     assert(end_y >= 0);
     assert(time >= 0);
     assert(time < 10000);
-    assert(detective >= 0);
+    assert(user_input_checker >= 0);
 
     // Init-Function Logs
     log("Lerp called", GameObject);
@@ -161,14 +162,14 @@ bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, fl
     if (x_percentage < 1 && x_percentage > -1 && this->x != end_x) {
         still_interpolating = true;
         if (positive_x) {
-            this->x = this->x + total_x*(total_x/time * detective/1000);
+            this->x = this->x + total_x*(total_x/time * user_input_checker/1000);
 
 			// Mid-Function Logs
 		    log("lerp -> x = " + this->x, GameObject);
         }
 
         else {
-            this->x = this->x - total_x*(total_x/time * detective/1000);
+            this->x = this->x - total_x*(total_x/time * user_input_checker/1000);
 
 			// Mid-Function Logs
 		    log("lerp -> x = " + this->x, GameObject);        }
@@ -184,14 +185,14 @@ bool GameObject::lerp(float begin_x, float begin_y, float end_x, float end_y, fl
     if (y_percentage < 1 && y_percentage > -1 && this->y != end_y) {
         still_interpolating = true;
         if (positive_y) {
-            this->y = this->y + total_y*(total_y/time * detective/1000);
+            this->y = this->y + total_y*(total_y/time * user_input_checker/1000);
 
 			// Mid-Function Logs
 		    log("lerp -> y = " + this->y, GameObject);
         }
 
         else {
-            this->y = this->y - total_y*(total_y/time * detective/1000);
+            this->y = this->y - total_y*(total_y/time * user_input_checker/1000);
 
 			// Mid-Function Logs
 		    log("lerp -> y = " + this->y, GameObject);

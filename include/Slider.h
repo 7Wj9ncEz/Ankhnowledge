@@ -17,7 +17,7 @@ public:
 	Slider(Sprite* button, Sprite* slider, float x, float y);
 	virtual ~Slider();
 	void render(float camera_x, float camera_y);
-	int update(int detective);
+	int update(int user_input_checker);
 	bool onButton();
 	void slide();
 	float calculateValue();

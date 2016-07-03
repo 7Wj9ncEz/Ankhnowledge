@@ -25,11 +25,11 @@ public:
 	SelectMapController();
 	virtual ~SelectMapController();
 	void render(float camera_x, float camera_y);
-	int update(int detective);
+	int update(int user_input_checker);
 	void mouse_ouver(Button* bt);
 	void mouse_pressed(Button* bt,string nextScene);
 	void change_scene();
-	void changeMap(int detective);
+	void changeMap(int user_input_checker);
 	void receive_message();
 	void send_message(string action, string info);
 	string intToString(int intenger);

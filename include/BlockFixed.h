@@ -8,12 +8,12 @@
 class BlockFixed: public Block {
 public:
 	BlockFixed(Sprite * block, float x, float y);
-	int update(int detective);
+	int update(int user_input_checker);
 	void render(float camerax, float cameray);
 	void reaction(Character * character);
 	virtual ~BlockFixed();
 	enum Direction {up, down, right, left, none};
-	void interpolateMovement(float detective);
+	void interpolateMovement(float user_input_checker);
 
 
 private:

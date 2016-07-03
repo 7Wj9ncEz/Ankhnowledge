@@ -235,14 +235,14 @@ void Map::render(float camera_x, float camera_y){
 
 }
 
-int Map::update(int detective) {
+int Map::update(int user_input_checker) {
 	InputManager* input;
 	input = InputManager::getInstance();
 
 	for (unsigned int i = 0; i < tiles.size(); i++) {
-		tiles.at(i)->update(detective);
+		tiles.at(i)->update(user_input_checker);
 		if (tiles.at(i)->isClickable()) {
-			tiles.at(i)->animateClickableTiles(detective);
+			tiles.at(i)->animateClickableTiles(user_input_checker);
 		}
 
 		else {
@@ -265,13 +265,13 @@ int Map::update(int detective) {
 		// Nothing to do
 	}
 
-	player1->update(detective);
-	player2->update(detective);
+	player1->update(user_input_checker);
+	player2->update(user_input_checker);
 
-	delta_end += detective;
+	delta_end += user_input_checker;
 	mouse_ouver(end_button, input);
 	mouse_pressed(end_button, input);
-	this->end_button->update(detective);
+	this->end_button->update(user_input_checker);
 
 	if (!current_player->getWin()) {
 		if (current_player->getStamina() <= 0 && !changePlayer) {
@@ -330,8 +330,8 @@ int Map::update(int detective) {
 		}
 	}
 
-	wonHandler->update(detective);
-	lostHandler->update(detective);
+	wonHandler->update(user_input_checker);
+	lostHandler->update(user_input_checker);
 	return 0;
 }
 

@@ -18,14 +18,14 @@ public:
 	virtual ~Animation();
 	void render(int index, float pos_x, float pos_y);
 	void animate(int frame_rate, float pos_x, float pos_y);
-	void update(int detective, bool on_loop, int direction, bool single_frame);
+	void update(int user_input_checker, bool on_loop, int direction, bool single_frame);
 	bool get_finished_animation();
 	void reset_start_frame();
 
 private:
 	Sprite* animation;
 	int sprite_width, sprite_height, columns;
-	int current_frame, start_frame, detective, frame_rate;
+	int current_frame, start_frame, user_input_checker, frame_rate;
 	bool animate_sprite, finished_animation;
 	int previous_direction;
 };

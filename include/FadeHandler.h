@@ -11,7 +11,7 @@ public:
 	virtual ~FadeHandler();
 	void fade_in(float percentage, float time);
 	void fade_out(float percentage, float time);
-	void update(float detective);
+	void update(float user_input_checker);
 	float get_current_percentage();
 private:
 	bool should_fade_in;

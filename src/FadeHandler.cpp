@@ -161,11 +161,14 @@ void FadeHandler::fade_out(float percentage, float time) {
 
 /**
  * Responsible for updating the fade in the game
+ *
+ * Parameters:
+ * "user_input_checker" responsible for user verifying new user inputs in the game
 **/
-void FadeHandler::update(float detective) {
+void FadeHandler::update(float user_input_checker) {
 
 	// Asserts
-	assert(detective >= 0);
+	assert(user_input_checker >= 0);
 
 	// Init-Function Logs
     log("Update called", FadeHandler);
@@ -181,10 +184,10 @@ void FadeHandler::update(float detective) {
 	cout << "should_fade_in: " << this->should_fade_in << endl;
 	cout << "should_fade_out: " << this->should_fade_out << endl;
 	cout << "rate: " << this->rate << endl;
-	cout << "detective : " << detective << endl;*/
+	cout << "user_input_checker : " << user_input_checker << endl;*/
 	if (should_fade_in) {
 		if (current_percentage < percentage_of_stop) {
-			current_percentage += rate * detective/1000;
+			current_percentage += rate * user_input_checker/1000;
 			sprite->setAlpha(255*current_percentage);
 
 			// Mid-Function Logs
@@ -206,7 +209,7 @@ void FadeHandler::update(float detective) {
 
 	else if (should_fade_out) {
 		if (current_percentage > percentage_of_stop) {
-			current_percentage -= rate*detective/1000;
+			current_percentage -= rate*user_input_checker/1000;
 			sprite->setAlpha(255*current_percentage);
 
 			// Mid-Function Logs

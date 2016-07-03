@@ -12,6 +12,6 @@ h2. b) Functions
 |_.Name|_.Parameters|_.Return Type|_.Description|
 |/2. render|float camera_x|/2. no return|/2. Will create animation of the Block through the camera dimensions|
 |float camera_y|
-|update|int detective|int|Updates the scene, checking interpolate movements and keeps the animations or destroy it, after all it returns 0|
+|update|int user_input_checker|int|Updates the scene, checking interpolate movements and keeps the animations or destroy it, after all it returns 0|
 |reaction|Character* character|no return|Does nothing|
-|interpolate_movement|float detective|no return|Verifies the movement and if finishes set the variable 'moving' to 'false' but in this case is never used|
+|interpolate_movement|float user_input_checker|no return|Verifies the movement and if finishes set the variable 'moving' to 'false' but in this case is never used|

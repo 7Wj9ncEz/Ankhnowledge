@@ -30,7 +30,7 @@ Character::Character(Tile* tile, int id):GameObject(tile->getX(),tile->getY())
 	this->id = id;
 	this->direction = 4;
 	this->skillDestTile = 0;
-	this->detective = 0;
+	this->user_input_checker = 0;
 	discountStamina = 0;
 	this->win = false;
 	this->on_loop = true;
@@ -54,16 +54,16 @@ void Character::render(float camera_x, float camera_y)
 	currentAnimation->animate(100, this->x - camera_x,this->y - camera_y - 40/2);
 }
 
-int Character::update(int detective)
+int Character::update(int user_input_checker)
 {
 	InputManager* input;
 	input = InputManager::getInstance();
 	
-	this->detective = this->detective + detective;
+	this->user_input_checker = this->user_input_checker + user_input_checker;
 
 	if (this->activatedSkill)
 	{
-		if (this->detective > DT)
+		if (this->user_input_checker > DT)
 		{
 			if (input->is_key_pressed(SDLK_y) && Network::get_id() == this->id)
 			{
@@ -78,7 +78,7 @@ int Character::update(int detective)
 				skillDestTile = 0;
 			}
 			
-			this->detective = 0;
+			this->user_input_checker = 0;
 		}
 	}
 	
@@ -88,7 +88,7 @@ int Character::update(int detective)
 		{
 			if (input->is_key_pressed(SDLK_y))
 			{
-				if (this->detective > DT)
+				if (this->user_input_checker > DT)
 				{
 					if((this->skill) && (this->stamina >= this->skill->getRequiredStamina()))
 					{
@@ -96,7 +96,7 @@ int Character::update(int detective)
 						send_message("ActivateSkill", "-1");
 					}
 
-					this->detective = 0;
+					this->user_input_checker = 0;
 				}
 			}
 		}
@@ -114,7 +114,7 @@ int Character::update(int detective)
 	if (turn && !performingAction && Network::get_id() != this->id)
 		receive_message();
 
-	interpolateMovement(detective);
+	interpolateMovement(user_input_checker);
 	if (activatedSkill == true)
 	{
 		on_loop = false;
@@ -135,7 +135,7 @@ int Character::update(int detective)
 
 
 
-	currentAnimation->update(detective, on_loop, direction,false);
+	currentAnimation->update(user_input_checker, on_loop, direction,false);
 	return 0;
 }
 
@@ -217,11 +217,11 @@ void Character::move(Direction dir)
 	   begin_y = getY();
 }
 
-void Character::interpolateMovement(float detective)
+void Character::interpolateMovement(float user_input_checker)
 {
 	if (this->performingAction == true)
 	{
-		if(!lerp(begin_x, begin_y, end_x, end_y, 10, detective))
+		if(!lerp(begin_x, begin_y, end_x, end_y, 10, user_input_checker))
 		{
 			this->performingAction = false;
 			direction = 4;

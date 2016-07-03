@@ -39,14 +39,14 @@ void SceneOptions::render(float camera_x, float camera_y)
 	soundAnimation->animate(150,100,100);
 }
 
-int SceneOptions::update(int detective)
+int SceneOptions::update(int user_input_checker)
 {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
-		(*it)->update(detective);
+		(*it)->update(user_input_checker);
 	}
 
-	soundAnimation->update(detective, true, 0, false);
+	soundAnimation->update(user_input_checker, true, 0, false);
 
 	return 0;
 }

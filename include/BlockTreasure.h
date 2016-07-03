@@ -14,7 +14,7 @@
 class BlockTreasure: public Block {
 	public:
 		BlockTreasure(Sprite * block, float x, float y);
-		int update(int detective);
+		int update(int user_input_checker);
 		virtual void reaction(Character * character);
 		virtual ~BlockTreasure();
 		void render(float camera_x, float cameray);

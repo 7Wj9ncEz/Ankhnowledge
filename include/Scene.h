@@ -20,7 +20,7 @@ public:
 	string * getName();
 	bool should_change_scene();
 	list<GameObject *> getAllGameObject();
-	virtual int update(int detective);
+	virtual int update(int user_input_checker);
 	virtual void render(float camera_x, float camera_y);
 	Scene * getNextScene();
 	void destroy_game_object(GameObject * gameObject);

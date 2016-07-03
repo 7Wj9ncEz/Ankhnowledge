@@ -20,7 +20,7 @@ class Character:public GameObject {
 	public:
 		Character(Tile* tile, int id);
 		void render(float camera_x, float camera_y);
-		virtual int update(int detective);
+		virtual int update(int user_input_checker);
 		virtual ~Character();
 		bool isUsingSkill();
 		bool isPerformingAction();
@@ -31,7 +31,7 @@ class Character:public GameObject {
 		void setSkill(Skill * skill);
 		virtual void setSkillDestTile(Tile * tile);
 		virtual void push(Direction dir);
-		void interpolateMovement(float detective);
+		void interpolateMovement(float user_input_checker);
 		void setTurn(bool on);
 		void toogleTurn();
 		int getStamina();
@@ -70,7 +70,7 @@ class Character:public GameObject {
 		bool win;
 		bool turn;
 		int id;
-		int detective;
+		int user_input_checker;
 		int direction;
 		Tile * currentTile, * skillDestTile;
 		virtual void changeCurrentTile(Tile * tile);

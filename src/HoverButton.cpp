@@ -58,7 +58,7 @@ void HoverButton::render(float camera_x, float camera_y) {
 /**
  * Whenever there is a new update required this function updated the object HoverButton
 **/
-int HoverButton::update(int detective) {
+int HoverButton::update(int user_input_checker) {
 	if (inside_button()) {
 		on_top = true;
 	}

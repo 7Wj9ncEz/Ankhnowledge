@@ -15,5 +15,5 @@ h2. b) Functions
 |float time|
 |/2. fade_out|float percentage|/2. no return|/2. Function that starts to fade out the game towards the specified time|
 |float time|
-|update|float detective|no return|Updates the game for each time a fade (in or out) is called|
+|update|float user_input_checker|no return|Updates the game for each time a fade (in or out) is called|
 |get_current_percentage|no parameters|float|Shows the current percentage of the fade in the game|

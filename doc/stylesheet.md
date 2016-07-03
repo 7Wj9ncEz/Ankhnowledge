@@ -330,7 +330,7 @@ TEST_CASE("Testing Animation Constructor", "[Animation]") {
 	REQUIRE(this->sprite_width = sprite_width);
 	REQUIRE(this->sprite_height = sprite_height);
 	REQUIRE(this->columns =  animation->getWidth() / sprite_width);
-	REQUIRE(this->detective = 0);
+	REQUIRE(this->user_input_checker = 0);
 	REQUIRE(this->start_frame = direction * columns);
 	REQUIRE(this->previous_direction = direction);
 	REQUIRE(this->current_frame = start_frame);

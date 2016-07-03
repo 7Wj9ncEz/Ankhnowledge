@@ -10,7 +10,7 @@ class FadeScreen : GameObject {
 public:
 	FadeScreen(float x, float y);
 	virtual ~FadeScreen();
-	int update(int detective);
+	int update(int user_input_checker);
 	void render(float camera_x, float camera_y);
 	bool isFaded();
 	void fade_out(float percentage, float time);

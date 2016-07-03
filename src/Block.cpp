@@ -22,7 +22,7 @@ Block::~Block() {
 	this->tile = 0;
 }
 
-int Block::update(int detective) {
+int Block::update(int user_input_checker) {
 	return 0;
 }
 

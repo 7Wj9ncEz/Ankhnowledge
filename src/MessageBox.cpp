@@ -85,13 +85,13 @@ void MessageBox::render(float camera_x, float camera_y){
 	
 }
 
-int MessageBox::update(int detective){
+int MessageBox::update(int user_input_checker){
 	
 	if (confirm)
 	{
 		mouse_ouver(confirm);
 		buttonPressed(confirm,"confirm");
-		confirm->update(detective);
+		confirm->update(user_input_checker);
 		
 	}
 
@@ -99,10 +99,10 @@ int MessageBox::update(int detective){
 	{
 		mouse_ouver(cancel);
 		buttonPressed(cancel,"cancel");
-		cancel->update(detective);
+		cancel->update(user_input_checker);
 	}
 	if (renderCursorAnim)
-		cursor->update(detective, true,0,0);
+		cursor->update(user_input_checker, true,0,0);
 
 return 0;
 }

@@ -106,9 +106,9 @@ void Scene::clean_game_objects() {
 /**
  * For every change into the Scene this function must be called to update it
 **/
-int Scene::update(int detective) {
+int Scene::update(int user_input_checker) {
 	for (list<GameObject *>::iterator it = gameObjects.begin(); it != gameObjects.end(); it++) {
-		(*it)->update(detective);
+		(*it)->update(user_input_checker);
 	}
 	return 0;
 }

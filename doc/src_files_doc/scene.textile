@@ -17,7 +17,7 @@ h2. b) Functions
 |get_all_game_objects|no parameters|list<*Game_object>|Returns a list that shows all game_objects|
 |add_game_object|Game_object *game_object|no return|Adds a new Game_object into a game_object array (queue type)|
 |clean_game_objects|no parameters|no return|clears all the list<*Game_object> from the scene|
-|update|int detective|int|Function that updates all the game_objects that compose the scene and shows if the update was done correctly|
+|update|int user_input_checker|int|Function that updates all the game_objects that compose the scene and shows if the update was done correctly|
 |/2. render|float camera_x|/2. no return|/2. Function that render game_objects towards the camera (x & y) positions|
 |float camera_y|
 |get_next_scene|no parameters|Scene|Returns the Scene that's supposed to be next in the Game|

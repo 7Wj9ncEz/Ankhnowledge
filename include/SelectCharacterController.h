@@ -25,7 +25,7 @@ public:
 	SelectCharacterController();
 	virtual ~SelectCharacterController();
 	void render(float camera_x, float camera_y);
-	int update(int detective);
+	int update(int user_input_checker);
 	void receive_message();
 	void send_message(string action, string info);
 	string intToString(int intenger);

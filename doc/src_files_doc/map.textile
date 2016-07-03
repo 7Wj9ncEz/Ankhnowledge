@@ -19,7 +19,7 @@ h2. b) Functions
 
 |/2. render|float camera_x|/2. no return|/2. renders the map towards the camera positions given|
 |float camera_y|
-|update|int detective|no return|Updates the map each time it's called|
+|update|int user_input_checker|no return|Updates the map each time it's called|
 |get_pressed_tile|no parameter|Tile*|Verifies if a Tile is clickable and if the mouse is above it, if these criteria match returns which Tile got pressed|
 |is_first_row|int index|bool|Returns if towards the index it's the first row|
 |is_first_column|int index|bool|Returns if towards the index it's the first column|

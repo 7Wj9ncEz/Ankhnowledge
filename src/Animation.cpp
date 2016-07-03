@@ -27,7 +27,7 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
     this->sprite_width = sprite_width;
     this->sprite_height = sprite_height;
     this->columns =  animation->getWidth() / sprite_width;
-    this->detective = 0;
+    this->user_input_checker = 0;
     this->start_frame = direction * columns;
     this->previous_direction = direction;
     this->current_frame = start_frame;
@@ -40,7 +40,7 @@ Animation::Animation(int sprite_width, int sprite_height, Sprite* sprite, int di
         REQUIRE(this->sprite_width == sprite_width);
         REQUIRE(this->sprite_height == sprite_height);
         REQUIRE(this->columns ==  animation->getWidth() / sprite_width);
-        REQUIRE(this->detective == 0);
+        REQUIRE(this->user_input_checker == 0);
         REQUIRE(this->start_frame == direction * columns);
         REQUIRE(this->previous_direction == direction);
         REQUIRE(this->current_frame == start_frame);
@@ -159,21 +159,22 @@ void Animation::animate(int frame_rate, float pos_x, float pos_y) {
  * "direction" shows the direction of the animation towards an int
  * In a clockwise formation 0 is the top, 1 is the right and so goes on
  * "single_frame" shows if the animation will stand for a single frame or not
+ * "user_input_checker" responsible for user verifying new user inputs in the game
 **/
-void Animation::update(int detective, bool on_loop, int direction, bool single_frame) {
+void Animation::update(int user_input_checker, bool on_loop, int direction, bool single_frame) {
 
     // Asserts
-    assert(detective >= 0);
-    assert(detective <= 1000);
+    assert(user_input_checker >= 0);
+    assert(user_input_checker <= 1000);
 
     // Init-Function Logs
     log("Update Animation has been called", Animation);
-    log("update -> detective" + detective, Animation);
+    log("update -> user_input_checker" + user_input_checker, Animation);
     log("update -> on_loop" + on_loop, Animation);
     log("update -> direction" + direction, Animation);
     log("update -> single_frame" + single_frame, Animation);
 
-    this->detective = this->detective + detective;
+    this->user_input_checker = this->user_input_checker + user_input_checker;
     int last_frame = columns;
 
     // Tests
@@ -182,7 +183,7 @@ void Animation::update(int detective, bool on_loop, int direction, bool single_f
     }
 
     // Mid-Function Logs
-    log("update -> detective" + detective, Animation);
+    log("update -> user_input_checker" + user_input_checker, Animation);
     log("update -> last_frame" + last_frame, Animation);
 
 
@@ -216,7 +217,7 @@ void Animation::update(int detective, bool on_loop, int direction, bool single_f
         // Nothing to do
     }
 
-    if ((this->detective > frame_rate)) {
+    if ((this->user_input_checker > frame_rate)) {
     	if ((current_frame == start_frame + last_frame -1) && (on_loop == true)) {
     	    reset_start_frame();
     	    finished_animation = false;
@@ -235,11 +236,11 @@ void Animation::update(int detective, bool on_loop, int direction, bool single_f
 
     	else {
     	    current_frame++;
-    		this->detective = 0;
+    		this->user_input_checker = 0;
 
             // Mid-Function Logs
             log("update -> current_frame" + current_frame, Animation);
-            log("update -> detective" + detective, Animation);
+            log("update -> user_input_checker" + user_input_checker, Animation);
         }
     }
 

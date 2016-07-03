@@ -21,7 +21,7 @@ public:
 	CreditsController();
 	virtual ~CreditsController();
 	void render(float camera_x, float camera_y);
-	int update(int detective);
+	int update(int user_input_checker);
 	void mouse_ouver(Button* bt);
 	void mouse_pressed(Button* bt,string nextScene);
 	void change_scene(string nextScene);

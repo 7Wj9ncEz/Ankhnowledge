@@ -14,7 +14,7 @@ class Button:public GameObject {
 public:
 	Button(Sprite* sprite1,Sprite* sprite2,Sprite* sprite3, float x,float y);
 	void render(float camera_x,float camera_y);
-	int update(int detective);
+	int update(int user_input_checker);
 	void setMouseCoord(float coordinate_x, float coordinate_y);
 	void mouse_pressed(bool is_pressed);
 	bool inside_button();

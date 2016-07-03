@@ -181,7 +181,7 @@ void MainMenuButHandler::render(float camera_x, float camera_y){
 	}
 }
 
-int MainMenuButHandler::update(int detective){
+int MainMenuButHandler::update(int user_input_checker){
 	mouse_ouver(hostButton);
 	mouse_pressed(hostButton,"ScenePhaseOne");
 	mouse_ouver(connectButton);
@@ -193,21 +193,21 @@ int MainMenuButHandler::update(int detective){
 	mouse_ouver(quitButton);
 	mouse_pressed(quitButton,"Quit");
 
-	this->hostButton->update(detective);
-	this->connectButton->update(detective);
-	this->optionsButton->update(detective);
-	this->creditsButton->update(detective);
-	this->quitButton->update(detective);
+	this->hostButton->update(user_input_checker);
+	this->connectButton->update(user_input_checker);
+	this->optionsButton->update(user_input_checker);
+	this->creditsButton->update(user_input_checker);
+	this->quitButton->update(user_input_checker);
 	
 	if (tryToConnect) {
-		updateConnect(detective);
+		updateConnect(user_input_checker);
 	}
 	
 	else {
 		// Nothing to do
 	}
-	updateDisconnect(detective);
-	updateWaiting(detective);
+	updateDisconnect(user_input_checker);
+	updateWaiting(user_input_checker);
 
 	if (Network::connected && thread) {
 		Network::receive_thread();
@@ -327,7 +327,7 @@ bool MainMenuButHandler::isInsideBox(MessageBox* messageBox) {
 	return connectBox->isInsideBox();
 }
 
-void MainMenuButHandler::updateConnect(int detective) {
+void MainMenuButHandler::updateConnect(int user_input_checker) {
 	clickOtherButtons = false;
 	if (isInsideBox(connectBox) == true && (input->is_mouse_pressed(1))) {
 		read = true;
@@ -352,7 +352,7 @@ void MainMenuButHandler::updateConnect(int detective) {
 			backspace();
 		}
 	}
-	connectBox->update(detective);
+	connectBox->update(user_input_checker);
 	if (connectBox->confirm_pressed()) {
 		if(!Network::connected) {
 			connectBox->deactivateConfirm();
@@ -390,8 +390,8 @@ void MainMenuButHandler::updateConnect(int detective) {
 
 }
 
-void MainMenuButHandler::updateDisconnect(int detective){
-	disconnectBox->update(detective);
+void MainMenuButHandler::updateDisconnect(int user_input_checker){
+	disconnectBox->update(user_input_checker);
 	if (disconnectBox->confirm_pressed()) {
 		Network::disconnected = false;
 		clickOtherButtons = true;
@@ -402,10 +402,10 @@ void MainMenuButHandler::updateDisconnect(int detective){
 	}
 }
 
-void MainMenuButHandler::updateWaiting(int detective){
-	waitAnim->update(detective,true,0, false);
+void MainMenuButHandler::updateWaiting(int user_input_checker){
+	waitAnim->update(user_input_checker,true,0, false);
 	if (SDL_mutexP(Network::mutex2) == 0) {
-		waitingBox->update(detective);
+		waitingBox->update(user_input_checker);
 		if (waitingBox->confirm_pressed() && !Network::cancel) {
 			clickOtherButtons = true;
 			host = false;

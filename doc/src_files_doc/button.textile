@@ -20,7 +20,7 @@ h2. b) Functions
 |_.Name|_.Parameters|_.Return Type|_.Description|
 |/2. render|float camera_x|/2. no return|/2. Will render a Button through the camera dimensions|
 |float camera_y|
-|update|int detective|no return|Function that's responsible for updating the game after the button gets pressed|
+|update|int user_input_checker|no return|Function that's responsible for updating the game after the button gets pressed|
 |inside_button|no parameter|bool|Function that verifies the mouse position and checks if it's inside the button|
 |/2.set_mouse_coord|float coordinate_x|/2.no return|/2.Setter for mouse_x and mouse_y variables|
 |float coordinate_y|

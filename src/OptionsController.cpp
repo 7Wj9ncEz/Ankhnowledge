@@ -71,17 +71,17 @@ void OptionsController::render(float camera_x, float camera_y){
 
 }
 
-int OptionsController::update(int detective){
+int OptionsController::update(int user_input_checker){
 	mouse_ouver(back);
 	mouse_pressed(back,"SceneMainMenu");
-	this->back->update(detective);
+	this->back->update(user_input_checker);
 	if (soundEffect->getSlideButton()== false)
 	{	
-		this->bgVolume->update(detective);
+		this->bgVolume->update(user_input_checker);
 	}
 	if (bgVolume->getSlideButton() == false)
 	{	
-		this->soundEffect->update(detective);
+		this->soundEffect->update(user_input_checker);
 	}
 	return 0;
 }

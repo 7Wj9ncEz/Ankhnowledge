@@ -228,7 +228,7 @@ void GameManager::initResources() {
     log("initResources -> audio = " + AudioHandler::getInstance(), GameManager);
 
 	// Default values
-	detective = 0;
+	user_input_checker = 0;
 	frame_start = 0;
 	frame_end = 0;
 	quit = false;
@@ -237,7 +237,7 @@ void GameManager::initResources() {
 
 	// Tests
     TEST_CASE("Testing initResouces (GameManager) [3-3]", "[GameManager]") {
-		REQUIRE(detective == 0);
+		REQUIRE(user_input_checker == 0);
 		REQUIRE(frame_start == 0);
 		REQUIRE(frame_end) == 0);
 		REQUIRE(quit == false);
@@ -246,7 +246,7 @@ void GameManager::initResources() {
 	}
 
 	// Mid-Function Logs
-    log("initResources -> detective = " + detective, GameManager);
+    log("initResources -> user_input_checker = " + user_input_checker, GameManager);
     log("initResources -> frame_start = " + frame_start, GameManager);
     log("initResources -> frame_end = " + frame_end, GameManager);
     log("initResources -> quit = " + quit, GameManager);
@@ -411,15 +411,18 @@ void GameManager::processEvents() {
 
 /**
  * Responsible for updating the GameManager
+ *
+ * Parameters:
+ * "user_input_checker" responsible for user verifying new user inputs in the game
 **/
-void GameManager::update(int detective) {
+void GameManager::update(int user_input_checker) {
 
 	// Asserts
-	assert(detective >= 0);
+	assert(user_input_checker >= 0);
 
 	// Init-Function Logs
     log("Update GameManager has been called", GameManager);
-    log("update -> detective = " + detective, GameManager);
+    log("update -> user_input_checker = " + user_input_checker, GameManager);
 
 	if (quit) {
 		Network::finish();
@@ -438,7 +441,7 @@ void GameManager::update(int detective) {
 	}
 
 	if (render_quit_box) {
-		message_box->update(detective);
+		message_box->update(user_input_checker);
 		if (message_box->confirm_pressed()) {
 			quit = true;
 
@@ -463,15 +466,15 @@ void GameManager::update(int detective) {
 	}
 
 	else {
-		current_scene->update(detective);
-		fade_screen->update(detective);
+		current_scene->update(user_input_checker);
+		fade_screen->update(user_input_checker);
 		audio->update();
 		camera_x1 += camera_speed_x;
 		camera_y1 += camera_speed_y;
 
 		// Mid-Function Logs
-		log("update -> current_scene has called update(detective)", GameManager);
-		log("update -> fade_screen has called update(detective)", GameManager);
+		log("update -> current_scene has called update(user_input_checker)", GameManager);
+		log("update -> fade_screen has called update(user_input_checker)", GameManager);
 		log("update -> audio has called update()", GameManager);
 		log("update -> camera_x1 = " + camera_x1, GameManager);
 		log("update -> camera_y1 = " + camera_y1, GameManager);
@@ -530,17 +533,17 @@ void GameManager::run() {
 	while(!SDL_QuitRequested()) {
 
 		frame_start = SDL_GetTicks();
-		detective = frame_start - frame_end;
+		user_input_checker = frame_start - frame_end;
 
 		// Tests
 	    TEST_CASE("Testing run (GameManager)", "[GameManager]") {
 			REQUIRE(frame_start == SDL_GetTicks);
-			REQUIRE(detective == (frame_start - frame_end));
+			REQUIRE(user_input_checker == (frame_start - frame_end));
 		}
 
 		// Mid-Function Logs
 		log("render -> frame_start has called SDL_GetTicks()", GameManager);
-		log("render -> detective = " + detective, GameManager);
+		log("render -> user_input_checker = " + user_input_checker, GameManager);
 
 		if (current_scene->should_change_scene() && fade_screen->isFaded()) {
 			current_scene->Exit();
@@ -557,13 +560,13 @@ void GameManager::run() {
 			// Nothing to do
 		}
 
-		if (detective >= 1000/30) {
+		if (user_input_checker >= 1000/30) {
 
 			// Captures the input
 			processEvents();
 
 			// Updates
-			update(detective);
+			update(user_input_checker);
 
 			// Renders the objects
 			render(camera_x1, camera_y1);
@@ -574,7 +577,7 @@ void GameManager::run() {
 
 			// Mid-Function Logs
 		    log("render has called processEvents()", GameManager);
-			log("render has called update(detective)", GameManager);
+			log("render has called update(user_input_checker)", GameManager);
 			log("render has called render(camera_x1, camera_y1)", GameManager);
 			log("render has called SDL::updateScreen()", GameManager);
 			log("render -> frame_end has called SDL_GetTicks", GameManager);
@@ -582,7 +585,7 @@ void GameManager::run() {
 		}
 
 		else {
-			SDL_Delay(1000/30 -detective);
+			SDL_Delay(1000/30 -user_input_checker);
 		}
 
 		this->current_scene->clean_destroyed_game_objects();

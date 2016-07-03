@@ -22,7 +22,7 @@ public:
 	SceneOptions(string scene_name);
 	virtual ~SceneOptions();
 	virtual void render(float camera_x, float camera_y);
-	virtual int update(int detective);
+	virtual int update(int user_input_checker);
 	void Enter();
 	void Exit();
 

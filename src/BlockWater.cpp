@@ -19,8 +19,8 @@ BlockWater::~BlockWater() {
 	delete this->block;
 }
 
-int BlockWater::update(int detective) {
-	animation->update(detective,true,0,false);
+int BlockWater::update(int user_input_checker) {
+	animation->update(user_input_checker,true,0,false);
 	return 0;
 }
 

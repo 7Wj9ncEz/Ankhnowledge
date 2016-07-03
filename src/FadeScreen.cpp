@@ -13,8 +13,8 @@ FadeScreen::~FadeScreen() {
 	delete sprite;
 }
 
-int FadeScreen::update(int detective){
-	fadeHandler->update(detective);
+int FadeScreen::update(int user_input_checker){
+	fadeHandler->update(user_input_checker);
 	return 0;
 }
 

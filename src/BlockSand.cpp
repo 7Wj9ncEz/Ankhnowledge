@@ -20,8 +20,8 @@ BlockSand::~BlockSand() {
 	delete this->block;
 }
 
-int BlockSand::update(int detective) {
-	animation->update(detective,true,0,false);
+int BlockSand::update(int user_input_checker) {
+	animation->update(user_input_checker,true,0,false);
 	return 0;
 }
 
